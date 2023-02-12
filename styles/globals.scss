@@ -3,4 +3,27 @@
 @tailwind utilities;
 
 @layer components {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  .btn-primary {
+    @apply flex-center gap-1.5 bg-blue text-white;
+  }
+
+  .parent-sized {
+    @apply w-full h-full;
+  }
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #aeaeafa1;
+  border-radius: 5px;
 }

@@ -24,10 +24,10 @@
       "@data/*": ["./data/*"],
       "@middleware/*": ["./middleware/*"],
       "@store/*": ["./store/*"],
-      "@types/*": ["./types/*"],
+      "types/*": ["./types/*"],
       "@services/*": ["./services/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "types/*.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

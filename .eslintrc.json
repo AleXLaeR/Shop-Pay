@@ -27,5 +27,13 @@
       }
     ]
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.vue"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
   "plugins": ["@typescript-eslint", "prettier"]
 }
