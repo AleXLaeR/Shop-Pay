@@ -16,7 +16,7 @@ export default async function connectToDb(): Promise<undefined> {
 
     if (connection.state === ConnectionStates.connected) {
       if (process.env.NODE_ENV === 'development') {
-        console.log('Use previous connection to the mongodb');
+        console.log('Using previous connection to the mongodb');
       }
       return;
     }
