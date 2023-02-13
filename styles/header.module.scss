@@ -1,0 +1,44 @@
+.adBanner {
+  @include bg-image('~@assets/images/ad-banner.jpg');
+  background-position: 50% 50%;
+  @include sized(100%, 54px);
+  display: block;
+}
+
+.navListItem {
+  position: relative;
+  color: $grey-dark-color;
+  cursor: pointer;
+
+  > img {
+    @include sized(28px, 28px);
+    border-radius: 50%;
+  }
+
+  svg {
+    transition: fill 0.5s ease;
+    @include sized(20px, 20px);
+    fill: $grey-light-color;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+
+    svg {
+      fill: $black-light-color;
+    }
+  }
+
+  &::after {
+    content: '';
+    @include sized(1px, 20px);
+    @include positioned-as(absolute, $right: -8px, $top: 50%);
+    transform: translateY(-50%);
+    background-color: $grey-light-color;
+  }
+
+  &:last-of-type::after {
+    display: none;
+  }
+}

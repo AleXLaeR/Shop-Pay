@@ -2,9 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  img {
+    object-fit: cover;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #aeaeafa1;
+    border-radius: 5px;
+  }
+}
+
 @layer components {
   .flex-center {
-    @apply flex justify-center items-center;
+    @apply flex items-center justify-center;
   }
 
   .flex-between {
@@ -12,18 +26,14 @@
   }
 
   .btn-primary {
-    @apply flex-center gap-1.5 bg-blue text-white;
+    @apply flex-center flex-grow bg-blue text-white p-1.5 rounded-md font-semibold cursor-pointer transition-[filter] duration-500 hover:brightness-110;
   }
 
-  .parent-sized {
-    @apply w-full h-full;
+  .btn-outlined {
+    @apply flex-center flex-grow bg-grey text-blue p-1.5 rounded-md font-semibold cursor-pointer transition-[filter] duration-500 hover:brightness-90;
   }
-}
 
-.scrollbar::-webkit-scrollbar {
-  width: 5px;
-}
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #aeaeafa1;
-  border-radius: 5px;
+  .trans-500 {
+    @apply transition-all duration-500;
+  }
 }

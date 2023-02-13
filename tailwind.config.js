@@ -25,10 +25,18 @@ module.exports = {
       yellow: '#fac80f',
       green: '#3c811f',
       red: '#f15f6f',
-      grey: '#f8f8f8',
+      grey: {
+        dark: '#666',
+        light: '#ccc',
+        DEFAULT: '#f8f8f8',
+      },
       violet: '#5a31f4',
-      white: '#fff',
+      white: {
+        dark: '#eee',
+        DEFAULT: '#fff',
+      },
       black: '#000',
+      transparent: 'transparent',
     },
     boxShadow: {
       sm: 'rgba(99, 99, 99, 0.1) 0px 0px 4px 0px',

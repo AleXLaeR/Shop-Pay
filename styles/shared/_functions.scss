@@ -1,0 +1,17 @@
+@use 'sass:math';
+
+$body-font-size: 16px;
+
+@function pxToRem($value) {
+  @if ($value == 0) {
+    @return 0;
+  }
+  @return math.div($value, $body-font-size) * 1rem;
+}
+
+@function pxToEm($value, $context: $body-font-size) {
+  @if ($value == 0) {
+    @return 0;
+  }
+  @return math.div($value, $context) * 1em;
+}

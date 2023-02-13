@@ -1,5 +1,6 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Product from 'types/product';
+import type { RootState } from 'ReduxHooks';
+import type Product from 'types/product';
 
 type CartState = {
   products: Product[];
@@ -14,5 +15,10 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {},
 });
+
+export const selectProducts = createSelector(
+  ({ cart }: RootState) => cart.products,
+  (products) => products,
+);
 
 export default reducer;

@@ -1,0 +1,58 @@
+@mixin bg-image($file-path, $bg-size: cover) {
+  background-image: url($file-path);
+  background-repeat: no-repeat;
+  background-size: $bg-size;
+}
+
+@mixin colored($color: $black-color, $bg-color: $white-color) {
+  color: $color;
+  background-color: $bg-color;
+}
+
+@mixin set-positioning($top, $right, $bottom, $left) {
+  @if ($top == 'auto' or unit($top) == '%') {
+    top: $top;
+  } @else {
+    top: pxToRem($top);
+  }
+  @if ($right == 'auto' or unit($right) == '%') {
+    right: $right;
+  } @else {
+    right: pxToRem($right);
+  }
+  @if ($bottom == 'auto' or unit($bottom) == '%') {
+    bottom: $bottom;
+  } @else {
+    bottom: pxToRem($bottom);
+  }
+  @if ($left == 'auto' or unit($left) == '%') {
+    left: $left;
+  } @else {
+    left: pxToRem($left);
+  }
+}
+
+@mixin positioned-as($position: relative, $top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: $position;
+  @include set-positioning($top, $right, $bottom, $left);
+}
+
+@mixin sized($width: auto, $height: auto) {
+  @if ($width == 'auto' or $width == 'inherit' or unit($width) == '%') {
+    width: $width;
+  } @else {
+    width: pxToRem($width);
+  }
+  @if ($height == 'auto' or $height == 'inherit' or unit($height) == '%') {
+    height: $height;
+  } @else {
+    height: pxToRem($height);
+  }
+}
+
+@mixin flexed($justify: center, $align: center, $gap: 0) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  gap: pxToRem($gap);
+}
