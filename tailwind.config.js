@@ -27,15 +27,20 @@ module.exports = {
       red: '#f15f6f',
       grey: {
         dark: '#666',
+        lighter: '#999',
         light: '#ccc',
         DEFAULT: '#f8f8f8',
       },
       violet: '#5a31f4',
       white: {
         dark: '#eee',
+
         DEFAULT: '#fff',
       },
-      black: '#000',
+      black: {
+        light: '#222',
+        DEFAULT: '#000',
+      },
       transparent: 'transparent',
     },
     boxShadow: {
