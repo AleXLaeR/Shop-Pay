@@ -8,7 +8,6 @@
 .navListItem {
   position: relative;
   color: $grey-dark-color;
-  cursor: pointer;
 
   > img {
     @include sized(28px, 28px);
@@ -21,13 +20,8 @@
     fill: $grey-light-color;
   }
 
-  &:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-
-    svg {
-      fill: $black-light-color;
-    }
+  &:hover svg {
+    fill: $black-light-color;
   }
 
   &::after {

@@ -33,7 +33,7 @@
     @apply flex-center flex-grow bg-grey text-blue p-1.5 rounded-md font-semibold cursor-pointer transition-[filter] duration-500 hover:brightness-90;
   }
 
-  .trans-500 {
-    @apply transition-all duration-500;
+  .link {
+    @apply cursor-pointer hover:underline underline-offset-4;
   }
 }

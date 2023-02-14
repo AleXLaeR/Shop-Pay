@@ -1,0 +1,33 @@
+.container {
+  position: relative;
+  width: 100%;
+  display: grid;
+  gap: 3rem;
+  padding: 1rem;
+  grid-template-areas: 'socials' 'links' 'newsletter' 'payments' 'copyright';
+
+  @media (min-width: 75em) {
+    padding: 1rem 8rem;
+    grid-template-areas: 'links socials' 'links newsletter' 'copyright payments';
+  }
+}
+.links {
+  grid-area: links;
+}
+.socials {
+  grid-area: socials;
+}
+.newsletter {
+  grid-area: newsletter;
+}
+.payments {
+  position: relative;
+  grid-area: payments;
+
+  @media (min-width: 50em) {
+    top: pxToRem(-15px);
+  }
+}
+.copyright {
+  grid-area: copyright;
+}
