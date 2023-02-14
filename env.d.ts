@@ -3,7 +3,7 @@ declare global {
     interface ProcessEnv {
       MONGODB_URL: string;
       NODE_ENV: 'development' | 'production';
-      PORT: string;
+      BASE_URL: string;
     }
   }
 }
