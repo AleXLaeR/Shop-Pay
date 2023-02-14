@@ -35,9 +35,9 @@ export default function Header() {
             </div>
           </div>
           <Link href={ROUTES.CHECKOUT.BASE} className="relative">
-            <AiOutlineShoppingCart className="h-8 w-8 fill-grey-dark hover:fill-black transition-[fill] duration-200" />
-            <span className="absolute -top-[0.2rem] -right-2.5 bg-blue w-4 h-4 hover:fill rounded-full flex-center text-white-dark text-sm">
-              {products.length}
+            <AiOutlineShoppingCart className="h-10 w-10 fill-grey-dark hover:fill-black transition-[fill] duration-200" />
+            <span className="absolute -top-[0.2rem] -right-2.5 bg-blue w-5 h-5 hover:fill rounded-full flex-center text-white-dark text-sm">
+              {0}
             </span>
           </Link>
         </div>

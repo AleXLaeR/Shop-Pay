@@ -9,7 +9,7 @@ interface NavLinkProps {
 export default function NavLink({ children, className, onClick }: NavLinkProps) {
   return (
     <li
-      className={`${styles.navListItem} flex-center gap-1 ${className}`}
+      className={`${styles.navListItem} flex-center gap-1 link ${className}`}
       onClick={onClick}
       onKeyDown={onClick}
       role="presentation"
