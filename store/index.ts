@@ -6,7 +6,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import cartReducer from '@store/slices/cart.slice';
-import { reducer, reducerPath, middleware } from '@store/api/api';
+import { newsletterApi } from '@store/api';
 
 const persistConfig = {
   key: 'root',
@@ -16,10 +16,10 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     cart: persistReducer(persistConfig, cartReducer),
-    [reducerPath]: reducer,
+    [newsletterApi.reducerPath]: newsletterApi.reducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
-  middleware: [thunk, middleware],
+  middleware: [thunk, newsletterApi.middleware],
 });
 setupListeners(store.dispatch);
 
