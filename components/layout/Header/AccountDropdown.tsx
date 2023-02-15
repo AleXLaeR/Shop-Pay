@@ -3,15 +3,15 @@ import ROUTES from '@components/common/routes';
 import Image from 'next/image';
 
 interface AccountDropdownProps {
-  logState: boolean;
+  loginState: boolean;
 }
 
-export default function AccountDropdown({ logState }: AccountDropdownProps) {
+export default function AccountDropdown({ loginState }: AccountDropdownProps) {
   return (
     <div className="flex justify-center w-60 shadow-md absolute !cursor-default mt-1 top-full -right-1 bg-white z-10 flex flex-col gap-4 py-4 px-0">
       <h4 className="text-center font-bold">Welcome Back !</h4>
       <div className="flex w-full gap-3 py-0 px-4">
-        {logState ? (
+        {loginState ? (
           <>
             <Image
               src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"

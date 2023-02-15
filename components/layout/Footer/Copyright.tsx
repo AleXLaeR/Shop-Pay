@@ -37,7 +37,11 @@ const links: AuthLink[] = [
   },
 ];
 
-export default function Copyright() {
+interface CopyrightProps {
+  countryName: string;
+}
+
+export default function Copyright({ countryName }: CopyrightProps) {
   return (
     <div className={`text-grey-dark mr-6 ${styles.copyright}`}>
       <p className="text-sm pb-1.5">©2022 - 2023 SHOPPAY ALL RIGHT RESERVED.</p>
@@ -54,7 +58,7 @@ export default function Copyright() {
         <li>
           <Link href="/" className="flex items-center gap-1">
             <IoLocationSharp className="fill-green" />
-            <span className="underline underline-offset-2">Ukraine</span>
+            <span className="underline underline-offset-2">{countryName}</span>
           </Link>
         </li>
       </ul>

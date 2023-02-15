@@ -5,7 +5,7 @@ import { useState } from 'react';
 import styles from '@styles/header.module.scss';
 
 export default function AdBanner() {
-  const [isVisible, setIsVisible] = useState<boolean | null>(true);
+  const [isVisible, setIsVisible] = useState(true);
 
   return (
     <div className="relative">

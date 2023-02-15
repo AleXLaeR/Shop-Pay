@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { useToggle } from '@hooks/index';
 
 import { MdSecurity } from 'react-icons/md';
 import { BsSuitHeart } from 'react-icons/bs';
@@ -8,9 +9,18 @@ import { RiAccountPinCircleLine, RiArrowDropDownFill } from 'react-icons/ri';
 import NavLink from './NavLink';
 import AccountDropdown from './AccountDropdown';
 
-export default function NavBar() {
+export default function NavBar({
+  data: {
+    country,
+    currency: { code },
+  },
+}: IpRegistryProps) {
+  const { name: countryName, flag } = country;
   const [isLoggedIn] = useState(false);
-  const [isDropDownVisible, setIsDropdownVisible] = useState(false);
+  const {
+    toggleState: isDropDownVisible,
+    handlers: { toggle },
+  } = useToggle();
 
   return (
     <div className="bg-gray border-y-[1px] border-white-dark pr-1">
@@ -19,7 +29,7 @@ export default function NavBar() {
         <ul className="flex gap-4 [&_span]:text-sm">
           <NavLink className="!no-underline !cursor-default">
             <Image
-              src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+              src={flag.emojitwo}
               alt="Country Flag"
               className="h-4 w-4 md:w-7 md:h-7 rounded-full"
               loading="lazy"
@@ -27,7 +37,7 @@ export default function NavBar() {
               height={28}
             />
             <span className="capitalize font-semibold">
-              ukraine / <span className="uppercase font-bold">uah</span>
+              {countryName} / <span className="uppercase font-bold">{code}</span>
             </span>
           </NavLink>
           <NavLink className="hidden md:flex">
@@ -47,13 +57,13 @@ export default function NavBar() {
             <BsSuitHeart />
             <span>Wishlist</span>
           </NavLink>
-          <NavLink onClick={() => setIsDropdownVisible((prev) => !prev)}>
+          <NavLink onClick={toggle}>
             <div className="flex items-center gap-0.5 [&>svg]:scale-[1.2] [&>svg]:mr-1">
               <RiAccountPinCircleLine />
               <span>{isLoggedIn ? 'Alex' : 'Account'}</span>
               <RiArrowDropDownFill />
             </div>
-            {isDropDownVisible ? <AccountDropdown logState={isLoggedIn} /> : undefined}
+            {isDropDownVisible ? <AccountDropdown loginState={isLoggedIn} /> : undefined}
           </NavLink>
         </ul>
       </div>
