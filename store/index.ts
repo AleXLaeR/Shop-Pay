@@ -6,7 +6,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import cartReducer from '@store/slices/cart.slice';
-import { reducer, reducerPath, middleware } from '@store/api';
+import { reducer, reducerPath, middleware } from '@store/api/api';
 
 const persistConfig = {
   key: 'root',
