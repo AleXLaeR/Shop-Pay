@@ -37,7 +37,7 @@ export default function NavBar({
               height={28}
             />
             <span className="capitalize font-semibold">
-              {countryName} / <span className="uppercase font-bold">{code}</span>
+              {countryName} <span className="uppercase hidden sm:inline font-bold"> / {code}</span>
             </span>
           </NavLink>
           <NavLink className="hidden md:flex">
