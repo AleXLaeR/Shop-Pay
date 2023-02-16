@@ -373,86 +373,98 @@ export const flashDealsArray: FlashDealProduct[] = [
     amountSold: 49,
   },
 ];
-export const womenDresses = [
+export const womenDresses: CategoryProduct[] = [
   {
+    id: 1,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/01/10/16417808659209e55eaeb6216fe1b0ab7569f434e9_thumbnail_600x.webp',
-    price: 79.58,
   },
   {
+    id: 2,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/04/25/16508565378f388bf7e888c2bc94273e9953d22100_thumbnail_600x.webp',
-    price: '',
   },
   {
+    id: 3,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/03/24/164810755649b8cabd855efc56aa7a0a6b422962fe_thumbnail_600x.webp',
-    price: '',
   },
   {
+    id: 4,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/04/11/164964281857e58b1fa7a38f9fff092384f23801f9_thumbnail_600x.webp',
-    price: '',
   },
   {
+    id: 5,
     image:
       'https://img.ltwebstatic.com/images3_pi/2021/10/15/16342654110372b23c51d76ca165537318bd0828f1_thumbnail_600x.webp',
-    price: '',
   },
   {
+    id: 6,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/02/21/1645432934d3afbf3ceebe3cbeb48019a7e4098f0f_thumbnail_600x.webp',
-    price: '',
   },
 ];
-export const womenShoes = [
+export const womenShoes: CategoryProduct[] = [
   {
+    id: 1,
     image:
       'https://img.ltwebstatic.com/images3_pi/2021/04/24/16192428449d0a2f9df3090b84cded584abe64c71e_thumbnail_600x.webp',
   },
   {
+    id: 2,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/06/14/165517428253e93bd6a795d9a97c21810ef1beb61c_thumbnail_600x.webp',
   },
   {
+    id: 3,
     image:
       'https://img.ltwebstatic.com/images3_pi/2021/07/28/1627454227e78cf5c9d505d6c45a1c11e6c9b83625_thumbnail_600x.webp',
   },
   {
+    id: 4,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/05/13/1652449751b1c4055651a96b57ae161885def48c15_thumbnail_600x.webp',
   },
   {
+    id: 5,
     image:
       'https://img.ltwebstatic.com/images3_pi/2021/08/13/1628869751ad4c4dbe554b72f65af9d5c532528f6c_thumbnail_600x.webp',
   },
   {
+    id: 6,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/04/27/1651047458260c8e9c705b77227c9acdba9104c367_thumbnail_600x.webp',
   },
 ];
-export const womenAccessories = [
+export const womenAccessories: CategoryProduct[] = [
   {
+    id: 1,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/05/12/1652333770b01690f4b990751e070cc10e4682b39d_thumbnail_600x.webp',
   },
   {
+    id: 2,
     image:
       'https://img.ltwebstatic.com/images3_pi/2021/10/18/1634549753f940286e6a06890c2a30302bbdbbf665_thumbnail_600x.webp',
   },
   {
+    id: 3,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/03/15/1647310895dcbf38181ac1254338a636f64c94384b_thumbnail_600x.webp',
   },
   {
+    id: 4,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/05/13/1652449751b1c4055651a96b57ae161885def48c15_thumbnail_600x.webp',
   },
   {
+    id: 5,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/06/07/1654567858a331ceb5ce709ed8e53bc50b390d19f9_thumbnail_600x.webp',
   },
   {
+    id: 6,
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/06/20/16557062656c0432e06a65323afab13e64550c45d6_thumbnail_600x.webp',
   },

@@ -12,3 +12,8 @@ interface FlashDealProduct {
   link: string;
   amountSold: number;
 }
+
+interface CategoryProduct {
+  id: number;
+  image: string;
+}
