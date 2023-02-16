@@ -1,6 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from 'ReduxHooks';
-import type Product from 'types/product';
 
 type CartState = {
   products: Product[];
