@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ROUTES from '@components/common/routes';
+import ROUTES from '@services/routes';
 import Image from 'next/image';
 
 interface AccountDropdownProps {

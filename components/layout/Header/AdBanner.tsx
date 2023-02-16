@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ROUTES from '@common/routes';
+import ROUTES from '@services/routes';
 
 import { useState } from 'react';
 import styles from '@styles/header.module.scss';

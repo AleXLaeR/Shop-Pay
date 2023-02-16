@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import ROUTES from '@common/routes';
+import ROUTES from '@services/routes';
 
 import Logo from '@assets/images/logo.png';
 import { RiSearch2Line } from 'react-icons/ri';
