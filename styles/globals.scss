@@ -1,4 +1,9 @@
 @import 'react-toastify/dist/ReactToastify.css';
+@import './swiper';
+
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+// @import 'swiper/scss/effect-cards';
 
 @tailwind base;
 @tailwind components;
@@ -37,5 +42,15 @@
 
   .link {
     @apply cursor-pointer hover:underline underline-offset-4;
+  }
+
+  .container {
+    @apply max-w-[1700px] mx-auto min-h-screen p-4;
+  }
+
+  .justify-stretch {
+    @media (max-width: 38em) {
+      justify-content: center;
+    }
   }
 }
