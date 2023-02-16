@@ -2,8 +2,10 @@ import { GetServerSideProps } from 'next';
 // import axios from 'axios';
 
 import SEO from '@common/SEO';
-import HomeBody from '@components/pages/Home';
 import { Header, Footer } from '@components/layout';
+
+import CategoryList from '@components/pages/Home/Categories';
+import HomeBody from '@components/pages/Home';
 
 export default function Home({ data }: IpRegistryProps) {
   return (
@@ -13,6 +15,7 @@ export default function Home({ data }: IpRegistryProps) {
       <div className="min-h-screen bg-grey">
         <div className="container">
           <HomeBody />
+          <CategoryList heading="Women's" />
         </div>
       </div>
       <Footer country={data.country} />
