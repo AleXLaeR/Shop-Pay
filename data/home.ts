@@ -470,56 +470,65 @@ export const womenAccessories: CategoryProduct[] = [
   },
 ];
 
-export const womenSwiper = [
+export const womenSwiper: CategorySliderProduct[] = [
   {
+    id: 1,
     name: 'HARRY POTTER | SHEIN Checkered & Snake Pattern Sweater Vest Without Blouse',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/06/21/1655799794344eb21cae76cf679de869f6b6e41229_thumbnail_600x.webp',
     price: 103,
   },
   {
+    id: 2,
     name: 'Blazer manches cape à bouton',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/09/13/1663060175905a8d4a3995fd5bc4c4827114c4b070_thumbnail_900x.webp',
     price: 58,
   },
   {
+    id: 3,
     name: 'SHEIN X Zhihan Wang Sweat-shirt dessin animé et slogan',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/09/29/1664415954a61747c30c7e9576fd4374354dad4b54_thumbnail_900x.webp',
     price: 12.99,
   },
   {
+    id: 4,
     name: 'ROMWE Grunge Punk Sweat-shirt à capuche à imprimé lettre et graphique à cordon',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/09/14/166312290414845f283801744986928b2d3dd8d2a9_thumbnail_405x552.webp',
     price: 396,
   },
   {
+    id: 5,
     name: '15pcs Gemstone & Rhinestone Decor Ring',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/08/24/16613054802b93849c39b4b566941f1b5ebe9a1626_thumbnail_600x.webp',
     price: 5.31,
   },
   {
+    id: 6,
     name: '5pcs Halloween Pumpkin & Ghost Design Shoe Decoration',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/08/18/166082359241270ee7699993abcaefaad6fdedcfc2_thumbnail_600x.webp',
     price: 79.25,
   },
   {
+    id: 7,
     name: '10pcs Solid Hair Band',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/07/11/16575212726da2c7d3a0580bc5cfcfeb153d622924_thumbnail_600x.webp',
     price: 3.69,
   },
   {
+    id: 8,
     name: 'Rhinestone Decor Bracelet With Ring',
     image:
       'https://img.ltwebstatic.com/images3_pi/2021/07/30/1627631651e33bb2d80d523abbcc83e3e18a43e76a_thumbnail_600x.webp',
     price: 12.5,
   },
   {
+    id: 9,
     name: 'Colorful Leaf Print Pocket Front Backpack',
     image:
       'https://img.ltwebstatic.com/images3_pi/2022/05/27/16536468000ce423c3ae45c06b70ae48ef8c78ecde_thumbnail_405x552.webp',

@@ -1,6 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
-import { womenDresses, womenShoes, womenAccessories } from '@data/home';
+import { womenDresses, womenShoes, womenAccessories, womenSwiper } from '@data/home';
 
+import ProductsSwiper from '@common/ProductsSwiper';
 import Category from './ProductCategory';
 
 interface CategoryListProps {
@@ -22,6 +23,7 @@ export default function CategoryList({ heading }: CategoryListProps) {
         {isMobile && <Category title="Shoes" products={womenShoes} background="#3c811f" />}
         <Category title="Accessories" products={womenAccessories} background="#000000" />
       </div>
+      <ProductsSwiper products={womenSwiper} />
     </div>
   );
 }

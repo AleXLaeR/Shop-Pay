@@ -65,7 +65,7 @@
     left: -13px;
   }
   .swiper-button-next {
-    right: -13px;
+    right: -15px;
   }
 }
 .offers_swiper {
@@ -184,6 +184,7 @@
 .products__swiper {
   .swiper-button-next,
   .swiper-button-prev {
+    top: 43%;
     background: #fff;
     width: 40px;
     height: 40px;

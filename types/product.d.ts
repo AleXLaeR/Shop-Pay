@@ -17,3 +17,8 @@ interface CategoryProduct {
   id: number;
   image: string;
 }
+
+interface CategorySliderProduct extends CategoryProduct {
+  name: string;
+  price: number;
+}

@@ -12,17 +12,17 @@ export default function Payments() {
       <div className="flex flex-wrap gap-1.5 mt-4 [&>img]:border-[1px] [&>img]:border-black">
         <Image
           src={Visa}
-          className="w-16 h-12 md:w-20 md:h-14 rounded-md transition-[transform] duration-500 hover:scale-105 cursor-pointer"
+          className="w-[4.75rem] h-12 rounded-md transition-[transform] duration-500 hover:scale-105 cursor-pointer"
           alt="Visa"
         />
         <Image
           src={Mastercard}
-          className="w-16 h-12 md:w-20 md:h-14 rounded-md transition-[transform] duration-500 hover:scale-105 cursor-pointer"
+          className="w-[4.75rem] h-12 rounded-md transition-[transform] duration-500 hover:scale-105 cursor-pointer"
           alt="MasterCard"
         />
         <Image
           src={PayPal}
-          className="w-16 h-12 md:w-20 md:h-14 rounded-md transition-[transform] duration-500 hover:scale-105 cursor-pointer"
+          className="w-[4.75rem] h-12 rounded-md transition-[transform] duration-500 hover:scale-105 cursor-pointer"
           alt="PayPal"
         />
       </div>
