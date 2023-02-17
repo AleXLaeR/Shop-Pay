@@ -11,15 +11,27 @@
 
 .menu {
   grid-area: menu;
-  background: purple;
-  height: pxToRem(560px);
-  border-radius: 10px;
+  height: pxToRem(580px);
+  border-radius: 12px;
   box-shadow: $shadow-1;
+
+  @media (max-width: 64em) {
+    width: pxToRem(80px);
+
+    svg {
+      transform: scale(1.5);
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }
 
 .header {
   grid-area: header;
-  background: orange;
   border-radius: 10px;
   box-shadow: $shadow-1;
 }
@@ -36,8 +48,6 @@
   grid-area: offers;
   position: relative;
   overflow: hidden;
-  background: $white-color;
-  // height: pxToRem(220px);
   border-radius: 10px;
   box-shadow: $shadow-1;
   @include bg-image(

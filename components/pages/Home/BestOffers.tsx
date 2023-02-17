@@ -15,7 +15,7 @@ const swiperBreakpoints = {
 export default function BestOffers() {
   return (
     <div className={styles.offers}>
-      <div className="hidden lg:block max-w-[200px] absolute top-3 left-6 font-semibold p-4 text-blue text-center">
+      <div className="hidden lg:block max-w-[200px] absolute top-3 left-6 font-semibold p-4 text-black-lighter text-center">
         <p>
           use code <b>“SHOP23”</b> for 30% off all products!
         </p>

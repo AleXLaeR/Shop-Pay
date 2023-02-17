@@ -51,216 +51,6 @@ export const offersArray: Partial<FlashDealProduct>[] = [
   },
 ];
 
-export const menuArray = [
-  {
-    name: "Women's Fashion",
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: "Men's Fashion",
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Electronics',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Jewlery & Watches',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Home, Pet & Appliances',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Beauty, Health & Hair',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-
-  {
-    name: 'Shoes,Sneakers,Heels',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-
-  {
-    name: 'Accessories',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-
-  {
-    name: 'Sports & Entertainment ',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Kids & Babies',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Movies & Television',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Gaming, Video Games',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Phones & Telecommunications',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Toys & Hobbies',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Gifts & Crafts',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Machinery',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-  {
-    name: 'Security, Safety',
-    link: '',
-    subMenu: [
-      {
-        name: '',
-        link: '',
-      },
-    ],
-    brands: [],
-    images: [],
-  },
-];
-
 export const userSwiperArray = [
   {
     image:
@@ -538,75 +328,75 @@ export const womenSwiper: CategorySliderProduct[] = [
 
 export const gamingSwiper = [
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/H67f1ee99443a46d2a46b0ab346aae2b6Y.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image:
       'https://ae01.alicdn.com/kf/H46f7fcad7ab84793a0e69acfc856285d5/desktops-computer-quad-core-gaming-laptops-6GB-Grafiken-computer-desktop-computer-gamer-PC.jpg_Q90.jpg_.webp',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/H3658559222f34898b0d65c78c4eae42fh.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/H6e2ca40dfd9c4701b0005c9925a5008ff.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/S510e42af09264c90bc9f4ea9ca535411u.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/S87eda4e95251435ca81023273f73d8dd1.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/S510e42af09264c90bc9f4ea9ca535411u.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/S87eda4e95251435ca81023273f73d8dd1.jpg',
     price: '',
   },
 ];
 export const homeImprovSwiper = [
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/H973c7fd8079f4820b28f7e5b8d7e4bb6s.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae01.alicdn.com/kf/S70e0b1be525948e3ae8ca0dbb5672c06Q.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae03.alicdn.com/kf/S0e018b6c00ae409781e815c79d44b57bL.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae03.alicdn.com/kf/H3c3a10b673554dc3a2957801aac40174z.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae03.alicdn.com/kf/Se9ebef1491684e9bbde7f7f97e9fcf78k.jpg',
     price: '',
   },
   {
-    name: '',
+    title: '',
     image: 'https://ae03.alicdn.com/kf/S882fd95abb7b40ac860d4a9fab1df995Y.jpg',
     price: '',
   },
