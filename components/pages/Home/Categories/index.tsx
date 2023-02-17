@@ -14,7 +14,7 @@ export default function CategoryList({ heading }: CategoryListProps) {
 
   return (
     <div className="bg-white-dark pb-2 px-4 rounded-xl">
-      <h1 className="text-xl font-semibold text-black-lighter px-2 border-2 rounded-b-md border-t-0 w-fit mb-2 ml-4">
+      <h1 className="text-[1.65rem] font-bold text-white bg-grey-lighter px-2 rounded-b-md border-t-0 w-fit mb-2 ml-4">
         {heading}
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

@@ -1,4 +1,4 @@
-import { Navigation } from 'swiper';
+import { Autoplay, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const swiperBreakpoints = {
@@ -26,17 +26,21 @@ export default function ProductsSwiper({ products }: ProductsSwiperProps) {
         slidesPerView={1}
         spaceBetween={10}
         navigation
-        modules={[Navigation]}
+        autoplay={{
+          delay: 5e3,
+          pauseOnMouseEnter: true,
+        }}
+        modules={[Autoplay, Navigation]}
         className="products__swiper"
         breakpoints={swiperBreakpoints}
       >
         {products.map(({ id, image, name, price }) => (
           <SwiperSlide key={id} className="md:min-h-[26.5rem] rounded-md">
-            <div className="overflow-hidden">
+            <div className="overflow-hidden inline-block">
               <img
                 src={image}
                 alt={name}
-                className="h-full w-full transition-[transform] duration-1000 hover:scale-110"
+                className="h-full w-full transition-[transform] rounded-t-md duration-1000 hover:scale-110"
                 loading="lazy"
               />
             </div>

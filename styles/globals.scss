@@ -3,7 +3,8 @@
 
 @import 'swiper/scss';
 @import 'swiper/scss/navigation';
-// @import 'swiper/scss/effect-cards';
+@import 'swiper/scss/effect-cards';
+@import 'swiper/scss/autoplay';
 
 @tailwind base;
 @tailwind components;
