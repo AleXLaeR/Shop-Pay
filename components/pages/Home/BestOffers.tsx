@@ -46,7 +46,7 @@ export default function BestOffers() {
             <span className="absolute text-base text-white bottom-1.5 w-[5.5rem] h-6 rounded-3xl font-semibold bg-yellow">
               {price}$
             </span>
-            <span className="absolute text-base text-white -top-2 left-0 bg-red w-10 h-10 rounded-full shadow-md grid place-items-center italic font-semibold">
+            <span className="absolute text-base text-white top-1 sm:-top-2 left-0 bg-red w-10 h-10 rounded-full shadow-md grid place-items-center italic font-semibold">
               -{discount}%
             </span>
           </SwiperSlide>

@@ -75,6 +75,7 @@
 }
 
 .offers_swiper {
+  max-height: pxToRem(220px);
   max-width: pxToRem(750px);
 
   @media (min-width: 61em) {
@@ -83,11 +84,15 @@
   }
 
   @media (max-width: 31em) {
-    height: pxToRem(200px) !important;
+    height: pxToRem(220px) !important;
 
     .swiper-slide {
       height: 100% !important;
       margin-top: 0 !important;
+
+      img {
+        height: 100% !important;
+      }
     }
   }
 
