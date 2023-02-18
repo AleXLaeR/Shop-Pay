@@ -12,14 +12,12 @@ interface FooterProps extends Partial<IpRegistryResponse> {
 
 export default function Footer({ country }: FooterProps) {
   return (
-    <div className="bg-grey">
-      <div className={styles.container}>
-        <FooterLinks />
-        <FooterSocials />
-        <NewsLetter />
-        <Payments />
-        <Copyright countryName={country.name} />
-      </div>
+    <div className={styles.container}>
+      <FooterLinks />
+      <FooterSocials />
+      <NewsLetter />
+      <Payments />
+      <Copyright countryName={country.name} />
     </div>
   );
 }

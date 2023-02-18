@@ -11,7 +11,7 @@ interface WithReduxProps {
 }
 
 const Loader = (
-  <div className="min-h-screen bg-grey-dark flex-center flex-col text-center gap-2">
+  <div className="min-h-screen bg-grey flex-center flex-col text-center gap-2">
     <BeatLoader size={20} />
     <span className="text-lg text-grey-dark">Please hang on a little...</span>
     <BarLoader />
