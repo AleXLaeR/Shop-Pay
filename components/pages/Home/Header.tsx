@@ -69,8 +69,8 @@ export default function HomeHeader() {
             <Link
               href={href}
               className={`text-sm font-semibold md:text-base hover:underline underline-offset-2 ${
-                idx >= 3 ? 'hidden md:block' : ''
-              } ${idx >= 6 ? 'md:hidden lg:block' : ''}`}
+                idx >= 6 ? 'hidden lg:block' : ''
+              }`}
             >
               {title}
             </Link>

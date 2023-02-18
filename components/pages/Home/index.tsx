@@ -10,7 +10,7 @@ import User from './User';
 export default function HomeBody() {
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.main}>
         <Header />
         <Menu />
         <Swiper />

@@ -132,7 +132,7 @@ const categories: MenuCategory[] = [
   {
     id: 13,
     icon: <BsPhoneVibrate />,
-    title: 'Phones & Telecommunications',
+    title: 'Telecommunications',
     link: '',
     brands: [],
     images: [],
@@ -175,19 +175,24 @@ const categories: MenuCategory[] = [
 export default function HomeMenu() {
   return (
     <div className={styles.menu}>
-      <div className="rounded-t-xl items-center gap-2 pl-6 w-full h-8 bg-grey border-b-[1px] border-b-grey hidden lg:flex">
-        <BiCategory className="hidden lg:block w-6 h-6" />
-        <b className="hidden lg:block">Categories</b>
+      <div className="rounded-t-xl text-black-lighter items-center pt-1 gap-2 pl-5 w-full h-8 bg-grey flex md:justify-center md:pl-0 lg:pl-5 lg:justify-start">
+        <BiCategory className="w-6 h-6" />
+        <b className="md:hidden lg:flex">Categories</b>
       </div>
-      <ul className="bg-white mt-1 rounded-b-xl">
+      <ul className="bg-white mt-1 rounded-b-xl overflow-hidden">
         {categories.map(({ id, title, link, icon }) => (
-          <li key={id} className="h-8 flex cursor-pointer hover:bg-grey-light">
+          <li
+            key={id}
+            className="h-8 flex cursor-pointer hover:bg-grey border-dashed rounded-md hover:border-[1px]"
+          >
             <Link
               href={link}
-              className="px-6 link flex items-center gap-2 text-[#424141] [&>svg]:fill-[#8c8484] [&>svg]:stroke-[#8c8484] [&>svg]:hover:fill-grey-dark"
+              className="px-6 flex items-center gap-2 text-[#424141] [&>svg]:fill-[#8c8484] [&>svg]:stroke-[#8c8484] [&>svg]:hover:fill-black-lighter"
             >
               {icon}
-              <span className="hidden lg:inline text-xs xl:text-base">{title}</span>
+              <span className="inline md:hidden lg:inline text-base md:text-xs xl:text-base">
+                {title}
+              </span>
             </Link>
           </li>
         ))}
