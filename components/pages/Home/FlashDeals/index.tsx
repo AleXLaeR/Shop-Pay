@@ -22,18 +22,15 @@ interface FlashDealsProps {
   };
 }
 
-export default function FlashDeals({ timer = { amount: 7, period: 'day' } }: FlashDealsProps) {
+export default function FlashDeals({ timer = { amount: 1, period: 'week' } }: FlashDealsProps) {
   const { amount, period } = timer;
   const getCountdownDate = () => {
     const today = new Date();
-
-    if (period === 'day') {
-      return new Date(today.getFullYear(), today.getMonth(), today.getDate() + amount);
-    }
-    if (period === 'week') {
-      return new Date(today.getFullYear(), today.getMonth() + amount, today.getDate());
-    }
-    return new Date(today.getFullYear() + amount, today.getMonth(), today.getDate());
+    return new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + (period === 'day' ? amount : period === 'week' ? amount * 7 : amount * 30),
+    );
   };
 
   return (

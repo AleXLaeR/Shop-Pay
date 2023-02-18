@@ -1,31 +1,34 @@
 import Countdown, { CountdownRenderProps, CountdownProps } from 'react-countdown';
 
-function countDownRenderer({ hours, minutes, seconds }: CountdownRenderProps) {
-  const paddedHours = hours.toString().padStart(2, '0');
+function countDownRenderer({ days, hours, minutes, seconds }: CountdownRenderProps) {
+  const daysInHours = hours + days * 7;
+
+  const paddedHours = daysInHours
+    .toString()
+    .padStart(daysInHours < 100 ? 2 : daysInHours < 1e3 ? 3 : 4, '0');
   const paddedMinutes = minutes.toString().padStart(2, '0');
   const paddedSeconds = seconds.toString().padStart(2, '0');
 
   return (
     <div className="flex items-center gap-1">
-      <span className="text-[1.5rem] w-7 bg-black-lighter text-white p-2 rounded-md">
-        {paddedHours.toString()[0]}
+      {Array.from(paddedHours).map((hour, idx) => (
+        <span key={idx} className="text-[1.5rem] w-7 bg-black-lighter text-white p-2 rounded-md">
+          {hour}
+        </span>
+      ))}
+      <b className="text-xl">:</b>
+      <span className="w-7 bg-black-lighter text-white p-2 rounded-md text-[1.5rem]">
+        {paddedMinutes[0]}
       </span>
       <span className="w-7 bg-black-lighter text-white p-2 rounded-md text-[1.5rem]">
-        {paddedHours.toString()[1]}
+        {paddedMinutes[1]}
       </span>
       <b className="text-xl">:</b>
       <span className="w-7 bg-black-lighter text-white p-2 rounded-md text-[1.5rem]">
-        {paddedMinutes.toString()[0]}
+        {paddedSeconds[0]}
       </span>
       <span className="w-7 bg-black-lighter text-white p-2 rounded-md text-[1.5rem]">
-        {paddedMinutes.toString()[1]}
-      </span>
-      <b className="text-xl">:</b>
-      <span className="w-7 bg-black-lighter text-white p-2 rounded-md text-[1.5rem]">
-        {paddedSeconds.toString()[0]}
-      </span>
-      <span className="w-7 bg-black-lighter text-white p-2 rounded-md text-[1.5rem]">
-        {paddedSeconds.toString()[1]}
+        {paddedSeconds[1]}
       </span>
     </div>
   );

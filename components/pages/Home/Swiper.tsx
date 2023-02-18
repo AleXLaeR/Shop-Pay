@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from '@styles/home-page.module.scss';
-import SlideImg from '@assets/images/homeSlide_1.jpg';
+import SlideImg from '@assets/images/home/homeSlide_1.jpg';
 
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
