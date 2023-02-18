@@ -28,7 +28,8 @@
     }
   }
 }
-.mainSwiper,
+
+.main__swiper,
 .user__swiper,
 .flashDeals__swiper,
 .offers_swiper {
@@ -38,7 +39,6 @@
   }
 
   .swiper-slide img {
-    height: pxToRem(300px) !important;
     border-radius: 10px !important;
     box-shadow: $shadow-1 !important;
   }
@@ -71,6 +71,17 @@
   }
   .swiper-button-next {
     right: -15px;
+  }
+}
+
+.main__swiper {
+  .swiper-slide {
+    width: 100% !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 45%;
   }
 }
 
