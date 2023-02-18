@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseQuery = fetchBaseQuery({ baseUrl: process.env.BASE_URL });
+const baseQuery = fetchBaseQuery({ baseUrl: process.env.BASE_API_URL });
 
 const api = createApi({
   reducerPath: 'newsletterApi',
@@ -9,7 +9,7 @@ const api = createApi({
   endpoints: (builder) => ({
     subscribeToNewsletter: builder.mutation<any, string>({
       query: (payload) => ({
-        url: `api/newsletter`,
+        url: `/newsletter`,
         method: 'POST',
         body: { email: payload },
       }),

@@ -1,11 +1,21 @@
 declare global {
   namespace NodeJS {
-    interface ProcessEnv extends IpRegistryEnv, MailChimpEnv {
-      MONGODB_URL: string;
+    interface ProcessEnv extends NextAuthEnv, IpRegistryEnv, MailChimpEnv {
+      MONGODB_URI: string;
       NODE_ENV: 'development' | 'production';
-      BASE_URL: string;
+      BASE_API_URL: string;
     }
   }
+}
+
+interface NextAuthEnv extends GoogleCredsEnv {
+  NEXTAUTH_SECRET: string;
+  NEXTAUTH_URL: string;
+}
+
+interface GoogleCredsEnv {
+  GOOGLE_ID: string;
+  GOOGLE_SECRET: string;
 }
 
 interface IpRegistryEnv {

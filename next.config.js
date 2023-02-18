@@ -10,6 +10,9 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import "shared/_mixins.scss"; @import "shared/_variables.scss"; @import "shared/_functions.scss";`,
   },
+  exportPathMap: () => ({
+    '/signin': { page: '/sign-in' },
+  }),
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,

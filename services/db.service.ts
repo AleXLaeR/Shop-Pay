@@ -24,7 +24,7 @@ export default async function connectToDb(): Promise<undefined> {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URL);
+    await mongoose.connect(process.env.MONGODB_URI);
     connection.state = ConnectionStates.connected;
   } catch (error: any) {
     console.log(`There was an error establishing mongodb connection: ${error}`);
