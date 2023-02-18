@@ -172,9 +172,9 @@ const categories: MenuCategory[] = [
   },
 ];
 
-export default function HomeMenu() {
+export default function LeftSidebar() {
   return (
-    <div className={styles.menu}>
+    <div className={styles.leftSidebar}>
       <div className="rounded-t-xl text-black-lighter items-center pt-1 gap-2 pl-5 w-full h-8 bg-grey flex md:justify-center md:pl-0 lg:pl-5 lg:justify-start">
         <BiCategory className="w-6 h-6" />
         <b className="md:hidden lg:flex">Categories</b>

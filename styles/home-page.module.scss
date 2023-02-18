@@ -21,7 +21,7 @@
   }
 }
 
-.menu {
+.leftSidebar {
   grid-area: menu;
   height: pxToRem(580px);
   border-radius: 12px;
@@ -82,7 +82,7 @@
   );
 }
 
-.user {
+.rightSidebar {
   grid-area: user;
   position: relative;
   background: $white-color;
