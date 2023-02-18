@@ -84,12 +84,28 @@
 
 .user {
   grid-area: user;
-  background: red;
+  position: relative;
+  background: $white-color;
   height: pxToRem(530px);
   border-radius: 10px;
   box-shadow: $shadow-1;
 
   @media (max-width: 77em) {
     display: none;
+  }
+
+  @media (max-width: 97em) {
+    ul {
+      margin-top: 4rem;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    > div div:last-of-type {
+      margin-top: 1.5rem;
+    }
   }
 }

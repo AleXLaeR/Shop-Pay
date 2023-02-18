@@ -134,7 +134,7 @@
 
 .user__swiper {
   position: relative;
-  margin-left: 2rem;
+  margin: 0 !important;
 
   .swiper-slide {
     @include flexed();
@@ -146,6 +146,12 @@
     img {
       height: pxToRem(240px) !important;
     }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 45%;
+    display: grid !important;
   }
 }
 
