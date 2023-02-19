@@ -1,40 +1,44 @@
 import Link from 'next/link';
-import ROUTES from '@services/routes';
 import Image from 'next/image';
 
-interface AccountDropdownProps {
-  loginState: boolean;
-}
+import ROUTES from '@services/routes';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
-export default function AccountDropdown({ loginState }: AccountDropdownProps) {
+export default function AccountDropdown() {
+  const { data: session } = useSession();
+
   return (
     <div className="flex justify-center w-60 shadow-md absolute !cursor-default mt-1 top-full -right-1 bg-white z-10 flex flex-col gap-4 py-4 px-0">
       <h4 className="text-center font-bold">Welcome Back !</h4>
       <div className="flex w-full gap-3 py-0 px-4">
-        {loginState ? (
+        {session ? (
           <>
             <Image
-              src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-              alt="Country Flag"
-              className="ml-5 h-16 w-16 rounded-full cursor-pointer"
+              src={session.user?.image!}
+              alt="Profile"
+              className="ml-5 !h-14 !w-14 md:!h-16 md:!w-16 rounded-full"
               loading="lazy"
-              width={64}
-              height={64}
+              width={96}
+              height={96}
             />
             <div className="flex flex-col">
               <span>Welcome Back, </span>
               <h3 className="font-bold">Alex</h3>
-              <span className="text-blue underline underline-offset-2 cursor-pointer hover:text-blue-dark">
+              <span
+                className="text-blue underline underline-offset-2 cursor-pointer hover:text-blue-dark"
+                onClick={() => signOut()}
+                role="presentation"
+              >
                 Sign Out
               </span>
             </div>
           </>
         ) : (
           <>
-            <button type="button" className="btn-primary">
+            <button type="button" className="btn-primary" onClick={() => signIn()}>
               Register
             </button>
-            <button type="button" className="btn-outlined">
+            <button type="button" className="btn-outlined" onClick={() => signIn()}>
               Log In
             </button>
           </>

@@ -4,7 +4,7 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn.pixabay.com', 'cdn.ipregistry.co', 'img.ltwebstatic.com'],
+    domains: ['cdn.pixabay.com', 'cdn.ipregistry.co', 'img.ltwebstatic.com', 'lh3.googleusercontent.com'],
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],

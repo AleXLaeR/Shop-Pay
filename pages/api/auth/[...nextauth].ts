@@ -11,9 +11,9 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
-  pages: {
-    signIn: '/sign-in',
-  },
+  // pages: {
+  //  signIn: '/sign-in',
+  // },
   session: {
     strategy: 'jwt',
   },

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useToggle } from '@hooks/index';
 
 import { MdSecurity } from 'react-icons/md';
@@ -16,11 +16,11 @@ export default function NavBar({
   },
 }: IpRegistryProps) {
   const { name: countryName, flag } = country;
-  const [isLoggedIn] = useState(false);
   const {
     toggleState: isDropDownVisible,
     handlers: { toggle },
   } = useToggle();
+  const { data: session } = useSession();
 
   return (
     <div className="bg-gray border-y-[1px] border-white-dark pr-1">
@@ -59,11 +59,15 @@ export default function NavBar({
           </NavLink>
           <NavLink onClick={toggle}>
             <div className="flex items-center gap-0.5 [&>svg]:scale-[1.2] [&>svg]:mr-1">
-              <RiAccountPinCircleLine />
-              <span>{isLoggedIn ? 'Alex' : 'Account'}</span>
+              {session ? (
+                <img src={session.user?.image!} className="mr-1" alt="Profile" />
+              ) : (
+                <RiAccountPinCircleLine />
+              )}
+              <span>{session ? session.user?.name : 'Account'}</span>
               <RiArrowDropDownFill />
             </div>
-            {isDropDownVisible ? <AccountDropdown loginState={isLoggedIn} /> : undefined}
+            {isDropDownVisible ? <AccountDropdown /> : undefined}
           </NavLink>
         </ul>
       </div>

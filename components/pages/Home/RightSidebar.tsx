@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 import { userSwiperArray } from '@data/home';
 import ROUTES from '@services/routes';
@@ -18,7 +19,7 @@ import { EffectCards, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function RightSidebar() {
-  const session: any = false;
+  const { data: session } = useSession();
 
   return (
     <div className={styles.rightSidebar}>
@@ -27,12 +28,12 @@ export default function RightSidebar() {
         {session ? (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
             <Image
-              src={session.user?.image ?? 'DEF_IMG_SRC'}
-              alt={`${session.user.name} profile`}
+              src={UserProfileImg}
+              alt={`${session.user?.name} profile`}
               className="w-24 h-24 rounded-full shadow-md"
             />
-            <h4 className="mt-6 capitalize underline decoration-2 underline-offset-4 font-bold text-lg">
-              {session.user.name}
+            <h4 className="mt-6 capitalize italic font-bold underline-offset-4 font-bold text-xl">
+              {session.user?.name}
             </h4>
           </div>
         ) : (
@@ -55,7 +56,7 @@ export default function RightSidebar() {
         <ul className="flex-center gap-4 mt-9">
           <li className="w-12 h-12 bg-grey grid place-items-center duration-500 transition-[background] hover:bg-blue rounded-full hover:[&_svg]:stroke-white">
             <Link href={ROUTES.PROFILE.BASE}>
-              <IoSettingsOutline className="w-8 h-8 stroke-blue" />
+              <IoSettingsOutline className="w-8 h-8 stroke-blue hover:fill-white" />
             </Link>
           </li>
           <li className="w-12 h-12 bg-grey grid place-items-center duration-500 transition-[background] hover:bg-blue rounded-full hover:[&_svg]:stroke-white">
