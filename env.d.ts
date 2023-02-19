@@ -6,7 +6,7 @@ declare global {
     }
   }
 
-  interface NextAuthEnv extends GoogleCredsEnv, LinkedInCredsEnv, GitHubCredsEnv {
+  interface NextAuthEnv extends GoogleCredsEnv, LinkedInCredsEnv, GitHubCredsEnv, Auth0Creds {
     NEXTAUTH_SECRET: string;
     NEXTAUTH_URL: string;
   }
@@ -29,6 +29,12 @@ interface LinkedInCredsEnv {
 interface GitHubCredsEnv {
   GITHUB_ID: string;
   GITHUB_SECRET: string;
+}
+
+interface Auth0Creds {
+  AUTH0_ISSUER: string;
+  AUTH0_CLIENT_SECRET: string;
+  AUTH0_CLIENT_ID: string;
 }
 
 interface IpRegistryEnv {
