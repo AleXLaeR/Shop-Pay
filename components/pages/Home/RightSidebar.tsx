@@ -24,15 +24,17 @@ export default function RightSidebar() {
   return (
     <div className={styles.rightSidebar}>
       <Image src={HeaderFooterImg} alt="wavy header" />
-      <div className="p-4 !min-h-[21rem]">
+      <div className="p-4">
         {session ? (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
             <Image
-              src={UserProfileImg}
+              src={session.user?.image!}
               alt={`${session.user?.name} profile`}
               className="w-24 h-24 rounded-full shadow-md"
+              width={96}
+              height={96}
             />
-            <h4 className="mt-6 capitalize italic font-bold underline-offset-4 font-bold text-xl">
+            <h4 className="text-center w-[200px] mt-6 capitalize italic font-bold underline-offset-4 font-bold text-xl">
               {session.user?.name}
             </h4>
           </div>

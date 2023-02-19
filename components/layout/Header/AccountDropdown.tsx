@@ -23,7 +23,7 @@ export default function AccountDropdown() {
             />
             <div className="flex flex-col">
               <span>Welcome Back, </span>
-              <h3 className="font-bold">Alex</h3>
+              <h3 className="font-bold">{session.user?.name?.split(' ')[0]}</h3>
               <span
                 className="text-blue underline underline-offset-2 cursor-pointer hover:text-blue-dark"
                 onClick={() => signOut()}

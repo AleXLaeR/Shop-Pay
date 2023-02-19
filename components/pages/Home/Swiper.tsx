@@ -14,7 +14,7 @@ export default function HomeSwiper() {
         navigation
         pagination={{ clickable: true }}
         autoplay={{
-          delay: 10e3,
+          delay: 4e3,
           disableOnInteraction: false,
         }}
         modules={[Autoplay, Pagination, Navigation]}
