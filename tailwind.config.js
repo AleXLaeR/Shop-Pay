@@ -7,15 +7,21 @@ module.exports = {
     extend: {
       colors: {
         error: {
-          light: '#fd010169',
-          secondary: '#f02f2fd8',
-          DEFAULT: '#ed4337',
+          dark: '#fd010169',
+          secondary: '#e14040d8',
+          DEFAULT: '#ee7c78',
         },
-        success: '#f15f6f',
+        success: '#6be180',
       },
       transitionProperty: {
         ['cubic-bezier']: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
       },
+      borderColor: {
+        greyish: 'rgba(102, 102, 102, 0.35)',
+      },
+      placeholderColor: {
+        white: '#fff',
+      }
     },
     colors: {
       blue: {
@@ -35,7 +41,6 @@ module.exports = {
       violet: '#5a31f4',
       white: {
         dark: '#eee',
-
         DEFAULT: '#fff',
       },
       black: {
@@ -44,6 +49,7 @@ module.exports = {
         DEFAULT: '#000',
       },
       transparent: 'transparent',
+      current: 'currentColor',
     },
     boxShadow: {
       sm: 'rgba(99, 99, 99, 0.1) 0px 0px 4px 0px',

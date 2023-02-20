@@ -16,12 +16,32 @@
     object-fit: cover;
   }
 
+  input,
+  button {
+    border: none;
+    outline: none;
+    background: none;
+  }
+
   ::-webkit-scrollbar {
     width: 5px;
   }
   ::-webkit-scrollbar-thumb {
     background: #aeaeafa1;
     border-radius: 5px;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #f8f8f8 inset !important;
   }
 }
 
@@ -54,5 +74,15 @@
     @media (max-width: 38em) {
       justify-content: center;
     }
+  }
+
+  .grid-15-85 {
+    display: grid;
+    grid-template-columns: 15% 85%;
+  }
+
+  .input-base {
+    @apply p-1 font-semibold text-base leading-4 text-black-lighter placeholder:text-grey-lighter placeholder:text-lg
+    underline-offset-4 placeholder:font-bold placeholder:focus:underline;
   }
 }

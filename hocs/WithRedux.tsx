@@ -2,11 +2,11 @@ import { persistor, store } from '@store/index';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider as StoreProvider } from 'react-redux';
 
+import type { OrArray } from 'types/general';
 import BeatLoader from 'react-spinners/BeatLoader';
 import BarLoader from 'react-spinners/ScaleLoader';
-import type { OrArray } from 'types/general';
 
-interface WithReduxProps {
+interface ReduxWrapperProps {
   children: OrArray<JSX.Element>;
 }
 
@@ -18,7 +18,7 @@ const Loader = (
   </div>
 );
 
-export default function WithRedux({ children }: WithReduxProps) {
+export default function ReduxWrapper({ children }: ReduxWrapperProps) {
   return (
     <StoreProvider store={store}>
       <PersistGate loading={Loader} persistor={persistor}>
@@ -27,3 +27,5 @@ export default function WithRedux({ children }: WithReduxProps) {
     </StoreProvider>
   );
 }
+
+// export default wrapper.withRedux(ReduxWrapper);

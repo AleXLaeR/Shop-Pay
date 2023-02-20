@@ -1,7 +1,8 @@
 import '@styles/globals.scss';
-import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
+
 import WithRedux from '@hocs/WithRedux';
+import { SessionProvider } from 'next-auth/react';
 
 import NextNProgress from 'nextjs-progressbar';
 import { ToastContainer } from 'react-toastify';

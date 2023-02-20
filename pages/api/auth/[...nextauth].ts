@@ -27,9 +27,9 @@ export default NextAuth({
       issuer: process.env.AUTH0_ISSUER,
     }),
   ],
-  // pages: {
-  //  signIn: '/sign-in',
-  // },
+  pages: {
+    signIn: '/sign-in',
+  },
   session: {
     strategy: 'jwt',
   },
