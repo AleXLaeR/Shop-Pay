@@ -1,8 +1,10 @@
 declare global {
   namespace NodeJS {
-    interface ProcessEnv extends NextAuthEnv, APIEnv {
+    interface ProcessEnv extends NextAuthEnv, APIEnv, MailServiceEnv {
       MONGODB_URI: string;
       NODE_ENV: 'development' | 'production';
+      JWT_TOKEN_SECRET: string;
+      BASE_URL: string;
     }
   }
 
@@ -35,6 +37,11 @@ interface Auth0Creds {
   AUTH0_ISSUER: string;
   AUTH0_CLIENT_SECRET: string;
   AUTH0_CLIENT_ID: string;
+}
+
+interface MailServiceEnv {
+  MAILING_SERVICE_REFRESH_TOKEN: string;
+  SENDER_EMAIL_ADDRESS: string;
 }
 
 interface IpRegistryEnv {
