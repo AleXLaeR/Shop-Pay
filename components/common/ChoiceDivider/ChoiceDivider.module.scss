@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  @include sized(100%, 50px);
+  line-height: pxToRem(50px);
+  color: $grey-dark-color;
+  text-align: center;
+  font-weight: 500;
+
+  &::before,
+  &::after {
+    content: '';
+    border-radius: 10px;
+    @include sized(120px, 2px);
+    background-color: $grey-light-color;
+    @include positioned-as(absolute, $top: 24px);
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
