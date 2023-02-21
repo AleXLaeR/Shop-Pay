@@ -34,14 +34,18 @@ export default function AccountDropdown() {
             </div>
           </>
         ) : (
-          <>
-            <button type="button" className="btn-primary" onClick={() => signIn()}>
-              Register
-            </button>
-            <button type="button" className="btn-outlined" onClick={() => signIn()}>
-              Log In
-            </button>
-          </>
+          <div className="w-full flex justify-around">
+            <Link href="/sign-in">
+              <button type="button" className="btn-primary min-w-[90px]">
+                Register
+              </button>
+            </Link>
+            <Link href="/sign-up">
+              <button type="button" className="btn-outlined min-w-[90px]">
+                Login
+              </button>
+            </Link>
+          </div>
         )}
       </div>
       <ul className="grid grid-cols-2 gap-x-5 pr-4 pl-5">
