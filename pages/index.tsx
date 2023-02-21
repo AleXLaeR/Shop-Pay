@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 // import axios from 'axios';
 
 import SEO from '@common/SEO';
@@ -23,7 +23,7 @@ export default function Home({ data }: IpRegistryProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   /* const { data } = await axios.get<IpRegistryResponse>(
     `https://api.ipregistry.co/?key=${process.env.IP_REGISTRY_API_KEY}&fields=currency,location`,
   );
@@ -43,6 +43,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
         },
         currency: { code: 'UAH' },
       },
-    } as IpRegistryProps,
+    },
   };
 };

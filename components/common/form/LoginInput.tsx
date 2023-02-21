@@ -3,7 +3,7 @@ import { HTMLInputTypeAttribute } from 'react';
 import { useToggle } from '@hooks/index';
 import { useField } from 'formik';
 
-import { BiUser } from 'react-icons/bi';
+import { BiLock, BiUser } from 'react-icons/bi';
 import { MdClear } from 'react-icons/md';
 import { SiMinutemailer } from 'react-icons/si';
 import { IoKeyOutline, IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
@@ -15,6 +15,7 @@ interface LoginInputProps {
   placeholder: string;
   type: HTMLInputTypeAttribute;
   autoComplete?: string;
+  pattern?: string;
 }
 
 export default function LoginInput({ type, ...inputProps }: LoginInputProps) {
@@ -22,9 +23,7 @@ export default function LoginInput({ type, ...inputProps }: LoginInputProps) {
     toggleState: isPasswordVisible,
     handlers: { toggle },
   } = useToggle();
-  const [field, meta, { setValue, setTouched, setError }] = useField(inputProps);
-
-  console.log(meta.touched, meta.error);
+  const [field, meta, { setValue, setTouched }] = useField(inputProps);
 
   return (
     <div
@@ -34,7 +33,9 @@ export default function LoginInput({ type, ...inputProps }: LoginInputProps) {
           : ''
       }`}
     >
-      {type === 'email' ? (
+      {inputProps.name === 'confirmPassword' ? (
+        <BiLock className="w-7 h-7 stroke-grey-dark fill-grey-dark" />
+      ) : type === 'email' ? (
         <SiMinutemailer className="w-7 h-7 stroke-grey-dark fill-grey-dark" />
       ) : type === 'password' ? (
         <IoKeyOutline className="w-6 h-6 stroke-grey-dark fill-grey-dark" />

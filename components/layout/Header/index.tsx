@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
+
 import ROUTES from '@services/routes';
+import { useRouter } from 'next/router';
 
 import Logo from '@assets/images/logo.png';
 import { RiSearch2Line } from 'react-icons/ri';
@@ -13,11 +15,12 @@ import AdBanner from './AdBanner';
 import NavBar from './NavBar';
 
 export default function Header({ data }: IpRegistryProps) {
+  const { pathname } = useRouter();
   const products = useAppSelector(selectProducts);
 
   return (
     <div className="h-full shadow-md">
-      <AdBanner />
+      {pathname !== '/sign-up' && pathname !== '/sign-in' && <AdBanner />}
       <NavBar data={data} />
       <div className="flex items-center relative h-[4rem]">
         <div className="flex-between w-full pr-10 flex-shrink gap-4 max-w-screen-xl my-0 mx-auto py-0 px-4">
