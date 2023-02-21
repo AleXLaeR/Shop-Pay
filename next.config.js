@@ -1,4 +1,7 @@
 const path = require('path');
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: process.env.ANALYZE === 'true',
+// })
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
@@ -18,7 +21,8 @@ const nextConfig = {
     prependData: `@import "shared/_mixins.scss"; @import "shared/_variables.scss"; @import "shared/_functions.scss";`,
   },
   exportPathMap: () => ({
-    '/signin': { page: '/sign-in' },
+    '/login': { page: '/sign-up' },
+    '/register': { page: '/sign-in' },
   }),
   webpack: (config) => {
     config.module.rules.push({
@@ -29,4 +33,5 @@ const nextConfig = {
   },
 };
 
+// module.exports = withBundleAnalyzer(nextConfig);
 module.exports = nextConfig;
