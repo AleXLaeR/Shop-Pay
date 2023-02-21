@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 // import { createWrapper } from 'next-redux-wrapper';
 
-import storage from 'redux-persist/lib/storage';
+import storage from '@store/storage';
 import { persistReducer, persistStore } from 'redux-persist';
+
 import thunk from 'redux-thunk';
 
 import cartReducer from '@store/slices/cart.slice';
