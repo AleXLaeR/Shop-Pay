@@ -28,7 +28,8 @@
       "@services/*": ["./services/*"],
       "@hocs/*": ["./hocs/*"],
       "@hooks/*": ["./hooks/*"],
-      "@lib/*": ["./lib/*"]
+      "@lib/*": ["./lib/*"],
+      "@models/*": ["./models/*"]
     }
   },
   "include": ["next-env.d.ts", "types/*.d.ts", "**/*.ts", "**/*.tsx"],
