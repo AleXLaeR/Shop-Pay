@@ -1,13 +1,11 @@
 import { readStaticTemplate } from '@lib/utils';
-import { google } from 'googleapis';
+import { OAuth2Client } from 'google-auth-library';
 import nodemailer from 'nodemailer';
-
-const { OAuth2 } = google.auth;
 
 const { GOOGLE_ID, GOOGLE_SECRET, MAILING_SERVICE_REFRESH_TOKEN, SENDER_EMAIL_ADDRESS } =
   process.env;
 
-const oAuth2Client = new OAuth2(GOOGLE_ID, GOOGLE_SECRET, MAILING_SERVICE_REFRESH_TOKEN);
+const oAuth2Client = new OAuth2Client(GOOGLE_ID, GOOGLE_SECRET, MAILING_SERVICE_REFRESH_TOKEN);
 
 export default async function sendEmail(recipientAddress: string, url: string, subject: string) {
   oAuth2Client.setCredentials({
@@ -31,7 +29,7 @@ export default async function sendEmail(recipientAddress: string, url: string, s
     user__link: url,
     user__email: recipientAddress,
   });
-  await smtpTransport.sendMail(
+  smtpTransport.sendMail(
     {
       from: SENDER_EMAIL_ADDRESS,
       to: recipientAddress,

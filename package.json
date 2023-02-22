@@ -28,7 +28,7 @@
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
-    "googleapis": "^111.0.0",
+    "google-auth-library": "^8.7.0",
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.14.0",
