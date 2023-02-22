@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import ROUTES from '@services/routes';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function AccountDropdown() {
   const { data: session } = useSession();
@@ -35,12 +35,12 @@ export default function AccountDropdown() {
           </>
         ) : (
           <div className="w-full flex justify-around">
-            <Link href="/sign-in">
+            <Link href="/sign-up">
               <button type="button" className="btn-primary min-w-[90px]">
                 Register
               </button>
             </Link>
-            <Link href="/sign-up">
+            <Link href="/sign-in">
               <button type="button" className="btn-outlined min-w-[90px]">
                 Login
               </button>

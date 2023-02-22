@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import { HTMLInputTypeAttribute } from 'react';
+import { HTMLInputTypeAttribute, HTMLProps } from 'react';
 import { useToggle } from '@hooks/index';
 import { useField } from 'formik';
 
@@ -10,12 +10,10 @@ import { IoKeyOutline, IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 import ErrorLabel from './helpers/ErrorLabel';
 
-interface LoginInputProps {
+interface LoginInputProps extends HTMLProps<HTMLInputElement> {
   name: string;
   placeholder: string;
   type: HTMLInputTypeAttribute;
-  autoComplete?: string;
-  pattern?: string;
 }
 
 export default function LoginInput({ type, ...inputProps }: LoginInputProps) {
