@@ -38,8 +38,10 @@ handler.post(async ({ body: { name, email, password } }, res) => {
     const activationToken = createJwtToken({ id: addedUser.id.toString() });
     const url = `${process.env.BASE_URL}/activate/${activationToken}`;
 
-    await sendEmail(email, url, 'ShopPay - Verify your E-Mail address');
-    await db.disconnectFromDb();
+    await Promise.all([
+      sendEmail(email, url, 'ShopPay - Verify your E-Mail address', 'verifyEmail'),
+      db.disconnectFromDb(),
+    ]);
 
     res
       .status(StatusCodes.OK)
