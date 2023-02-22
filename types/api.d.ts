@@ -5,3 +5,5 @@ type SignUpPayload = {
   email: string;
   password: string;
 };
+
+type EmailPayload = { email: string };

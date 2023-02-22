@@ -37,7 +37,7 @@ export default function NewsLetter() {
           className="btn-primary uppercase w-44 flex-grow-0"
           disabled={isLoading}
           style={isLoading ? { cursor: 'not-allowed' } : undefined}
-          onClick={() => postEmail(inputRef.current?.value!)}
+          onClick={() => postEmail({ email: inputRef.current?.value! })}
         >
           subscribe
         </button>
