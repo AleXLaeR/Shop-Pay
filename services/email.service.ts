@@ -7,7 +7,12 @@ const { GOOGLE_ID, GOOGLE_SECRET, MAILING_SERVICE_REFRESH_TOKEN, SENDER_EMAIL_AD
 
 const oAuth2Client = new OAuth2Client(GOOGLE_ID, GOOGLE_SECRET, MAILING_SERVICE_REFRESH_TOKEN);
 
-export default async function sendEmail(recipientAddress: string, url: string, subject: string) {
+export default async function sendEmail(
+  recipientAddress: string,
+  url: string,
+  subject: string,
+  templateName: string,
+) {
   oAuth2Client.setCredentials({
     refresh_token: MAILING_SERVICE_REFRESH_TOKEN,
   });
@@ -25,8 +30,9 @@ export default async function sendEmail(recipientAddress: string, url: string, s
     },
   });
 
-  const fileContent = await readStaticTemplate('verifyEmail', {
+  const fileContent = await readStaticTemplate(templateName, {
     user__link: url,
+    user__reset: url,
     user__email: recipientAddress,
   });
   smtpTransport.sendMail(

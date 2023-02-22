@@ -11,6 +11,12 @@ export function createJwtToken(payload: string | Record<string, string>): string
   });
 }
 
+export function createResetToken(payload: string | Record<string, string>): string {
+  return jwt.sign(payload, process.env.RESET_TOKEN_SECRET, {
+    expiresIn: '6h',
+  });
+}
+
 export async function readStaticTemplate(
   fileName: string,
   placeholders?: Record<string, string>,
