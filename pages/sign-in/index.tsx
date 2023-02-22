@@ -125,7 +125,7 @@ export default function SignIn({ providers, csrfToken, callbackUrl }: SignInProp
                       disabled={!dirty || !isValid || isSubmitting || !!session}
                     />
                     <div className="p-4 mt-1 text-sm w-36 h-14 hover:underline text-blue hover:text-blue-dark border-b-blue">
-                      <Link href="/resetPassword">Forgot Password?</Link>
+                      <Link href="/auth/forgot">Forgot Password?</Link>
                     </div>
                   </div>
                 </Form>
