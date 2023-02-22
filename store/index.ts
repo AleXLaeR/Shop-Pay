@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import cartReducer from '@store/slices/cart.slice';
 import globalReducer from '@store/slices/global.slice';
 
-import { newsletterApi } from '@store/api';
+import { globalApi } from '@store/api';
 
 const persistConfig = {
   key: 'root',
@@ -21,10 +21,10 @@ export const store = configureStore({
   reducer: {
     global: globalReducer,
     cart: persistReducer(persistConfig, cartReducer),
-    [newsletterApi.reducerPath]: newsletterApi.reducer,
+    [globalApi.reducerPath]: globalApi.reducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
-  middleware: [thunk, newsletterApi.middleware],
+  middleware: [thunk, globalApi.middleware],
 });
 setupListeners(store.dispatch);
 

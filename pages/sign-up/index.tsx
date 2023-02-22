@@ -1,13 +1,21 @@
-import { LoginInput, SubmitButton } from '@common/form';
-import SEO from '@common/SEO';
-import { Footer, Header } from '@components/layout';
-import { Form, Formik } from 'formik';
+import { KeyboardEvent, useEffect } from 'react';
+import { Form, Formik, FormikHelpers } from 'formik';
+
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { signIn, useSession } from 'next-auth/react';
+
+import SEO from '@common/SEO';
+import { DotLoader } from '@common/loaders';
+import { LoginInput, SubmitButton } from '@common/form';
+import { Footer, Header } from '@components/layout';
+
 import { BiLeftArrowAlt } from 'react-icons/bi';
+import { useSignUpMutation } from '@store/api';
+import { toast } from 'react-toastify';
 
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { z } from 'zod';
+import { z } from 'Zod';
 
 const state = {
   country: {
@@ -57,22 +65,62 @@ const validationSchema = z
   });
 
 export default function SignUp() {
-  const [userFormValues, setUserFormValues] = useState(defaultState);
+  const router = useRouter();
+  const { data: session } = useSession();
+  const [postSignUp, { data, isLoading, error }] = useSignUpMutation();
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (data !== undefined) {
+      toast.success('Successful Sign Up! Redirection will happen in 5 seconds.');
+      timeout = setTimeout(() => router.push('/'), 5e3);
+    } else if (error !== undefined) {
+      toast.error('User with such E-Mail already exists!');
+    }
+
+    return () => clearTimeout(timeout);
+  }, [data, error]);
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (!/^[a-zA-Z0-9\s]*$/.test(event.key)) {
+      event.preventDefault();
+    }
+  };
+
+  const onFormSubmit = async (values: SignUpState, { setErrors }: FormikHelpers<SignUpState>) => {
+    const res: any = await postSignUp(values);
+    if (res?.error) {
+      setErrors({ email: res.error.data.message });
+      return;
+    }
+
+    const nextRes = await signIn('credentials', {
+      redirect: false,
+      ...values,
+    });
+    if (nextRes?.error) {
+      setErrors({ email: nextRes.error });
+    }
+  };
 
   return (
     <>
-      <SEO title="Sign-In to ShopPay" desc="Login / Registration page" />
+      <SEO title="Sign-Up to ShopPay" desc="ShopPay Registration page" />
       <Header data={state} />
+      {isLoading && <DotLoader content="Please wait for a bit..." />}
       <div className="relative border-y border-y-greyish min-h-screen overflow-hidden flex justify-center">
         <div className="p-12 mt-12">
           <div className="flex-between max-w-[26rem] relative -left-2 gap-2">
-            <div className="min-w-[3rem] h-12 border-greyish border-[1px] shadow-md rounded-full grid place-items-center cursor-pointer hover:border-blue transition-[transform] duration-300 hover:-translate-y-1">
+            <Link
+              href="/"
+              className="min-w-[3rem] h-12 border-greyish border shadow-md rounded-full flex-center cursor-pointer hover:border-blue transition-transform hover:-translate-y-1"
+            >
               <BiLeftArrowAlt className="w-6 h-6 fill-black-lighter" />
-            </div>
+            </Link>
             <span className="font-semibold flex-grow text-base">
               We&apos;d be happy for you to join us!{' '}
               <Link
-                href="/"
+                href="/products"
                 className="text-blue cursor-pointer hover:border-b-[1px] hover:border-blue"
               >
                 Go to Store
@@ -83,19 +131,18 @@ export default function SignUp() {
             <h1 className="font-semibold text-[3.25rem]">Sign Up</h1>
             <p className="text-[#96979b]">Get access to our E-Shopping services</p>
             <Formik
-              initialValues={userFormValues}
-              onSubmit={() => {}}
-              enableReinitialize
+              onSubmit={onFormSubmit}
+              initialValues={defaultState}
               validationSchema={toFormikValidationSchema(validationSchema)}
             >
-              {({ isSubmitting, handleSubmit }) => (
+              {({ isSubmitting, dirty, isValid, handleSubmit }) => (
                 <Form method="post" className="mt-8" onSubmit={handleSubmit}>
                   <LoginInput
                     type="text"
                     name="name"
                     placeholder="Your Username*"
                     autoComplete="username"
-                    pattern="[^A-Za-z0-9]"
+                    onKeyDown={handleKeyPress}
                   />
                   <LoginInput
                     type="email"
@@ -107,18 +154,31 @@ export default function SignUp() {
                     type="password"
                     name="password"
                     placeholder="Your password*"
-                    autoComplete="current-password"
+                    autoComplete="new-password"
+                    aria-autocomplete="list"
                   />
                   <LoginInput
                     type="password"
                     name="confirmPassword"
                     placeholder="Confirm password*"
-                    autoComplete="new-password"
+                    autoComplete="current-password"
                   />
-                  <SubmitButton content="Sign Up" />
+                  <div className="flex-between">
+                    <SubmitButton
+                      content={session ? 'Signed In' : 'Sign Up'}
+                      disabled={!dirty || !isValid || isSubmitting || !!session}
+                    />
+                    <div className="p-4 mt-1 w-36 h-14 hover:underline text-blue hover:text-blue-dark border-b-blue">
+                      <Link href="/sign-in">Sign In instead</Link>
+                    </div>
+                  </div>
                 </Form>
               )}
             </Formik>
+            {data && <p className="text-center text-xl text-success mt-8">{data.message}</p>}
+            {error && (
+              <p className="text-center text-xl text-error mt-4">{(error as any).data.message}</p>
+            )}
           </div>
         </div>
       </div>

@@ -2,14 +2,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import ROUTES from '@services/routes';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession, signOut, signIn } from 'next-auth/react';
 
 export default function AccountDropdown() {
   const { data: session } = useSession();
 
   return (
     <div className="flex justify-center w-60 shadow-md absolute !cursor-default mt-1 top-full -right-1 bg-white z-10 flex flex-col gap-4 py-4 px-0">
-      <h4 className="text-center font-bold">Welcome Back !</h4>
+      <h4 className="text-center font-bold">Welcome {session && 'Back'} !</h4>
       <div className="flex w-full gap-3 py-0 px-4">
         {session ? (
           <>
@@ -34,17 +34,15 @@ export default function AccountDropdown() {
             </div>
           </>
         ) : (
-          <div className="w-full flex justify-around">
+          <div className="w-full flex gap-2 justify-around">
             <Link href="/sign-up">
-              <button type="button" className="btn-primary min-w-[90px]">
+              <button type="button" className="btn-outlined min-w-[100px]">
                 Register
               </button>
             </Link>
-            <Link href="/sign-in">
-              <button type="button" className="btn-outlined min-w-[90px]">
-                Login
-              </button>
-            </Link>
+            <button onClick={() => signIn()} type="button" className="btn-primary min-w-[100px]">
+              Login
+            </button>
           </div>
         )}
       </div>

@@ -5,14 +5,19 @@ import ChoiceDivider from '@common/ChoiceDivider';
 import SEO from '@common/SEO';
 
 import { GetServerSideProps } from 'next';
-import { ClientSafeProvider, getProviders, signIn } from 'next-auth/react';
-
-import { useState } from 'react';
-import { Formik, Form } from 'formik';
+import {
+  ClientSafeProvider,
+  getCsrfToken,
+  getProviders,
+  signIn,
+  useSession,
+} from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { Formik, Form, FormikHelpers } from 'formik';
 import { BiLeftArrowAlt } from 'react-icons/bi';
 
 import { z } from 'Zod';
@@ -26,15 +31,8 @@ const state = {
   currency: { code: 'UAH' },
 };
 
-type UserState = {
-  email: string;
-  password: string;
-};
-
-const defaultState: UserState = {
-  email: '',
-  password: '',
-};
+type SignInState = { email: string; password: string };
+const defaultState: SignInState = { email: '', password: '' };
 
 const validationSchema = z.object({
   email: z
@@ -48,20 +46,34 @@ const validationSchema = z.object({
       message:
         'Password must be complex (at least 1 digit, one uppercase letter, one lowercase letter)',
     }),
-} as Record<keyof UserState, any>);
+} as Record<keyof SignInState, any>);
 
 interface SignInProps {
   providers: ClientSafeProvider[];
+  csrfToken?: string;
+  callbackUrl: Record<string, string | string[]>;
 }
 
-export default function SignIn({ providers }: SignInProps) {
-  const [userFormValues, setUserFormValues] = useState(defaultState);
+export default function SignIn({ providers, csrfToken, callbackUrl }: SignInProps) {
+  const router = useRouter();
+  const { data: session } = useSession();
 
-  const onFormSubmit = () => {};
+  const onFormSubmit = async (values: SignInState, { setErrors }: FormikHelpers<SignInState>) => {
+    const res = await signIn('credentials', {
+      redirect: false,
+      ...values,
+    });
+
+    if (res?.error) {
+      setErrors({ email: res.error });
+    } else {
+      router.push(callbackUrl);
+    }
+  };
 
   return (
     <>
-      <SEO title="Sign-In to ShopPay" desc="Login / Registration page" />
+      <SEO title="Sign-In to ShopPay" desc="ShopPay Login page" />
       <Header data={state} />
       <div className="relative border-y border-y-greyish min-h-screen overflow-hidden flex justify-center">
         <div className="p-12 mt-12">
@@ -83,13 +95,18 @@ export default function SignIn({ providers }: SignInProps) {
             <h1 className="font-semibold text-[3.25rem]">Sign In</h1>
             <p className="text-[#96979b]">Retrieve access to our E-Shopping services</p>
             <Formik
-              initialValues={userFormValues}
               onSubmit={onFormSubmit}
-              enableReinitialize
+              initialValues={defaultState}
               validationSchema={toFormikValidationSchema(validationSchema)}
             >
-              {({ dirty, isSubmitting, handleSubmit }) => (
-                <Form method="post" className="mt-8" onSubmit={handleSubmit}>
+              {({ dirty, isSubmitting, isValid, handleSubmit }) => (
+                <Form
+                  className="mt-8"
+                  method="post"
+                  action="/api/auth/signin/email"
+                  onSubmit={handleSubmit}
+                >
+                  <input type="hidden" name="csrfToken" defaultValue={csrfToken} />
                   <LoginInput
                     type="email"
                     name="email"
@@ -103,7 +120,10 @@ export default function SignIn({ providers }: SignInProps) {
                     autoComplete="current-password"
                   />
                   <div className="flex-between">
-                    <SubmitButton content="Sign In" />
+                    <SubmitButton
+                      content={session ? 'Signed In' : 'Sign In'}
+                      disabled={!dirty || !isValid || isSubmitting || !!session}
+                    />
                     <div className="p-4 mt-1 text-sm w-36 h-14 hover:underline text-blue hover:text-blue-dark border-b-blue">
                       <Link href="/resetPassword">Forgot Password?</Link>
                     </div>
@@ -142,10 +162,14 @@ export default function SignIn({ providers }: SignInProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const providers = await getProviders();
+export const getServerSideProps: GetServerSideProps = async ({ req, query: { callbackUrl } }) => {
+  const [csrfToken, providers] = await Promise.all([getCsrfToken({ req }), getProviders()]);
 
   return {
-    props: { providers: Object.values(providers!) },
+    props: {
+      providers: Object.values(providers ?? {}).splice(1),
+      csrfToken,
+      callbackUrl: callbackUrl ?? '/',
+    },
   };
 };

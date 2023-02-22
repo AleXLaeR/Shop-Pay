@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ChangeEvent, useEffect, useRef } from 'react';
 
 import styles from '@styles/footer.module.scss';
-import { useSubscribeToNewsletterMutation } from '@store/api/newsletter.api';
+import { useSubscribeToNewsletterMutation } from '@store/api';
 
 import { toast } from 'react-toastify';
 import PulseLoader from 'react-spinners/PulseLoader';
@@ -56,7 +56,7 @@ export default function NewsLetter() {
           placeholder="Loading..."
         />
       )}
-      {data && <div className="text-green text-lg">Success!</div>}
+      {data ? <div className="text-green text-lg">Success!</div> : undefined}
       <p className="text-xs sm:text-base mt-1.5 text-sm text-grey-dark inline">
         By clicking the <b>SUBSCRIBE</b> button, you are agreeing to{' '}
       </p>
