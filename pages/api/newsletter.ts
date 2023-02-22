@@ -47,7 +47,11 @@ handler.post(async ({ body: { email } }, res) => {
     }
 
     const { url, data, headers } = mailchimpHandler(email);
-    await axios.post(url, data, { headers });
+    try {
+      await axios.post(url, data, { headers });
+    } catch (error) {
+      return res.status(StatusCodes.BAD_REQUEST).json({ message: 'Email is already subscribed!' });
+    }
 
     return res
       .status(StatusCodes.OK)

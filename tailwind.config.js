@@ -11,7 +11,8 @@ module.exports = {
           secondary: '#e14040d8',
           DEFAULT: '#ee7c78',
         },
-        success: '#6be180',
+        dimmed: 'rgba(255, 255, 255, 0.5)',
+        success: '#47ee61',
       },
       transitionProperty: {
         ['cubic-bezier']: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',

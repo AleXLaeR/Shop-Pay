@@ -14,6 +14,7 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'media.licdn.com',
       'avatars.githubusercontent.com',
+      'res.cloudinary.com',
     ],
   },
   sassOptions: {
