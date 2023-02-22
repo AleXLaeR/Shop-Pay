@@ -13,7 +13,7 @@ function getQuery<T>(url: string, payload: T): FetchArgs {
 const api = createApi({
   reducerPath: 'globalApi',
   tagTypes: ['Newsletter', 'Authentication'],
-  baseQuery: fetchBaseQuery({ baseUrl: '/' }),
+  baseQuery,
   endpoints: (builder) => ({
     subscribeToNewsletter: builder.mutation<BaseApiResponse, EmailPayload>({
       query: (payload) => getQuery<EmailPayload>('newsletter', payload),
