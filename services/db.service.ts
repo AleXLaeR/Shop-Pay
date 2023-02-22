@@ -5,7 +5,7 @@ const connection: DbConnection = { state: ConnectionStates.uninitialized };
 
 mongoose.set('strictQuery', true);
 
-export default async function connectToDb(): Promise<undefined> {
+async function connectToDb(): Promise<undefined> {
   if (connection.state === ConnectionStates.connected) {
     console.log('There already is a connection to the mongodb');
     return;
@@ -31,7 +31,7 @@ export default async function connectToDb(): Promise<undefined> {
   }
 }
 
-export async function disconnectFromDb() {
+async function disconnectFromDb() {
   if (connection.state === ConnectionStates.connected) {
     if (process.env.NODE_ENV === 'production') {
       connection.state = ConnectionStates.disconnected;
@@ -39,3 +39,5 @@ export async function disconnectFromDb() {
     }
   }
 }
+
+export default { disconnectFromDb, connectToDb };
