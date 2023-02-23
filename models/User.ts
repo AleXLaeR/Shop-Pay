@@ -1,34 +1,6 @@
 import { getTypeEnum } from '@lib/utils';
 import mongoose from 'mongoose';
 
-type UserRole = 'buyer' | 'admin' | 'seller';
-
-type PaymentMethod = '' | 'PayPal' | 'Visa' | 'Mastercard';
-
-type UserAddress = {
-  firstName: string;
-  lastName: string;
-  contactNumber: string;
-  primaryAddress: string;
-  secondaryAddress?: string;
-  city: string;
-  zipCode: string;
-  state?: string;
-  country: string;
-  wasUsedBefore: boolean;
-};
-
-interface UserModel {
-  name: string;
-  email: string;
-  password: string;
-  role: UserRole;
-  image: string;
-  isEmailVerified: boolean;
-  defaultPaymentMethod: string;
-  addresses: UserAddress[];
-}
-
 const userSchema = new mongoose.Schema<UserModel>(
   {
     name: {
