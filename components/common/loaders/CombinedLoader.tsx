@@ -13,7 +13,7 @@ export default function CombinedLoader({
   return (
     <div className="min-h-screen bg-grey flex-center flex-col text-center gap-2">
       <BeatLoader size={size} />
-      <span className="text-lg text-grey-dark">{content}</span>
+      <span className="max-w-[450px] text-lg text-grey-dark">{content}</span>
       <BarLoader />
     </div>
   );

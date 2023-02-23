@@ -2,17 +2,23 @@ import { createApi, FetchArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/rea
 
 const baseQuery = fetchBaseQuery({ baseUrl: process.env.BASE_API_URL });
 
-function getQuery<T>(url: string, payload: T): FetchArgs {
+type HttpReqType = 'PUT' | 'POST' | 'GET' | 'DELETE';
+
+function getQuery<Payload>(
+  url: string,
+  payload?: Payload,
+  reqType: HttpReqType = 'POST',
+): FetchArgs {
   return {
     url: `/api/${url}`,
-    method: 'POST',
+    method: reqType,
     body: payload,
   };
 }
 
 const api = createApi({
   reducerPath: 'globalApi',
-  tagTypes: ['Newsletter', 'Authentication'],
+  tagTypes: ['Newsletter', 'Authentication', 'Passwords'],
   baseQuery,
   endpoints: (builder) => ({
     subscribeToNewsletter: builder.mutation<BaseApiResponse, EmailPayload>({
@@ -25,10 +31,14 @@ const api = createApi({
     }),
     forgotPassword: builder.mutation<BaseApiResponse, EmailPayload>({
       query: (payload) => getQuery<EmailPayload>('auth/forgotPassword', payload),
-      invalidatesTags: ['Authentication'],
+      invalidatesTags: ['Authentication', 'Passwords'],
     }),
-    resetPassword: builder.mutation<BaseApiResponse, any>({
-      query: (payload) => getQuery<any>('auth/resetPassword', payload),
+    resetPassword: builder.mutation<BaseApiResponse | EmailPayload, ResetPasswordPayload>({
+      query: (payload) => getQuery<ResetPasswordPayload>('auth/resetPassword', payload, 'PUT'),
+      invalidatesTags: ['Authentication', 'Passwords'],
+    }),
+    validateEmail: builder.mutation<BaseApiResponse, ValidateEmailPayload>({
+      query: (payload) => getQuery<ValidateEmailPayload>('auth/validateEmail', payload, 'PUT'),
       invalidatesTags: ['Authentication'],
     }),
   }),
@@ -39,5 +49,6 @@ export const {
   useSignUpMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
+  useValidateEmailMutation,
   ...globalApi
 } = api;

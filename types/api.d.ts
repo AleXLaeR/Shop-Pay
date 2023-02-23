@@ -7,3 +7,10 @@ type SignUpPayload = {
 };
 
 type EmailPayload = { email: string };
+
+type ValidateEmailPayload = { userId: string };
+
+type ResetPasswordPayload = {
+  userId: string;
+  password: string;
+};

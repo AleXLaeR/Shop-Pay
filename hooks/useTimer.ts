@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 export default function useTimer(
-  callback: () => void,
+  callback?: () => void,
 ): [number | null, Dispatch<SetStateAction<number | null>>] {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
@@ -9,12 +9,13 @@ export default function useTimer(
     if (!timeLeft) return;
     if (timeLeft === 0) {
       setTimeLeft(null);
-      callback();
+
+      if (callback) callback();
     }
 
     const interval = setInterval(() => setTimeLeft((prev) => prev! - 1), 1000);
     return () => clearInterval(interval);
-  }, [timeLeft]);
+  }, [timeLeft, callback]);
 
   return [timeLeft, setTimeLeft];
 }
