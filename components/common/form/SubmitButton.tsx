@@ -4,18 +4,22 @@ interface SubmitButtonProps {
   type?: 'submit' | 'reset' | 'button';
   content: string;
   disabled?: boolean;
+  grow?: boolean;
 }
 
 export default function SubmitButton({
   type = 'submit',
   content,
   disabled = true,
+  grow = false,
 }: SubmitButtonProps) {
   return (
     <button
       type={type}
       disabled={disabled}
-      className={`relative w-56 h-14 rounded-3xl font-semibold md:text-lg text-white bg-blue block cursor-pointer ${
+      className={`relative ${
+        grow ? 'w-full' : 'w-56'
+      } h-14 rounded-3xl font-semibold md:text-lg text-white bg-blue block cursor-pointer ${
         disabled ? 'pointer-events-none bg-blue-darkish' : ''
       }`}
     >

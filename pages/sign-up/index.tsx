@@ -79,6 +79,7 @@ export default function SignUp() {
     }
 
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 
   const handleKeyPress = (event: KeyboardEvent) => {
@@ -168,8 +169,10 @@ export default function SignUp() {
                       content={session ? 'Signed In' : 'Sign Up'}
                       disabled={!dirty || !isValid || isSubmitting || !!session}
                     />
-                    <div className="p-4 mt-1 w-36 h-14 hover:underline text-blue hover:text-blue-dark border-b-blue">
-                      <Link href="/sign-in">Sign In instead</Link>
+                    <div className="p-4 mt-1 w-36 h-14 text-blue hover:text-blue-dark border-b-blue">
+                      <button type="button" onClick={() => signIn()} className="link">
+                        Sign In instead
+                      </button>
                     </div>
                   </div>
                 </Form>
