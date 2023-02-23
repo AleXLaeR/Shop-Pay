@@ -66,6 +66,7 @@ const productSchema = new mongoose.Schema<ProductModel>(
     slug: {
       type: String,
       required: true,
+      unique: true,
     },
     subCategories: [
       {
