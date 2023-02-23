@@ -1,11 +1,11 @@
-/* interface CategoryModel {
+interface CategoryModel {
   name: string;
+  slug: string;
 }
 
-interface SubCategoryModel {
-  name: string;
+interface SubCategoryModel extends CategoryModel {
+  parent: CategoryModel;
 }
- */
 
 interface ProductModel {
   name: string;

@@ -61,12 +61,15 @@ const productSchema = new mongoose.Schema<ProductModel>(
     },
     brand: {
       type: String,
+      index: 1,
       default: 'Unspecified',
     },
     slug: {
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
+      index: 1,
     },
     subCategories: [
       {
@@ -98,6 +101,7 @@ const productSchema = new mongoose.Schema<ProductModel>(
       default: 0,
       min: 0,
       max: 5,
+      index: -1,
     },
     reviewCount: {
       type: Number,
@@ -144,7 +148,7 @@ const productSchema = new mongoose.Schema<ProductModel>(
 );
 
 const Product =
-  (mongoose.connection.models.User as mongoose.Model<ProductModel>) ??
+  (mongoose.connection.models.Product as mongoose.Model<ProductModel>) ??
   mongoose.model<ProductModel>('Product', productSchema);
 
 export default Product;
