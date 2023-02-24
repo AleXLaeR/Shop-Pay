@@ -1,6 +1,6 @@
 import styles from '@styles/home-page.module.scss';
 
-import LeftSidebar from './LeftSidebar';
+// import LeftSidebar from './LeftSidebar';
 import Header from './Header';
 import BestOffers from './BestOffers';
 import Swiper from './Swiper';
@@ -12,7 +12,7 @@ export default function HomeBody() {
     <>
       <div className={styles.main}>
         <Header />
-        <LeftSidebar />
+        {/* <LeftSidebar /> */}
         <Swiper />
         <BestOffers />
         <RightSidebar />

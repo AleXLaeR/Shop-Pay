@@ -9,6 +9,7 @@ interface CategoryModel extends SubCategoryModel {
 }
 
 interface ProductModel {
+  _id: string;
   name: string;
   slug: string;
   description?: string;
@@ -22,7 +23,7 @@ interface ProductModel {
   reviewCount: number;
   reviews?: ReviewModel[];
   shippingPrice: number;
-  subProducts?: SubProduct[];
+  subProducts: SubProduct[];
   discount: number;
 }
 
