@@ -19,7 +19,7 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    global: globalReducer,
+    global: persistReducer(persistConfig, globalReducer),
     cart: persistReducer(persistConfig, cartReducer),
     [globalApi.reducerPath]: globalApi.reducer,
   },

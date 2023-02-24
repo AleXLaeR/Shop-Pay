@@ -23,14 +23,6 @@ import { BiLeftArrowAlt } from 'react-icons/bi';
 import { z } from 'Zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
-const state = {
-  country: {
-    name: 'Ukraine',
-    flag: { emojitwo: 'https://cdn.ipregistry.co/flags/emojitwo/ua.svg' },
-  },
-  currency: { code: 'UAH' },
-};
-
 type SignInState = { email: string; password: string };
 const defaultState: SignInState = { email: '', password: '' };
 
@@ -74,7 +66,7 @@ export default function SignIn({ providers, csrfToken, callbackUrl }: SignInProp
   return (
     <>
       <SEO title="Sign-In to ShopPay" desc="ShopPay Login page" />
-      <Header data={state} />
+      <Header />
       <div className="relative border-y border-y-greyish min-h-screen overflow-hidden flex justify-center">
         <div className="p-12 mt-12">
           <div className="flex-between max-w-[26rem] min-w-[24rem] relative -left-2 gap-2">
@@ -157,7 +149,7 @@ export default function SignIn({ providers, csrfToken, callbackUrl }: SignInProp
           </div>
         </div>
       </div>
-      <Footer country={state.country} />
+      <Footer />
     </>
   );
 }

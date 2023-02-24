@@ -1,3 +1,5 @@
+import { useAppSelector } from '@store/hooks';
+import { selectIpState } from '@store/slices/global.slice';
 import Link from 'next/link';
 import { IoLocationSharp } from 'react-icons/io5';
 
@@ -37,11 +39,9 @@ const links: AuthLink[] = [
   },
 ];
 
-interface CopyrightProps {
-  countryName: string;
-}
+export default function Copyright() {
+  const { country } = useAppSelector(selectIpState);
 
-export default function Copyright({ countryName }: CopyrightProps) {
   return (
     <div className={`text-grey-dark mr-6 ${styles.copyright}`}>
       <p className="text-sm pb-1.5">©2022 - 2023 SHOPPAY ALL RIGHT RESERVED.</p>
@@ -58,7 +58,7 @@ export default function Copyright({ countryName }: CopyrightProps) {
         <li>
           <Link href="/" className="flex items-center gap-1">
             <IoLocationSharp className="fill-green" />
-            <span className="underline underline-offset-2">{countryName}</span>
+            <span className="underline underline-offset-2">{country.name ?? '???'}</span>
           </Link>
         </li>
       </ul>

@@ -17,14 +17,6 @@ import { toast } from 'react-toastify';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { z } from 'Zod';
 
-const state = {
-  country: {
-    name: 'Ukraine',
-    flag: { emojitwo: 'https://cdn.ipregistry.co/flags/emojitwo/ua.svg' },
-  },
-  currency: { code: 'UAH' },
-};
-
 type SignUpState = {
   name: string;
   email: string;
@@ -107,7 +99,7 @@ export default function SignUp() {
   return (
     <>
       <SEO title="Sign-Up to ShopPay" desc="ShopPay Registration page" />
-      <Header data={state} />
+      <Header />
       {isLoading && <DotLoader content="Please wait for a bit..." />}
       <div className="relative border-y border-y-greyish min-h-screen overflow-hidden flex justify-center">
         <div className="p-12 mt-12">
@@ -185,7 +177,7 @@ export default function SignUp() {
           </div>
         </div>
       </div>
-      <Footer country={state.country} />
+      <Footer />
     </>
   );
 }

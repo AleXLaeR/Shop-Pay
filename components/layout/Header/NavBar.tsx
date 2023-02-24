@@ -1,3 +1,5 @@
+import { useAppSelector } from '@store/hooks';
+import { selectIpState } from '@store/slices/global.slice';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useToggle } from '@hooks/index';
@@ -9,13 +11,8 @@ import { RiAccountPinCircleLine, RiArrowDropDownFill } from 'react-icons/ri';
 import NavLink from './NavLink';
 import AccountDropdown from './AccountDropdown';
 
-export default function NavBar({
-  data: {
-    country,
-    currency: { code },
-  },
-}: IpRegistryProps) {
-  const { name: countryName, flag } = country;
+export default function NavBar() {
+  const { country, currency } = useAppSelector(selectIpState);
   const {
     toggleState: isDropDownVisible,
     handlers: { toggle },
@@ -29,7 +26,7 @@ export default function NavBar({
         <ul className="flex gap-4 [&_span]:text-sm">
           <NavLink className="!no-underline !cursor-default">
             <Image
-              src={flag.emojitwo}
+              src={country.flagUri}
               alt="Country Flag"
               className="h-4 w-4 md:w-7 md:h-7 rounded-full"
               loading="lazy"
@@ -37,7 +34,8 @@ export default function NavBar({
               height={28}
             />
             <span className="capitalize font-semibold">
-              {countryName} <span className="uppercase hidden sm:inline font-bold"> / {code}</span>
+              {country.name}{' '}
+              <span className="uppercase hidden sm:inline font-bold"> / {currency.code}</span>
             </span>
           </NavLink>
           <NavLink className="hidden md:flex">

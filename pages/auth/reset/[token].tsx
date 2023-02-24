@@ -27,14 +27,6 @@ const defaultState: ResetPasswordState = {
   confirmPassword: '',
 };
 
-const state = {
-  country: {
-    name: 'Ukraine',
-    flag: { emojitwo: 'https://cdn.ipregistry.co/flags/emojitwo/ua.svg' },
-  },
-  currency: { code: 'UAH' },
-};
-
 const validationSchema = z
   .object({
     password: z
@@ -91,7 +83,7 @@ export default function ResetPassword({ userId }: ResetPasswordProps) {
   return (
     <>
       <SEO title="Password reset Page | ShopPay" desc="User Password reset page | ShopPay" />
-      <Header data={state} />
+      <Header />
       {isLoading && <DotLoader content="Please wait for a bit..." />}
       <div className="min-h-[650px] border border-grey-dark grid place-items-center">
         <div className="max-w-[400px]">
@@ -155,7 +147,7 @@ export default function ResetPassword({ userId }: ResetPasswordProps) {
           </p>
         </div>
       </div>
-      <Footer country={state.country} />
+      <Footer />
     </>
   );
 }

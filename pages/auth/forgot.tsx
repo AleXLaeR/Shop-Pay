@@ -17,14 +17,6 @@ import { useForgotPasswordMutation } from '@store/api';
 type FormState = { email: string };
 const defaultState: FormState = { email: '' };
 
-const state = {
-  country: {
-    name: 'Ukraine',
-    flag: { emojitwo: 'https://cdn.ipregistry.co/flags/emojitwo/ua.svg' },
-  },
-  currency: { code: 'UAH' },
-};
-
 const validationSchema = z.object({
   email: z
     .string({ required_error: 'E-Mail is required' })
@@ -46,7 +38,7 @@ export default function ForgotPassword() {
   return (
     <>
       <SEO title="Forgot password Page | ShopPay" desc="User Password Forgot page | ShopPay" />
-      <Header data={state} />
+      <Header />
       {isLoading && <DotLoader content="Please wait for a bit..." />}
       <div className="min-h-[650px] border border-grey-dark grid place-items-center">
         <div className="max-w-[400px]">
@@ -101,7 +93,7 @@ export default function ForgotPassword() {
           </p>
         </div>
       </div>
-      <Footer country={state.country} />
+      <Footer />
     </>
   );
 }

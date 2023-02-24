@@ -14,14 +14,14 @@ import { selectProducts } from '@store/slices/cart.slice';
 import AdBanner from './AdBanner';
 import NavBar from './NavBar';
 
-export default function Header({ data }: IpRegistryProps) {
+export default function Header() {
   const { pathname } = useRouter();
   const products = useAppSelector(selectProducts);
 
   return (
     <div className="h-full shadow-md">
       {pathname !== '/sign-up' && pathname !== '/sign-in' && <AdBanner />}
-      <NavBar data={data} />
+      <NavBar />
       <div className="flex items-center relative h-[4rem]">
         <div className="flex-between w-full pr-10 flex-shrink gap-4 max-w-screen-xl my-0 mx-auto py-0 px-4">
           <Link href={ROUTES.BASE} className="w-44">

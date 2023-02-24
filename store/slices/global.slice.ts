@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import ipRegistryThunk from '@store/thunks/ipRegistry';
+import { createSelector, createSlice, PayloadAction, RootState } from '@reduxjs/toolkit';
+// import ipRegistryThunk from '@store/thunks/ipRegistry';
 
 const initialState: IpRegistryState = {
   currency: {
@@ -11,11 +11,13 @@ const initialState: IpRegistryState = {
   },
 };
 
-const { reducer } = createSlice({
+const { reducer, actions } = createSlice({
   name: 'global',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
+  reducers: {
+    setIpData: (_, { payload }: PayloadAction<IpRegistryState>) => payload,
+  },
+  /* extraReducers: (builder) => {
     builder
       .addCase(ipRegistryThunk.fulfilled, (state, { payload }) => {
         state.country = payload.country;
@@ -25,6 +27,13 @@ const { reducer } = createSlice({
         console.error(`Error happened on geo-data fetch: ${error}`);
       });
   },
+   */
 });
+export const { setIpData } = actions;
+
+export const selectIpState = createSelector(
+  ({ global }: RootState) => global,
+  (globalState) => globalState,
+);
 
 export default reducer;

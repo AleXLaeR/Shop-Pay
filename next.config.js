@@ -22,6 +22,9 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import "shared/_mixins.scss"; @import "shared/_variables.scss"; @import "shared/_functions.scss";`,
   },
+  env: {
+    ip_registry_key: process.env.IP_REGISTRY_API_KEY,
+  },
   exportPathMap: () => ({
     '/login': { page: '/sign-up' },
     '/register': { page: '/sign-in' },

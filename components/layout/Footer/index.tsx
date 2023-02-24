@@ -6,18 +6,14 @@ import NewsLetter from './NewsLetter';
 import Payments from './Payments';
 import Copyright from './Copyright';
 
-interface FooterProps extends Partial<IpRegistryResponse> {
-  country: IpRegistryCountry;
-}
-
-export default function Footer({ country }: FooterProps) {
+export default function Footer() {
   return (
     <div className={styles.container}>
       <FooterLinks />
       <FooterSocials />
       <NewsLetter />
       <Payments />
-      <Copyright countryName={country.name} />
+      <Copyright />
     </div>
   );
 }
