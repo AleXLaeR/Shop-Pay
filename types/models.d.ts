@@ -1,10 +1,11 @@
-interface CategoryModel {
+interface SubCategoryModel {
   name: string;
   slug: string;
+  // parent: string;
 }
 
-interface SubCategoryModel extends CategoryModel {
-  parent: CategoryModel;
+interface CategoryModel extends SubCategoryModel {
+  subCategories?: SubCategoryModel[];
 }
 
 interface ProductModel {
@@ -20,8 +21,9 @@ interface ProductModel {
   rating: number;
   reviewCount: number;
   reviews?: ReviewModel[];
-  shipping: number;
+  shippingPrice: number;
   subProducts?: SubProduct[];
+  discount: number;
 }
 
 interface ReviewModel {
@@ -29,11 +31,13 @@ interface ReviewModel {
   rating: number;
   content: string;
   fit: string;
-  images?: string[];
+  size?: string;
+  color: string;
+  images?: ProductImage[];
   popularity: ReviewPopularity[];
   pros?: string[];
   cons?: string[];
-  // replies?: any[];
+  // replies?: unknown[];
 }
 
 interface UserModel {
@@ -47,6 +51,8 @@ interface UserModel {
   addresses: UserAddress[];
 }
 
+type ProductImage = { uri: string; publicUri: string };
+
 type ReviewPopularity = {
   likeAmount: number;
   dislikeAmount: number;
@@ -59,16 +65,17 @@ type PaymentMethod = '' | 'PayPal' | 'Visa' | 'Mastercard';
 type ProductRefundPolicy = '7d' | '1w' | '30d' | '1m' | '3m' | '6m' | '1y' | 'never';
 
 type SubProduct = {
-  stock: ProductStock;
-  imageUri?: string;
-  descriptionImage?: string;
+  sku: string;
+  variants: ProductVariant[];
+  images: ProductImage[];
+  descriptionImages?: ProductImage[];
   color: string;
   discount: number;
   amountSold: number;
 };
 
-type ProductStock = {
-  sku: string;
+type ProductVariant = {
+  size: string;
   quantity: number;
   price: number;
 };

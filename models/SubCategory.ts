@@ -17,11 +17,12 @@ const subCategorySchema = new mongoose.Schema<SubCategoryModel>(
       lowercase: true,
       index: 1,
     },
-    parent: {
+    /* parent: {
       type: ObjectId,
       required: true,
       ref: 'Category',
     },
+     */
   },
   { timestamps: true },
 );

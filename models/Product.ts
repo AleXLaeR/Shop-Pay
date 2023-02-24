@@ -23,7 +23,12 @@ const reviewSchema = new mongoose.Schema<ReviewModel>(
       min: 1,
       max: 5,
     },
-    images: [{ type: String }],
+    images: [
+      {
+        uri: { type: String, required: false },
+        publicUri: { type: String, required: false },
+      },
+    ],
     popularity: [
       {
         likeAmount: {
@@ -38,6 +43,18 @@ const reviewSchema = new mongoose.Schema<ReviewModel>(
         },
       },
     ],
+    fit: {
+      type: String,
+      required: false,
+    },
+    size: {
+      type: String,
+      required: false,
+    },
+    color: {
+      type: String,
+      required: true,
+    },
     pros: [{ type: String }],
     cons: [{ type: String }],
   },
@@ -108,7 +125,7 @@ const productSchema = new mongoose.Schema<ProductModel>(
       required: true,
       default: 0,
     },
-    shipping: {
+    shippingPrice: {
       type: Number,
       required: true,
       default: 0,
@@ -116,19 +133,29 @@ const productSchema = new mongoose.Schema<ProductModel>(
     reviews: [reviewSchema],
     subProducts: [
       {
-        stock: {
-          sku: { type: String, required: true },
+        sku: { type: String, required: true },
+        variants: {
+          size: { type: String, required: false },
           quantity: { type: Number, default: 0 },
           price: { type: Number, required: true },
         },
-        imageUri: {
-          type: String,
-          default: 'https://adlog.narmadeayurvedam.com/dtup/default-product.png',
-        },
-        descriptionImage: {
-          type: String,
-          required: false,
-        },
+        images: [
+          {
+            uri: {
+              type: String,
+              default: 'https://adlog.narmadeayurvedam.com/dtup/default-product.png',
+            },
+            publicUri: { type: String },
+            required: false,
+          },
+        ],
+        descriptionImages: [
+          {
+            uri: { type: String },
+            publicUri: { type: String },
+            required: false,
+          },
+        ],
         color: {
           type: String,
           required: true,
