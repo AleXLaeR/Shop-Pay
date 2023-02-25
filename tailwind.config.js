@@ -29,10 +29,18 @@ module.exports = {
         dark: '#1a28f1dc',
         DEFAULT: '#2f82ff',
         darkish: '#0000ff34',
+        light: '#2596be',
       },
-      yellow: '#fac80f',
+      orange: '#fd7c5a',
+      yellow: {
+        DEFAULT: '#fac80f',
+        light: '#facf19',
+      },
       green: '#3c811f',
-      red: '#f15f6f',
+      red: {
+        dark: '#8B0000',
+        DEFAULT: '#f15f6f',
+      },
       grey: {
         dark: '#666',
         lighter: '#999',

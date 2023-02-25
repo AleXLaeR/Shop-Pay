@@ -11,7 +11,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { name, slug, subProducts } = product;
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
 
-  // const productColors = useMemo(() => subProducts?.map(({ color }) => color), [subProducts]);
   const activeVariant = useMemo(
     () => subProducts[activeVariantIdx],
     [subProducts, activeVariantIdx],
@@ -27,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="relative w-72 h-[32rem]">
-      <Link href={`/product/${slug}?style=${activeVariantIdx}`} target="_blank">
+      <Link href={`/product/${slug}?variant=${activeVariantIdx}`} target="_blank">
         <ImageSwiper items={activeVariant.images} />
       </Link>
       {activeVariant.discount !== 0 && (

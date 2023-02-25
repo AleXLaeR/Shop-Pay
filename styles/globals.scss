@@ -75,6 +75,10 @@
     }
   }
 
+  .grid-col-350 {
+    grid-template-columns: 1fr 22rem;
+  }
+
   .grid-15-85 {
     display: grid;
     grid-template-columns: 15% 85%;

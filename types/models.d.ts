@@ -1,10 +1,12 @@
 interface SubCategoryModel {
+  _id: string;
   name: string;
   slug: string;
   // parent: string;
 }
 
 interface CategoryModel extends SubCategoryModel {
+  _id: string;
   subCategories?: SubCategoryModel[];
 }
 
@@ -20,7 +22,6 @@ interface ProductModel {
   faq?: Record<string, string>[];
   refundPolicy: string;
   rating: number;
-  reviewCount: number;
   reviews?: ReviewModel[];
   shippingPrice: number;
   subProducts: SubProduct[];
@@ -93,3 +94,12 @@ type UserAddress = {
   country: string;
   wasUsedBefore: boolean;
 };
+
+type PageProduct = ProductModel &
+  SubProduct & {
+    colors: string[];
+    startingPrice: number;
+    discountedPrice: number;
+    quantity: number;
+    prices: number[];
+  };

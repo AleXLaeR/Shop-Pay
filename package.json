@@ -15,6 +15,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.10",
     "@next-auth/mongodb-adapter": "^1.1.1",
     "@next/bundle-analyzer": "^13.1.6",
     "@next/font": "13.1.6",
@@ -42,8 +45,10 @@
     "react-countdown": "^2.3.5",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
+    "react-image-magnify": "^2.7.4",
     "react-redux": "^8.0.5",
     "react-responsive": "^9.0.2",
+    "react-share": "^4.4.1",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.1",
     "redux-persist": "^6.0.0",
@@ -65,6 +70,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/nodemailer": "^6.4.7",
+    "@types/react-image-magnify": "^2.7.1",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",

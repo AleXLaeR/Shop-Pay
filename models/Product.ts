@@ -120,11 +120,6 @@ const productSchema = new mongoose.Schema<ProductModel>(
       max: 5,
       index: -1,
     },
-    reviewCount: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
     shippingPrice: {
       type: Number,
       required: true,

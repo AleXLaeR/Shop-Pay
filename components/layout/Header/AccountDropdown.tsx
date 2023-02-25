@@ -8,7 +8,7 @@ export default function AccountDropdown() {
   const { data: session } = useSession();
 
   return (
-    <div className="flex justify-center w-60 shadow-md absolute !cursor-default mt-1 top-full -right-1 bg-white z-10 flex flex-col gap-4 py-4 px-0">
+    <div className="flex justify-center w-60 shadow-md absolute !cursor-default mt-1 top-full -right-1 bg-white z-20 flex flex-col gap-4 py-4 px-0">
       <h4 className="text-center font-bold">Welcome {session && 'Back'} !</h4>
       <div className="flex w-full gap-3 py-0 px-4">
         {session ? (
