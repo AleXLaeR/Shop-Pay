@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 interface UseStorageInternalParams {
   key: string;
-  defValue?: () => any;
+  defValue?: string | number | (() => any);
   storage?: Storage;
 }
 
