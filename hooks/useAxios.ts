@@ -6,21 +6,22 @@ const axiosInstance = axios.create({
 });
 
 export default function useAxios<Data = any>(
-  key: string,
-  { method = 'get', ...opts }: AxiosRequestConfig = {},
+  key: string | null,
+  { method = 'GET', ...opts }: AxiosRequestConfig = {},
   payload?: Record<string, any>,
 ): SWRResponse<Data, Error> {
-  if (!['get', 'post'].includes(method)) {
+  if (!['GET', 'POST'].includes(method)) {
     throw new Error('Method is not allowed. Only GET and POST are supported.');
   }
 
   const fetcher: Fetcher<Data, typeof key> = async (url) => {
     const { data } = await axiosInstance({
-      url,
+      url: `/api/${url}`,
       method,
       ...opts,
       data: payload,
     });
+    console.log(123);
     return data;
   };
 

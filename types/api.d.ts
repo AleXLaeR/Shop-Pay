@@ -1,5 +1,10 @@
 type BaseApiResponse = { message: string } | Record<string, string>;
 
+type SuggestionsResponse = {
+  categories?: CategoryModel[];
+  products?: ProductModel[];
+};
+
 type SignUpPayload = {
   name: string;
   email: string;
