@@ -8,6 +8,7 @@ import { TbMinus, TbPlus } from 'react-icons/tb';
 import { BsHeart, BsHandbagFill } from 'react-icons/bs';
 
 import SocialsShare from './SocialsShare';
+import ProductAccordion from './ProductAccordion';
 
 interface ProductInfoProps {
   product: PageProduct;
@@ -29,13 +30,16 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
     variants,
     colors,
     subProducts,
+    details,
+    description,
+    faq,
   } = product;
 
   const { query } = useRouter();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   const variant = parseInt(query.variant as string, 10);
-  const querySize = parseInt(query.size as string, 10);
+  // const querySize = parseInt(query.size as string, 10);
 
   const averagePrice =
     prices.length === 1 ? prices[0] : (prices[0] + prices[prices.length - 1]) / 2;
@@ -46,7 +50,7 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
   );
 
   return (
-    <div className="xl:max-h-[750px] text-grey-dark bg-white pt-4 md:pt-0 max-w-md sm:max-w-full rounded-lg">
+    <div className="text-grey-dark bg-white pt-4 md:pt-0 sm:max-w-full rounded-lg">
       {/* <DialogModal /> */}
       <div className="container flex flex-col gap-1">
         <h1 className="text-2xl font-semibold">{name}</h1>
@@ -127,24 +131,29 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
         </div>
         <div className="mt-4 py-4 flex items-center gap-1.5 border border-greyish rounded-xl w-fit px-1">
           <button
-            className="w-9 h-9 hover:bg-grey-light rounded-full grid place-items-center cursor-pointer"
-            onClick={() => selectedQuantity > 1 && setSelectedQuantity((prev) => prev - 1)}
+            className="w-9 h-9 bg-grey hover:bg-grey-light rounded-full grid place-items-center cursor-pointer"
+            onClick={() =>
+              selectedQuantity > 1 &&
+              selectedQuantity < 99 &&
+              setSelectedQuantity((prev) => prev - 1)
+            }
           >
             <TbMinus className="scale-90" />
           </button>
-          <span className="text-lg text-center">{selectedQuantity}</span>
+          <span className="min-w-[1.75rem] text-lg text-center font-semibold">
+            {selectedQuantity}
+          </span>
           <button
-            className="w-9 h-9 hover:bg-grey-light rounded-full grid place-items-center cursor-pointer"
+            className="w-9 h-9 bg-grey hover:bg-grey-light rounded-full grid place-items-center cursor-pointer"
             onClick={() => selectedQuantity < quantity && setSelectedQuantity((prev) => prev + 1)}
           >
             <TbPlus />
           </button>
         </div>
-        <div className="lg:flex lg:gap-4">
+        <div className="xl:flex lg:gap-4">
           <button
             disabled={product.quantity < 1}
             className="mt-4 flex-center gap-2.5 h-16 hover:text-black-lighter text-grey-dark font-semibold text-lg cursor-pointer w-full transition-all duration-200"
-            // onClick={() => addToCartHandler()}
             style={{
               backgroundImage: 'linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)',
             }}
@@ -161,11 +170,7 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
           </button>
         </div>
         <SocialsShare />
-        {/* {error && <span className={styles.error}>{error}</span>}
-          success && <span className={styles.success}>{success}</span>}
-          <Accordian details={[product.description, ...product.details]} />
-          <SimillarSwiper />
-        */}
+        <ProductAccordion desc={description} details={details} faq={faq} />
       </div>
     </div>
   );

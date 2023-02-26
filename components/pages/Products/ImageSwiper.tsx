@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { useRef, useEffect, useMemo } from 'react';
+
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 import { Autoplay } from 'swiper';
 
@@ -37,21 +39,27 @@ export default function ImageSwiper({ items }: ProductSwiperProps) {
 
   return (
     <div
-      className="relative cursor-pointer bg-white"
+      className="relative cursor-pointer bg-white h-[420px]"
       onMouseLeave={onMouseLeave}
       onMouseEnter={() => swiperRef.current?.swiper.autoplay.start()}
     >
       <Swiper
         ref={swiperRef}
         centeredSlides
-        speed={800}
+        speed={1e3}
         autoplay={autoPlayOptions}
         modules={[Autoplay]}
         {...onNextSwipeProps}
       >
         {items?.map(({ uri, publicUri }, idx) => (
           <SwiperSlide key={idx}>
-            <img className="h-[24rem] block rounded-md" src={uri} alt={publicUri} />
+            <Image
+              width={300}
+              height={420}
+              className="!h-[26.25rem] block rounded-md"
+              src={uri}
+              alt={publicUri}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

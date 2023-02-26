@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import SEO from '@common/SEO';
 import { Header, Footer } from '@components/layout';
-import { Reviews, ImageSwiper, ProductInfo } from '@components/pages/Product';
+import { Reviews, ImageSwiper, ProductInfo, RelatedSwiper } from '@components/pages/Product';
 
 import db from '@services/db.service';
 import { Product } from '@models/index';
@@ -35,11 +35,12 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
               <span key={_id}>{name}</span>
             ))}
           </div>
-          <div className="relative grid lg:justify-end items-start mt-4 md:gap-8 md:grid-col-350 xl:grid-cols-2">
+          <div className="relative grid gap-y-5 lg:justify-end items-start mt-4 md:gap-8 md:grid-col-350 xl:grid-cols-2">
             <ImageSwiper images={images} activeImage={activeImage} />
             <ProductInfo product={product} setActiveImage={setActiveImage} />
           </div>
           <Reviews />
+          <RelatedSwiper products={relatedProducts} />
         </div>
       </div>
       <Footer />
@@ -64,7 +65,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const subProductVariant = subProduct.variants[parseInt(size as string, 10)];
   const cummulatedDiscount = product.discount + subProduct.discount;
 
-  const relatedProducts = await Product.find({ category: product.category._id }).lean();
+  const relatedProducts = await Product.find({
+    category: product.category._id,
+    _id: { $ne: product._id },
+  }).lean();
 
   await db.disconnectFromDb();
 

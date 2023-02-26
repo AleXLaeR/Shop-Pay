@@ -5,9 +5,10 @@ import ImageSwiper from './ImageSwiper';
 
 interface ProductCardProps {
   product: ProductModel;
+  controllableSize?: boolean;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, controllableSize = true }: ProductCardProps) {
   const { name, slug, subProducts } = product;
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
 
@@ -25,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   }, [activeVariant.variants]);
 
   return (
-    <div className="relative w-72 h-[32rem]">
+    <div className={`relative ${controllableSize ? 'w-72 h-[34rem]' : ''}`}>
       <Link href={`/product/${slug}?variant=${activeVariantIdx}`} target="_blank">
         <ImageSwiper items={activeVariant.images} />
       </Link>
@@ -38,7 +39,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <h1 className="line-clamp-1 text-lg lg:line-clamp-2 text-black-light font-semibold">
           {name}
         </h1>
-        <span className="text-red text-lg  font-bold">
+        <span className="text-red text-lg font-bold">
           Price Range:{' '}
           <span className="underline underline-offset-2">
             {Array.isArray(productPriceDiff)

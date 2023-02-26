@@ -193,14 +193,27 @@
 }
 
 .similar__swiper {
-  max-width: pxToRem(650px);
+  background-color: $grey-color;
+  padding: 1rem 0.65rem 0 !important;
+  margin-top: 2.5rem;
 
-  img {
-    @include sized(100px, 160px);
-    cursor: pointer;
+  .swiper-wrapper {
+    height: pxToRem(575px);
+  }
 
-    @media (min-width: 29em) {
-      @include sized(150px, 200px);
-    }
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 40%;
+  }
+
+  .swiper-pagination-bullet {
+    width: pxToRem(11px) !important;
+    height: pxToRem(11px) !important;
+    border-radius: 5px !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: $blue-color !important;
+    width: pxToRem(18px) !important;
   }
 }
