@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ROUTES from '@services/routes';
 
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useAxios, useDebounce } from '@hooks/index';
+import { useCallback, useRef, useState } from 'react';
+import { useAxios, useClickOutside, useDebounce, useEventListener } from '@hooks/index';
 
 import Logo from '@assets/images/logo.png';
 import { ClockLoader } from 'react-spinners';
@@ -23,6 +23,7 @@ import NavBar from './NavBar';
 export default function Header() {
   const { pathname } = useRouter();
   const products = useAppSelector(selectProducts);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedQuery = useDebounce(searchQuery, 700);
@@ -34,6 +35,16 @@ export default function Header() {
     },
   );
 
+  const onClickOutside = useCallback(() => {
+    setSearchQuery('');
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }, []);
+
+  useClickOutside(inputRef, onClickOutside);
+  useEventListener('scroll', onClickOutside);
+
   return (
     <div className="h-full shadow-md">
       {pathname !== '/sign-up' && pathname !== '/sign-in' && <AdBanner />}
@@ -44,9 +55,10 @@ export default function Header() {
             <Image src={Logo} alt="Logo" />
           </Link>
           <div className="relative flex-grow z-20">
-            <div className="flex items-center bg-[#eeeeeebc] h-10 rounded-md">
+            <div className="flex items-center bg-[#eeeeeebc] focus:border focus:border-grey-dark h-10 rounded-md">
               <input
                 type="text"
+                ref={inputRef}
                 placeholder="Search..."
                 onChange={({ target }) => setSearchQuery(target.value)}
                 className="w-full h-full bg-transparent text-sm md:text-base border-0 outline-0 pl-4"
@@ -55,7 +67,7 @@ export default function Header() {
                 <RiSearch2Line className="w-5 h-5 md:w-6 md:h-6 fill-white" />
               </div>
             </div>
-            <div className="absolute w-full bg-white rounded-md z-10 top-11">
+            <div className="shadow-md absolute w-full bg-white rounded-md z-10 top-11">
               {data && data.products?.length !== 0 ? (
                 <>
                   {data.products?.map(({ _id, slug, name, rating }) => (
