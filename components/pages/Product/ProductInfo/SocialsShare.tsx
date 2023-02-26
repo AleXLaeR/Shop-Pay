@@ -19,7 +19,7 @@ import {
 
 export default function SocialsShare() {
   return (
-    <div className="mt-8 flex flex-wrap gap-2.5 [&_svg]:rounded-full [&_svg]:transition-transform [&_svg]:hover:scale-110">
+    <div className="mt-8 flex flex-wrap gap-2.5 [&_svg]:rounded-full [&_svg]:transition-transform hover:[&_svg]:scale-110">
       <FacebookShareButton url={window?.location.href}>
         <FacebookIcon size={38} />
       </FacebookShareButton>
