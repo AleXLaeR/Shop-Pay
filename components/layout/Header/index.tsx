@@ -28,7 +28,7 @@ export default function Header() {
   const debouncedQuery = useDebounce(searchQuery, 700);
 
   const { data, isLoading } = useAxios<SuggestionsResponse>(
-    debouncedQuery ? `/suggestions?search=${debouncedQuery}?limit=6` : null,
+    debouncedQuery ? `/suggestions?search=${debouncedQuery}&limit=6` : null,
     {
       method: 'GET',
     },
@@ -43,7 +43,7 @@ export default function Header() {
           <Link href={ROUTES.BASE} className="w-44">
             <Image src={Logo} alt="Logo" />
           </Link>
-          <div className="relative flex-grow">
+          <div className="relative flex-grow z-20">
             <div className="flex items-center bg-[#eeeeeebc] h-10 rounded-md">
               <input
                 type="text"

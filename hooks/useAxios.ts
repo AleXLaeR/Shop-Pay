@@ -21,7 +21,6 @@ export default function useAxios<Data = any>(
       ...opts,
       data: payload,
     });
-    console.log(123);
     return data;
   };
 

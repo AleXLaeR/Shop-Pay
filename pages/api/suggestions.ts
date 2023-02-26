@@ -17,7 +17,7 @@ type MongoSort = { [sort: string]: 1 | -1 | 'asc' | 'desc' };
 
 type QueryParams = {
   page: number;
-  pageSize: number;
+  limit: number;
   search: string;
   sort: string;
 };
@@ -30,7 +30,7 @@ const generateSort = (sort: string | null): MongoSort => {
 };
 
 handler.get(async ({ query }, res) => {
-  const { page = 0, pageSize = 10, sort = null, search = '' } = query as Partial<QueryParams>;
+  const { page = 0, limit = 10, sort = null, search = '' } = query as Partial<QueryParams>;
 
   try {
     await db.connectToDb();
@@ -42,9 +42,10 @@ handler.get(async ({ query }, res) => {
       ],
     })
       .sort(generateSort(sort))
-      .skip(page * pageSize)
-      .limit(pageSize);
+      .skip(page * limit)
+      .limit(limit);
 
+    console.log(search, products);
     await db.disconnectFromDb();
 
     return res.status(StatusCodes.OK).json({
