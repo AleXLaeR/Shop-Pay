@@ -56,7 +56,7 @@ export default function ImageSwiper({ items }: ProductSwiperProps) {
             <Image
               width={300}
               height={420}
-              className="!h-[26.25rem] block rounded-md"
+              className="!h-[26.25rem] w-auto block rounded-md"
               src={uri}
               alt={publicUri}
             />
