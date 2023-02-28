@@ -8,6 +8,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import cartReducer from '@store/slices/cart.slice';
+import modalReducer from '@store/slices/modal.slice';
 import globalReducer from '@store/slices/global.slice';
 
 import { globalApi } from '@store/api';
@@ -21,6 +22,7 @@ export const store = configureStore({
   reducer: {
     global: persistReducer(persistConfig, globalReducer),
     cart: persistReducer(persistConfig, cartReducer),
+    modal: modalReducer,
     [globalApi.reducerPath]: globalApi.reducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
