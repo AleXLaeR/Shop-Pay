@@ -39,7 +39,12 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
             <ImageSwiper images={images} activeImage={activeImage} />
             <ProductInfo product={product} setActiveImage={setActiveImage} />
           </div>
-          <Reviews />
+          <Reviews
+            reviews={product.reviews}
+            productRating={product.rating}
+            sizes={product.sizes}
+            colors={product.colors}
+          />
           <RelatedSwiper products={relatedProducts} />
         </div>
       </div>
@@ -48,7 +53,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, res }) => {
   const { slug, variant = '0', size = '0' } = query;
   await db.connectToDb();
 
@@ -70,8 +75,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     _id: { $ne: product._id },
   }).lean();
 
-  await db.disconnectFromDb();
+  res.setHeader('Cache-Control', 'max-age=31536000');
 
+  await db.disconnectFromDb();
   return {
     props: {
       product: JSON.parse(
@@ -81,9 +87,23 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
           rating: product.reviews
             ? product.reviews.reduce((acc, { rating }) => acc + rating, 0) / product.reviews.length
             : 0,
-          reviews: product.reviews?.reverse(),
+          reviews: Object.entries(
+            product.reviews?.reduce((grouped, review) => {
+              const ratingInteger = Math.round(review.rating);
+              grouped[ratingInteger] = [...(grouped[ratingInteger] ?? []), review];
+              return grouped;
+            }, {} as Record<string, ReviewModel[]>) ?? [],
+          ).reverse(),
           prices: subProduct.variants.map(({ price }) => price).sort((a, b) => a - b),
           colors: product.subProducts.map(({ color }) => color),
+          sizes: Array.from(
+            new Set(
+              product.subProducts
+                .map(({ variants }) => variants.map(({ size: varSize }) => varSize))
+                .flat()
+                .sort((a, b) => a.localeCompare(b)),
+            ),
+          ),
           discount: cummulatedDiscount,
           startingPrice: subProductVariant.price,
           discountedPrice:

@@ -97,7 +97,9 @@ type UserAddress = {
 
 type PageProduct = ProductModel &
   SubProduct & {
+    reviews: [string, ReviewModel[]][];
     colors: string[];
+    sizes: string[];
     startingPrice: number;
     discountedPrice: number;
     quantity: number;
