@@ -4,7 +4,7 @@ import { CheckoutHeader, EmptyCart } from '@components/pages/Cart';
 import { useAppSelector } from '@store/hooks';
 import { selectProducts } from '@store/slices/cart.slice';
 
-export default function Checkout() {
+export default function CartPage() {
   const cartProducts = useAppSelector(selectProducts);
 
   return (
