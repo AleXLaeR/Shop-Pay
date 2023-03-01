@@ -1,3 +1,4 @@
+import ReviewTable from '@components/pages/Product/Reviews/ReviewTable';
 import { useMemo } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 
@@ -16,6 +17,11 @@ export default function Reviews({ reviews, productRating, sizes, colors }: Revie
 
   const totalAmount = useMemo(
     () => reviews.reduce((acc, [_, revs]) => acc + revs.length, 0),
+    [reviews],
+  );
+
+  const allReviews = useMemo(
+    () => reviews.reduce((allRevs, [_, revs]) => allRevs.concat(revs), [] as ReviewModel[]),
     [reviews],
   );
 
@@ -70,6 +76,7 @@ export default function Reviews({ reviews, productRating, sizes, colors }: Revie
             Login to add a review!
           </button>
         )}
+        <ReviewTable reviews={allReviews} sizes={sizes} colors={colors} />
       </div>
     </div>
   );

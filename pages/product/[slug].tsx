@@ -45,7 +45,7 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
             sizes={product.sizes}
             colors={product.colors}
           />
-          <RelatedSwiper products={relatedProducts} />
+          {relatedProducts.length !== 0 && <RelatedSwiper products={relatedProducts} />}
         </div>
       </div>
       <Footer />

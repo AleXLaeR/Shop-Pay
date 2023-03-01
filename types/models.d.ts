@@ -29,6 +29,7 @@ interface ProductModel {
 }
 
 interface ReviewModel {
+  _id: string;
   by: UserModel;
   rating: number;
   content: string;
@@ -37,9 +38,10 @@ interface ReviewModel {
   color: string;
   images?: ProductImage[];
   popularity: ReviewPopularity[];
-  pros?: string[];
-  cons?: string[];
+  // pros?: string[];
+  // cons?: string[];
   // replies?: unknown[];
+  updatedAt: string;
 }
 
 interface UserModel {

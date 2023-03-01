@@ -52,7 +52,7 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
   return (
     <div className="text-grey-dark bg-white pt-4 md:pt-0 sm:max-w-full rounded-lg">
       {/* <DialogModal /> */}
-      <div className="container flex flex-col gap-1">
+      <div className="container !min-h-0 flex flex-col gap-1">
         <h1 className="text-2xl font-semibold">{name}</h1>
         <h2 className="text-lg text-grey-lighter">#{sku}</h2>
         <div className="flex items-center gap-2">
