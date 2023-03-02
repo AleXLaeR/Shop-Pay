@@ -107,3 +107,25 @@ type PageProduct = ProductModel &
     quantity: number;
     prices: number[];
   };
+
+/* interface CartProduct {
+  _id: string;
+  name: string;
+  sku: string;
+  brand?: string;
+  category: string;
+  shippingCost: number;
+  images: ProductImage[];
+  variant: number;
+  size: string;
+  actualPrice: number;
+  initialPrice: number;
+  quantity: number;
+}
+ */
+
+type CartProduct = PageProduct & {
+  quantity: number;
+  size: string;
+  itemId: string;
+};
