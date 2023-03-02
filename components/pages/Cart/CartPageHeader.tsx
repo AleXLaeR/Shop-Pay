@@ -5,7 +5,7 @@ import Logo from '@assets/images/logo.png';
 import { MdPlayArrow } from 'react-icons/md';
 import { SuggestionsInput } from '@components/layout';
 
-export default function CheckoutHeader() {
+export default function CartPageHeader() {
   return (
     <div className="h-16 px-3 shadow-md border border-white-darker flex items-center">
       <div className="w-full max-w-[1300px] mx-auto flex-between gap-4">

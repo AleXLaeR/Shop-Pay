@@ -5,7 +5,7 @@ import SocialsShare from './SocialsShare';
 import ProductAccordion from './ProductAccordion';
 import ProductInfoHeader from './ProductInfoHeader';
 import ProductInfoPricing from './ProductInfoPricing';
-import ProductInfoButtons from './ProductInfoButtons';
+import ProductActions from './ProductActions';
 
 interface ProductInfoProps {
   product: PageProduct;
@@ -13,10 +13,11 @@ interface ProductInfoProps {
 }
 
 export default function ProductInfo({ product, setActiveImage }: ProductInfoProps) {
-  const { slug, variants, quantity, colors, subProducts, details, description, faq } = product;
+  const { slug, variants, colors, subProducts, details, description, faq } = product;
 
   const { query } = useRouter();
   const variant = parseInt(query.variant as string, 10);
+  const querySize = parseInt(query.size as string, 10);
 
   return (
     <div className="text-grey-dark bg-white pt-4 md:pt-0 sm:max-w-full rounded-lg">
@@ -30,7 +31,9 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
               <Link
                 key={size}
                 href={`${slug}?variant=${variant}&size=${idx}`}
-                className="p-2 rounded-full border border-dark-grey transition-transform hover:scale-110 duration-500 cursor-pointer hover:text-blue-dark"
+                className={`p-2 rounded-full border border-dark-grey transition-transform hover:scale-110 duration-500 cursor-pointer hover:text-blue-dark ${
+                  querySize === idx ? 'scale-110 outline text-blue outline-1 outline-blue' : ''
+                }`}
                 style={{
                   backgroundImage: 'linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)',
                 }}
@@ -49,7 +52,7 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
               key={color}
               type="button"
               className={`grid w-[50px] h-[50px] rounded-full transition-transform hover:scale-110 duration-500 cursor-pointer hover:text-blue-dark ${
-                variant === idx ? 'activeColor' : ''
+                variant === idx ? 'scale-110 outline text-blue outline-1 outline-blue' : ''
               }`}
               onClick={() => setActiveImage(subProducts[idx].images[0])}
             >
@@ -62,7 +65,7 @@ export default function ProductInfo({ product, setActiveImage }: ProductInfoProp
             </button>
           ))}
         </div>
-        <ProductInfoButtons productQuantity={quantity} />
+        <ProductActions product={product} />
         <SocialsShare />
         <ProductAccordion desc={description} details={details} faq={faq} />
       </div>
