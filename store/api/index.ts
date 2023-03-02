@@ -26,19 +26,19 @@ const api = createApi({
       invalidatesTags: ['Newsletter'],
     }),
     signUp: builder.mutation<BaseApiResponse, SignUpPayload>({
-      query: (payload) => getQuery<SignUpPayload>('auth/signup', payload),
+      query: (payload) => getQuery('auth/signup', payload),
       invalidatesTags: ['Authentication'],
     }),
     forgotPassword: builder.mutation<BaseApiResponse, EmailPayload>({
-      query: (payload) => getQuery<EmailPayload>('auth/forgotPassword', payload),
+      query: (payload) => getQuery('auth/forgotPassword', payload),
       invalidatesTags: ['Authentication', 'Passwords'],
     }),
     resetPassword: builder.mutation<BaseApiResponse | EmailPayload, ResetPasswordPayload>({
-      query: (payload) => getQuery<ResetPasswordPayload>('auth/resetPassword', payload, 'PUT'),
+      query: (payload) => getQuery('auth/resetPassword', payload, 'PUT'),
       invalidatesTags: ['Authentication', 'Passwords'],
     }),
     validateEmail: builder.mutation<BaseApiResponse, ValidateEmailPayload>({
-      query: (payload) => getQuery<ValidateEmailPayload>('auth/validateEmail', payload, 'PUT'),
+      query: (payload) => getQuery('auth/validateEmail', payload, 'PUT'),
       invalidatesTags: ['Authentication'],
     }),
   }),

@@ -88,4 +88,12 @@
     @apply p-1 font-semibold text-base leading-4 text-black-lighter placeholder:text-grey-lighter placeholder:text-lg
     underline-offset-4 placeholder:font-bold placeholder:focus:underline;
   }
+
+  .card-base {
+    @apply bg-white min-w-[200px] p-4;
+  }
+
+  .blur {
+    @apply absolute inset-0 bg-dimmed block;
+  }
 }

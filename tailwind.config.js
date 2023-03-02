@@ -22,7 +22,25 @@ module.exports = {
       },
       placeholderColor: {
         white: '#fff',
-      }
+      },
+      gridTemplateAreas: {
+        'cartMobile': [
+          'summary',
+          'products',
+          'checkout',
+          'payments',
+        ],
+        'cartDesktop': [
+          'summary checkout',
+          'products checkout',
+          'products payments',
+          'products ...',
+        ],
+      },
+      gridTemplateColumns: {
+        'cartDesktop': '2fr 1fr',
+        'cartEntryImages': '2rem 6rem 1fr',
+      },
     },
     colors: {
       blue: {
@@ -36,7 +54,10 @@ module.exports = {
         DEFAULT: '#fac80f',
         light: '#facf19',
       },
-      green: '#3c811f',
+      green: {
+        DEFAULT: '#3c811f',
+        light: '#3dbb56',
+      },
       red: {
         dark: '#8B0000',
         DEFAULT: '#f15f6f',
@@ -47,6 +68,7 @@ module.exports = {
         light: '#ccc',
         DEFAULT: '#f8f8f8',
       },
+      pink: '#ffecea',
       violet: '#5a31f4',
       white: {
         dark: '#eee',
@@ -66,5 +88,11 @@ module.exports = {
       md: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('@savvywombat/tailwindcss-grid-areas'),
+  ],
+  variants: {
+    gridTemplateAreas: ['responsive'],
+  },
 };
