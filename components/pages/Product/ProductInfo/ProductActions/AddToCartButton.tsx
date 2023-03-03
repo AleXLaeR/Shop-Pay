@@ -47,12 +47,13 @@ export default function AddToCartButton({ product, quantity }: AddToCartButtonPr
       disabled={product.quantity < 1}
       onClick={onCartAddBtnClick}
       className={`mt-4 flex-center gap-2.5 h-16 hover:text-black-lighter text-grey-dark font-semibold text-lg cursor-pointer w-full transition-all duration-200 ${
-        isSizeSelected ? '!bg-error-secondary' : ''
+        isSizeSelected || product.quantity < 1 ? '!bg-error-secondary' : ''
       }`}
-      style={!isSizeSelected ? gradientBtnStyle : undefined}
+      style={!isSizeSelected && product.quantity >= 1 ? gradientBtnStyle : undefined}
     >
       <BsHandbagFill className="w-8 h-8 -translate-x-1" />
-      <b>{isSizeSelected ? 'SELECT THE SIZE FIRST' : 'ADD TO CART'}</b>
+      {product.quantity < 1 && <b>OUT OF STOCK</b>}
+      {product.quantity >= 1 && <b>{isSizeSelected ? 'SELECT THE SIZE FIRST' : 'ADD TO CART'}</b>}
     </button>
   );
 }

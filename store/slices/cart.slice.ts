@@ -66,7 +66,7 @@ export const selectTotalShippingPrice = createSelector(
   ({ cart }: RootState) => cart.products,
   (products) =>
     products.reduce(
-      (acc, { shippingPrice, isSelected }) => acc + (isSelected ? shippingPrice : 0),
+      (acc, { shippingPrice, isSelected }) => acc + (isSelected ? Number(shippingPrice) : 0),
       0,
     ),
 );

@@ -3,7 +3,7 @@ import { selectTotalPrice, selectTotalShippingPrice } from '@store/slices/cart.s
 
 export default function Checkout() {
   const totalPrice = useAppSelector(selectTotalPrice);
-  const totalShippingPrice = Number(useAppSelector(selectTotalShippingPrice));
+  const totalShippingPrice = useAppSelector(selectTotalShippingPrice);
 
   return (
     <div className="card-base grid-in-checkout max-h-[300px]">
