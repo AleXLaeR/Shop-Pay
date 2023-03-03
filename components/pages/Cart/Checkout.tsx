@@ -10,7 +10,7 @@ export default function Checkout() {
       <h2 className="font-semibold text-2xl mb-2">Order Summary</h2>
       <div className="w-full flex-between">
         <span className="font-medium">Subtotal: </span>
-        <span className="font-medium">USD {totalPrice}$</span>
+        <span className="font-medium">USD {totalPrice.toFixed(1)}$</span>
       </div>
       <div className="flex-between">
         <span className="font-medium">Shipping: </span>
@@ -19,7 +19,7 @@ export default function Checkout() {
       <div className="flex-between font-bold text-lg border-t-greyish border-t-2 py-4 mt-4">
         <span className="font-medium">Total: </span>
         <span className="font-medium text-lg underline decoration-dotted decoration-2 underline-offset-4">
-          USD {totalPrice + totalShippingPrice}$
+          USD {(totalPrice + totalShippingPrice).toFixed(1)}$
         </span>
       </div>
       <div className="mt-4">
