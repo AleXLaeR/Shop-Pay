@@ -8,7 +8,6 @@ export default function useClientPagination<T>(data: T[], limit: number = 10) {
     () => ({
       getBatch: () => {
         const start = (curPage - 1) * limit;
-        console.log(data.slice(start, start + limit));
         return data.slice(start, start + limit);
       },
       next: () => setCurPage((prev) => Math.min(prev + 1, pageCount)),

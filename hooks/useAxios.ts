@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 export default function useAxios<Data = any>(
   key: string | null,
   { method = 'GET', ...opts }: AxiosRequestConfig = {},
-  payload?: Record<string, any>,
+  payload?: Data,
 ): SWRResponse<Data, Error> {
   if (!['GET', 'POST'].includes(method)) {
     throw new Error('Method is not allowed. Only GET and POST are supported.');

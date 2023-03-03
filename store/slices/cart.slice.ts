@@ -27,6 +27,7 @@ const { actions, reducer } = createSlice({
       products: products.filter(({ itemId }) => itemId !== payload),
     }),
     clearCart: () => ({ products: [] }),
+    updateCart: (_, { payload }: PayloadAction<CartProduct[]>) => ({ products: payload }),
     setSelection: ({ products }, { payload }: PayloadAction<'select' | 'unselect'>) => ({
       products: products.map((p) => ({ ...p, isSelected: payload === 'select' })),
     }),
@@ -38,8 +39,15 @@ const { actions, reducer } = createSlice({
   },
 });
 
-export const { addProduct, removeProduct, clearCart, onExisting, selectOne, setSelection } =
-  actions;
+export const {
+  addProduct,
+  removeProduct,
+  clearCart,
+  onExisting,
+  selectOne,
+  setSelection,
+  updateCart,
+} = actions;
 
 export const selectProducts = createSelector(
   ({ cart }: RootState) => Object.values(cart.products),

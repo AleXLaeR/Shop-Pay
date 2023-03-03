@@ -124,9 +124,11 @@ type PageProduct = ProductModel &
 }
  */
 
-type CartProduct = PageProduct & {
+type CartProduct = Omit<PageProduct, 'color'> & {
   quantity: number;
-  size: string;
+  size: { size: string; idx: number };
+  color: { color: string; idx: number };
   itemId: string;
   isSelected: boolean;
+  stockQuantity: number;
 };
