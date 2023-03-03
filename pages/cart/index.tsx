@@ -1,6 +1,5 @@
 import SEO from '@common/SEO';
 import { Footer } from '@components/layout';
-
 import {
   CheckoutHeader,
   EmptyCart,
@@ -9,19 +8,32 @@ import {
   CartEntry,
   Checkout,
 } from '@components/pages/Cart';
-import { useClientPagination, useEventListener } from '@hooks/index';
 import Pagination from '@mui/material/Pagination';
+import { useUpdateCartMutation } from '@store/api';
 
-import { useAppSelector } from '@store/hooks';
-import { selectProducts } from '@store/slices/cart.slice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { selectProducts, updateCart } from '@store/slices/cart.slice';
+
+import { useClientPagination, useEventListener } from '@hooks/index';
+import { useEffect } from 'react';
 
 export default function CartPage() {
+  const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
+  const [postCart] = useUpdateCartMutation();
   const {
     pageCount,
     curPage,
     handlers: { goTo, getBatch, next, prev },
   } = useClientPagination(products, 3);
+
+  useEffect(() => {
+    postCart(products).then((data) => {
+      const prods: CartProduct[] = (data as any).data;
+      dispatch(updateCart(prods ?? []));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEventListener('keydown', ({ key }: KeyboardEvent) => {
     if (key === 'ArrowLeft') prev();

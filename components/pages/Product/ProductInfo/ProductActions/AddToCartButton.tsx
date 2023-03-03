@@ -34,9 +34,11 @@ export default function AddToCartButton({ product, quantity }: AddToCartButtonPr
     dispatch(
       addProduct({
         ...product,
-        quantity,
+        quantity: quantity <= product.quantity ? quantity : product.quantity,
         isSelected: true,
-        size: selectedProductSize,
+        color: { color: product.color, idx: variant },
+        stockQuantity: product.quantity,
+        size: { size: selectedProductSize, idx: size },
         itemId: `${product._id}_${variant}_${size}`,
       }),
     );

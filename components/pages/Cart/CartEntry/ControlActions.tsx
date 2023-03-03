@@ -6,7 +6,7 @@ interface CartControlsProps {
 }
 
 export default function CartControls({ product }: CartControlsProps) {
-  const { itemId, quantity } = product;
+  const { itemId, quantity, stockQuantity } = product;
   const dispatch = useDispatch();
 
   const onRemoveBtnClick = () => dispatch(onExisting({ itemId, action: 'remove' }));
@@ -27,7 +27,10 @@ export default function CartControls({ product }: CartControlsProps) {
       <span>{quantity}</span>
       <button
         type="button"
-        className="bg-grey w-9 h-9 rounded-full grid place-items-center cursor-pointer hover:bg-grey-light text-lg font-semibold"
+        className={`bg-grey w-9 h-9 rounded-full grid place-items-center cursor-pointer hover:bg-grey-light text-lg font-semibold ${
+          quantity >= stockQuantity ? 'text-red pointer-events-none' : ''
+        }`}
+        disabled={quantity >= stockQuantity}
         onClick={onAddBtnClick}
       >
         +

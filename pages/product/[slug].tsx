@@ -20,6 +20,8 @@ export default function ProductPage({ product, relatedProducts }: ProductPagePro
   const { category, subCategories, images } = product;
   const [activeImage, setActiveImage] = useState<ProductImage>();
 
+  console.log(product._id);
+
   return (
     <>
       <SEO title="Product Page | ShopPay" desc="Single Product Page" />
@@ -82,8 +84,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query, res }) => 
     props: {
       product: JSON.parse(
         JSON.stringify({
-          ...product,
           ...subProduct,
+          ...product,
           rating: product.reviews
             ? product.reviews.reduce((acc, { rating }) => acc + rating, 0) / product.reviews.length
             : 0,
@@ -108,7 +110,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, res }) => 
           startingPrice: subProductVariant.price,
           discountedPrice:
             cummulatedDiscount !== 0
-              ? subProductVariant.price - (subProductVariant.price - cummulatedDiscount)
+              ? subProductVariant.price - (subProductVariant.price * cummulatedDiscount) / 100
               : subProductVariant.price,
           quantity: subProductVariant.quantity,
         }),
