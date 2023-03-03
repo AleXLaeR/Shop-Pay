@@ -1,17 +1,16 @@
 import { useDispatch } from 'react-redux';
-import { addProduct, removeProduct } from '@store/slices/cart.slice';
+import { onExisting } from '@store/slices/cart.slice';
 
 interface CartControlsProps {
   product: CartProduct;
 }
 
 export default function CartControls({ product }: CartControlsProps) {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const { _id, quantity } = product;
+  const { itemId, quantity } = product;
   const dispatch = useDispatch();
 
-  const onRemoveBtnClick = () => dispatch(removeProduct(_id));
-  const onAddBtnClick = () => dispatch(addProduct(product));
+  const onRemoveBtnClick = () => dispatch(onExisting({ itemId, action: 'remove' }));
+  const onAddBtnClick = () => dispatch(onExisting({ itemId, action: 'add' }));
 
   return (
     <div className="flex items-center gap-2.5">

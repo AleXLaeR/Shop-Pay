@@ -24,7 +24,7 @@ export default function AddToCartButton({ product, quantity }: AddToCartButtonPr
   const size = parseInt(query.size as string, 10);
 
   const onCartAddBtnClick = () => {
-    if (!size) {
+    if (Number.isNaN(size)) {
       setIsSizeSelected(true);
       return;
     }
@@ -35,6 +35,7 @@ export default function AddToCartButton({ product, quantity }: AddToCartButtonPr
       addProduct({
         ...product,
         quantity,
+        isSelected: true,
         size: selectedProductSize,
         itemId: `${product._id}_${variant}_${size}`,
       }),

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { useAppSelector } from '@store/hooks';
@@ -15,8 +16,13 @@ interface ProductInfoButtonsProps {
 }
 
 export default function ProductInfoButtons({ product }: ProductInfoButtonsProps) {
+  const {
+    query: { size, variant },
+  } = useRouter();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const isInCart = useAppSelector((s) => selectQuantity(s, product._id)) !== 0;
+
+  const cartId = `${product._id}_${Number(variant)}_${Number(size)}`;
+  const isInCart = useAppSelector((s) => selectQuantity(s, cartId)) !== 0;
 
   return (
     <>
@@ -50,7 +56,7 @@ export default function ProductInfoButtons({ product }: ProductInfoButtonsProps)
           <Link
             href="/cart"
             target="_blank"
-            className="mt-4 flex-center bg-green-lighter gap-2.5 h-16 hover:bg-green-light text-white-darker font-semibold text-lg cursor-pointer w-full transition-all duration-200"
+            className="mt-4 flex-center bg-green-light gap-2.5 h-16 hover:bg-green-light text-white-darker font-semibold text-lg cursor-pointer w-full transition-all duration-200"
           >
             <GiCheckMark />
             GO TO CART
