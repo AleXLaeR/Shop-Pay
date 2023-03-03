@@ -6,12 +6,12 @@ import { BsHeart } from 'react-icons/bs';
 
 interface EntryHeaderProps {
   name: string;
-  _id: string;
+  itemId: string;
 }
 
-export default function EntryHeader({ name, _id }: EntryHeaderProps) {
+export default function EntryHeader({ name, itemId }: EntryHeaderProps) {
   const dispatch = useDispatch();
-  const onRemoveBtnClick = () => dispatch(removeProduct(_id));
+  const onRemoveBtnClick = () => dispatch(removeProduct(itemId));
 
   return (
     <div className="grid grid-cols-[1fr,1.5rem,1.5rem]">

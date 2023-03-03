@@ -2,6 +2,9 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { selectIsProductSelected, selectOne } from '@store/slices/cart.slice';
+
 import { MdOutlineStorefront } from 'react-icons/md';
 import { RiCheckboxCircleLine } from 'react-icons/ri';
 
@@ -15,7 +18,7 @@ interface CartEntryProps {
 
 export default function CartEntry({ product }: CartEntryProps) {
   const {
-    _id,
+    itemId,
     name,
     images,
     quantity,
@@ -27,7 +30,11 @@ export default function CartEntry({ product }: CartEntryProps) {
     shippingPrice,
     slug,
   } = product;
-  const [isActive, setIsActive] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const isSelected = useAppSelector((s) => selectIsProductSelected(s, itemId));
+
+  const onSelectBtnClick = () => dispatch(selectOne(itemId));
 
   return (
     <div className="relative border-b border-b-greyish card-base grid-in-products flex flex-col gap-4">
@@ -41,10 +48,10 @@ export default function CartEntry({ product }: CartEntryProps) {
       </div>
       <div className="grid grid-cols-cartEntryImages gap-2.5">
         <RiCheckboxCircleLine
-          className={`w-10 h-10 transition-transform hover:scale-105 cursor-pointer hover:fill-green-light rounded-full ${
-            isActive ? 'fill-green-light' : 'fill-grey-lighter'
+          className={`w-10 h-10 transition-transform hover:scale-105 cursor-pointer rounded-full ${
+            isSelected ? 'fill-green-light scale-105' : 'fill-grey-lighter'
           }`}
-          onClick={() => {}}
+          onClick={onSelectBtnClick}
         />
         <Image
           src={images[0].uri}
@@ -55,7 +62,7 @@ export default function CartEntry({ product }: CartEntryProps) {
           className="rounded-md shadow-md w-24 h-[170px] sm:h-[140px]"
         />
         <div className="col">
-          <EntryHeader name={name} _id={_id} />
+          <EntryHeader name={name} itemId={itemId} />
           <SummaryLabel slug={slug} color={color} size={size} price={discountedPrice} />
           <div className="flex flex-col gap-2.5 sm:flex-row sm:justify-between">
             <div className="flex items-center gap-2.5">
