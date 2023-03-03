@@ -11,33 +11,42 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {
     addProduct: (state, { payload }: PayloadAction<CartProduct>) => {
-      const product = state.products.find(({ itemId }) => itemId === payload.itemId);
-      if (!product) {
-        return { products: [...state.products, { ...payload, quantity: 1 }] };
-      }
-      return {
-        products: state.products.map((prod) =>
-          prod.itemId === payload.itemId
-            ? { ...prod, quantity: prod.quantity + payload.quantity }
-            : prod,
-        ),
-      };
+      state.products = [...state.products, { ...payload, quantity: 1 }];
     },
-    removeProduct: (state, { payload }: PayloadAction<string>) => ({
-      products: state.products.filter(({ _id }) => _id !== payload),
+    onExisting: (
+      { products },
+      { payload: { itemId, action } }: PayloadAction<{ itemId: string; action: 'add' | 'remove' }>,
+    ) => ({
+      products: products.map((prod) =>
+        prod.itemId === itemId
+          ? { ...prod, quantity: prod.quantity + (action === 'add' ? 1 : -1) }
+          : prod,
+      ),
+    }),
+    removeProduct: ({ products }, { payload }: PayloadAction<string>) => ({
+      products: products.filter(({ itemId }) => itemId !== payload),
     }),
     clearCart: () => ({ products: [] }),
+    setSelection: ({ products }, { payload }: PayloadAction<'select' | 'unselect'>) => ({
+      products: products.map((p) => ({ ...p, isSelected: payload === 'select' })),
+    }),
+    selectOne: ({ products }, { payload }: PayloadAction<string>) => ({
+      products: products.map((p) =>
+        p.itemId === payload ? { ...p, isSelected: !p.isSelected } : p,
+      ),
+    }),
   },
 });
 
-export const { addProduct, removeProduct, clearCart } = actions;
+export const { addProduct, removeProduct, clearCart, onExisting, selectOne, setSelection } =
+  actions;
 
 export const selectProducts = createSelector(
-  ({ cart }: RootState) => cart.products,
-  (products) => products,
+  ({ cart }: RootState) => Object.values(cart.products),
+  (products) => products.sort((a, b) => a.name.localeCompare(b.name)),
 );
 export const selectQuantity = createSelector(
-  ({ cart }: RootState, productId: string) => cart.products.find(({ _id }) => _id === productId),
+  ({ cart }: RootState, id: string) => cart.products.find(({ itemId }) => itemId === id),
   (product) => product?.quantity ?? 0,
 );
 export const selectSubTotal = createSelector(
@@ -46,7 +55,28 @@ export const selectSubTotal = createSelector(
 );
 export const selectTotalPrice = createSelector(
   ({ cart }: RootState) => cart.products,
-  (products) => products.reduce((acc, { discountedPrice }) => acc + discountedPrice, 0),
+  (products) =>
+    products.reduce(
+      (acc, { discountedPrice, quantity, isSelected }) =>
+        acc + (isSelected ? discountedPrice * quantity : 0),
+      0,
+    ),
+);
+export const selectTotalShippingPrice = createSelector(
+  ({ cart }: RootState) => cart.products,
+  (products) =>
+    products.reduce(
+      (acc, { shippingPrice, isSelected }) => acc + (isSelected ? shippingPrice : 0),
+      0,
+    ),
+);
+export const selectIsProductSelected = createSelector(
+  ({ cart }: RootState, id: string) => cart.products.find(({ itemId }) => itemId === id)!,
+  (product) => product.isSelected,
+);
+export const selectIsAllSelected = createSelector(
+  ({ cart }: RootState) => cart.products,
+  (products) => products.every(({ isSelected }) => isSelected),
 );
 
 export default reducer;

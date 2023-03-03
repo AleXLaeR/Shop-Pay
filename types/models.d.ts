@@ -128,4 +128,5 @@ type CartProduct = PageProduct & {
   quantity: number;
   size: string;
   itemId: string;
+  isSelected: boolean;
 };
