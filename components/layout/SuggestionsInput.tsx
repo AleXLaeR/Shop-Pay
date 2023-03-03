@@ -54,7 +54,9 @@ export default function SuggestionsInput() {
                 className="cursor-pointer [&>a]:hover:underline [&>a]:underline-offset-2 hover:bg-grey-light transition-colors duration-300 border-greyish border-b px-2 py-1 flex items-center gap-4"
               >
                 <TbCircleDot />
-                <Link href={`/product/${slug}`}>{name}</Link>
+                <Link href={`/product/${slug}`} target="_blank">
+                  {name}
+                </Link>
                 <p className="flex items-center gap-1">
                   <span>{rating}</span>
                   <AiOutlineStar className="fill-yellow" />
