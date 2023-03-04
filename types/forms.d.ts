@@ -10,3 +10,5 @@ type ReviewFormValues = {
 type OrderSummaryFormValues = {
   coupon: string;
 };
+
+type CheckoutFormValues = Omit<UserAddress, 'wasUsedBefore'>;
