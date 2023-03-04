@@ -6,3 +6,7 @@ type ReviewFormValues = {
   review: string;
   files: string[];
 };
+
+type OrderSummaryFormValues = {
+  coupon: string;
+};

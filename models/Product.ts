@@ -55,8 +55,8 @@ const reviewSchema = new mongoose.Schema<ReviewModel>(
       type: String,
       required: true,
     },
-    pros: [{ type: String }],
-    cons: [{ type: String }],
+    // pros: [{ type: String }],
+    // cons: [{ type: String }],
   },
   { timestamps: true },
 );

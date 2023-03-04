@@ -1,13 +1,7 @@
 import SEO from '@common/SEO';
-import { Footer } from '@components/layout';
-import {
-  CheckoutHeader,
-  EmptyCart,
-  CartSummary,
-  Payments,
-  CartEntry,
-  Checkout,
-} from '@components/pages/Cart';
+import { Footer, CheckoutHeader } from '@components/layout';
+import { EmptyCart, CartSummary, Payments, CartEntry, Checkout } from '@components/pages/Cart';
+
 import Pagination from '@mui/material/Pagination';
 import { useUpdateCartMutation } from '@store/api';
 
