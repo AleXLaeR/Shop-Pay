@@ -19,3 +19,8 @@ type ResetPasswordPayload = {
   userId: string;
   password: string;
 };
+
+type PostCartPayload = {
+  cart: CartProduct[];
+  userId: string;
+};

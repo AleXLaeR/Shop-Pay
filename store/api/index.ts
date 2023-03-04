@@ -45,6 +45,10 @@ const api = createApi({
       query: (payload) => getQuery('cart/update', payload),
       invalidatesTags: ['Cart'],
     }),
+    postCart: builder.mutation<BaseApiResponse, PostCartPayload>({
+      query: (payload) => getQuery('cart/add', payload),
+      invalidatesTags: ['Cart'],
+    }),
   }),
 });
 
@@ -55,5 +59,6 @@ export const {
   useResetPasswordMutation,
   useValidateEmailMutation,
   useUpdateCartMutation,
+  usePostCartMutation,
   ...globalApi
 } = api;

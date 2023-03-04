@@ -35,7 +35,6 @@ handler.post(async ({ body: products }, res) => {
     });
 
     const updatedProducts = await Promise.all(productPromises);
-    // console.log(updatedProducts.length);
     await db.disconnectFromDb();
 
     return res.status(StatusCodes.OK).json(updatedProducts);

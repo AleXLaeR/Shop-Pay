@@ -1,6 +1,8 @@
 import { useAppSelector } from '@store/hooks';
 import { selectTotalPrice, selectTotalShippingPrice } from '@store/slices/cart.slice';
 
+import CheckoutSubmitButton from './CheckoutSubmitButton';
+
 export default function Checkout() {
   const totalPrice = useAppSelector(selectTotalPrice);
   const totalShippingPrice = useAppSelector(selectTotalShippingPrice);
@@ -22,18 +24,7 @@ export default function Checkout() {
           USD {(totalPrice + totalShippingPrice).toFixed(1)}$
         </span>
       </div>
-      <div className="mt-4">
-        <button
-          type="submit"
-          disabled={[''].length === 0}
-          className={`bg-blue rounded-md hover:bg-blue-dark transition-colors shadow-md w-full text-white h-12 text-xl ${
-            [''].length === 0 ? 'bg-white-dark cursor-not-allowed' : ''
-          }`}
-          onClick={() => {}}
-        >
-          Continue
-        </button>
-      </div>
+      <CheckoutSubmitButton isDisabled={totalPrice === 0} />
     </div>
   );
 }

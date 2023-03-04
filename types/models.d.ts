@@ -132,3 +132,21 @@ type CartProduct = Omit<PageProduct, 'color'> & {
   isSelected: boolean;
   stockQuantity: number;
 };
+
+type CartProductModel = {
+  product: ProductModel;
+  name: string;
+  imageUri: string;
+  size: string;
+  quantity: number;
+  color: string;
+  price: number;
+};
+
+interface CartModel {
+  _id: string;
+  products: CartProductModel[];
+  subTotal: number;
+  totalPrice: number;
+  user: UserModel;
+}
