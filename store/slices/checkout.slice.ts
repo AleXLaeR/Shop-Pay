@@ -23,10 +23,14 @@ const { actions, reducer } = createSlice({
       ...state,
       addresses: [...state.addresses, payload],
     }),
+    deleteAddress: (state, { payload }: PayloadAction<string>) => ({
+      ...state,
+      addresses: state.addresses.filter(({ _id }) => _id !== payload),
+    }),
   },
 });
 
-export const { setActiveAddress, updateAddresses, addAddress } = actions;
+export const { setActiveAddress, updateAddresses, addAddress, deleteAddress } = actions;
 
 export const selectActiveAddress = createSelector(
   ({ checkout }: RootState) => checkout,

@@ -150,3 +150,35 @@ interface CartModel {
   totalPrice: number;
   user: UserModel;
 }
+
+type OrderStatus = 'Not Processed' | 'In Process' | 'Dispatched' | 'Cancelled' | 'Completed';
+
+type PaymentStatus = 'Paid' | 'Unpaid';
+
+interface OrderModel {
+  user: UserModel;
+  products: CartProductModel[];
+  shippingAddress: Omit<UserAddress, 'wasUsedBefore'>;
+  paymentMethod: PaymentMethod;
+  paymentResult: {
+    id: string;
+    status: PaymentStatus;
+    email: string;
+  };
+  totalPrice: number;
+  appliedCoupon?: string;
+  shippingPrice: number;
+  taxPrice: number;
+  wasPaid: boolean;
+  paidAt?: Date;
+  deliveredAt?: Date;
+  status: OrderStatus;
+}
+
+interface CouponModel {
+  _id: string;
+  name: string;
+  startDate: Date;
+  expirationDate: Date;
+  actualDiscount: number;
+}
