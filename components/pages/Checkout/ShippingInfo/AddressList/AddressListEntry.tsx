@@ -2,8 +2,9 @@
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 
+import { useDeleteAddressMutation } from '@store/api';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { selectActiveAddress, setActiveAddress } from '@store/slices/checkout.slice';
+import { selectActiveAddress, setActiveAddress, deleteAddress } from '@store/slices/checkout.slice';
 
 import { GiPhone, GiPostStamp } from 'react-icons/gi';
 import { IoIosRemoveCircleOutline } from 'react-icons/io';
@@ -30,15 +31,20 @@ export default function AddressListEntry({ address }: AddressListEntryProps) {
 
   const dispatch = useAppDispatch();
   const activeAddress = useAppSelector(selectActiveAddress);
+  const [delAddress, { isLoading, error }] = useDeleteAddressMutation();
 
-  const onClick = () => dispatch(setActiveAddress(_id));
+  const onSetActiveBtnClick = () => dispatch(setActiveAddress(_id));
+  const onDeleteAddressBtnClick = async () => {
+    await delAddress({ userId: session?.user?.id!, addressId: _id });
+    dispatch(deleteAddress(_id));
+  };
 
   return (
     <div className="relative">
       <button
         type="button"
         className="w-7 h-7 [&>svg]:hover:fill-error [&>svg]:hover:scale-110 absolute top-4 right-4 text-xl fill-grey-dark z-10"
-        onClick={() => {}}
+        onClick={onDeleteAddressBtnClick}
       >
         <IoIosRemoveCircleOutline className="w-full h-full transition-transform duration-300" />
       </button>
@@ -47,7 +53,7 @@ export default function AddressListEntry({ address }: AddressListEntryProps) {
         className={`relative rounded-md grid grid-cols-1 sm:grid-cols-2 transition-[background-color] duration-300 hover:bg-white-light shadow-md cursor-pointer h-full ${
           _id === activeAddress ? 'border-2 border-dashed border-green' : ''
         }`}
-        onClick={onClick}
+        onClick={onSetActiveBtnClick}
       >
         <div className="h-24 w-24 p-2 rounded-br-lg bg-white-light grid place-items-center">
           <Image

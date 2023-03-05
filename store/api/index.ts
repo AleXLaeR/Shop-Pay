@@ -53,6 +53,10 @@ const api = createApi({
       query: (payload) => getQuery('user/addAddress', payload),
       invalidatesTags: ['User'],
     }),
+    deleteAddress: builder.mutation<BaseApiResponse, DeleteAddressPayload>({
+      query: (payload) => getQuery('user/deleteAddress', payload, 'DELETE'),
+      invalidatesTags: ['User'],
+    }),
   }),
 });
 
@@ -65,5 +69,6 @@ export const {
   useUpdateCartMutation,
   usePostCartMutation,
   usePostAddressMutation,
+  useDeleteAddressMutation,
   ...globalApi
 } = api;

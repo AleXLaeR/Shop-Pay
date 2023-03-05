@@ -29,3 +29,8 @@ type PostAddressPayload = {
   userId: string;
   address: UserAddress;
 };
+
+type DeleteAddressPayload = {
+  userId: string;
+  addressId: string;
+};
