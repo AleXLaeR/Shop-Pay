@@ -24,3 +24,8 @@ type PostCartPayload = {
   cart: CartProduct[];
   userId: string;
 };
+
+type PostAddressPayload = {
+  userId: string;
+  address: UserAddress;
+};

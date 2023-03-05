@@ -18,7 +18,7 @@ function getQuery<Payload>(
 
 const api = createApi({
   reducerPath: 'globalApi',
-  tagTypes: ['Newsletter', 'Authentication', 'Passwords', 'Cart'],
+  tagTypes: ['Newsletter', 'Authentication', 'Passwords', 'Cart', 'User'],
   baseQuery,
   endpoints: (builder) => ({
     subscribeToNewsletter: builder.mutation<BaseApiResponse, EmailPayload>({
@@ -49,6 +49,10 @@ const api = createApi({
       query: (payload) => getQuery('cart/add', payload),
       invalidatesTags: ['Cart'],
     }),
+    postAddress: builder.mutation<BaseApiResponse, PostAddressPayload>({
+      query: (payload) => getQuery('user/addAddress', payload),
+      invalidatesTags: ['User'],
+    }),
   }),
 });
 
@@ -60,5 +64,6 @@ export const {
   useValidateEmailMutation,
   useUpdateCartMutation,
   usePostCartMutation,
+  usePostAddressMutation,
   ...globalApi
 } = api;

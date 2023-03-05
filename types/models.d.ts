@@ -94,7 +94,7 @@ type UserAddress = {
   zipCode: string;
   state?: string;
   country: string;
-  wasUsedBefore: boolean;
+  wasUsedBefore?: boolean;
 };
 
 type PageProduct = ProductModel &

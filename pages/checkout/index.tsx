@@ -21,27 +21,22 @@ interface CheckoutProps {
 
 export default function Checkout({ cart, addresses }: CheckoutProps) {
   const [paymentMethod, setPaymentMethod] = useState('');
-  const [selectedAddress, setSelectedAddress] = useState('');
 
   return (
     <>
       <SEO title="Checkout | ShopPay" desc="User Checkout page" />
       <CheckoutHeader />
-      <div className="max-w-[1400px] mt-8 overflow-x-hidden lg:grid grid-cols-[2ft,1fr] gap-8">
-        <div className="side">
-          <ShippingInfo addresses={addresses} setSelectedAddress={setSelectedAddress} />
-          <ProductList products={cart.products} totalPrice={cart.totalPrice} />
+      <div className="container max-w-[1400px] mt-8 overflow-x-hidden lg:grid grid-cols-[2fr,1fr] gap-8">
+        <div>
+          <ShippingInfo addresses={addresses} />
+          <ProductList cart={cart} />
         </div>
-        <div className="side">
+        <div>
           <PaymentMethods paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
-          <OrderSummary
-            cart={cart}
-            paymentMethod={paymentMethod}
-            selectedAddress={selectedAddress}
-          />
+          <OrderSummary cart={cart} paymentMethod={paymentMethod} />
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer bordered />
     </>
   );
 }
