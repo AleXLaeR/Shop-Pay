@@ -8,7 +8,11 @@ interface ShippingInputProps extends HTMLProps<HTMLInputElement> {
   type: HTMLInputTypeAttribute;
 }
 
-export default function ShippingFormInput({ placeholder, ...inputProps }: ShippingInputProps) {
+export default function ShippingFormInput({
+  className,
+  placeholder,
+  ...inputProps
+}: ShippingInputProps) {
   const [field, { touched, error }] = useField(inputProps);
 
   return (
@@ -21,7 +25,7 @@ export default function ShippingFormInput({ placeholder, ...inputProps }: Shippi
         size="medium"
         helperText={touched ? error : undefined}
         error={touched && !!error}
-        className="w-full pl-4 pt-2 text-black-light border-grey-light border"
+        className={`w-full pl-4 pt-2 text-black-light border-grey-light border ${className || ''}`}
       />
     </div>
   );

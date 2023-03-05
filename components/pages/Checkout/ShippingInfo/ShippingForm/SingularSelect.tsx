@@ -21,7 +21,7 @@ export default function SingularSelect({
   const [field, { touched, error }] = useField(selectProps);
 
   return (
-    <div className="mb-4 max-w-[230px]">
+    <div className="mb-4 w-[230px]">
       {title && (
         <div className={`header ${error ? '---error' : ''}`}>
           <div className="---flex relative">
@@ -29,9 +29,9 @@ export default function SingularSelect({
               <Image
                 src="/images/warning.png"
                 alt={title}
-                className="absolute top-3 left-[15rem]"
-                width={32}
-                height={32}
+                className="absolute top-3.5 left-[5rem]"
+                width={25}
+                height={25}
                 loading="lazy"
               />
             )}
