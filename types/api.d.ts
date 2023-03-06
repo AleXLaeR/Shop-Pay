@@ -5,6 +5,11 @@ type SuggestionsResponse = {
   products?: ProductModel[];
 };
 
+type ApplyCouponResponse = {
+  discount: number;
+  priceAfterDiscount: number;
+};
+
 type SignUpPayload = {
   name: string;
   email: string;
