@@ -43,7 +43,7 @@ export const checkoutValidationSchema = toFormikValidationSchema(
   } as Record<keyof CheckoutFormValues, any>),
 );
 
-export const checkoutInitialValues: CheckoutFormValues = {
+export const checkoutInitialValues: Omit<CheckoutFormValues, '_id'> = {
   firstName: '',
   lastName: '',
   primaryAddress: '',
@@ -53,3 +53,13 @@ export const checkoutInitialValues: CheckoutFormValues = {
   zipCode: '',
   contactNumber: '',
 };
+
+export const couponValidationSchema = toFormikValidationSchema(
+  z.object({
+    coupon: z
+      .string({ required_error: 'Please enter a coupon first' })
+      .min(2, { message: 'Coupon name should be at least 2 characters long' }),
+  } as Record<keyof OrderSummaryFormValues, any>),
+);
+
+export const couponInitialValues: OrderSummaryFormValues = { coupon: '' };
