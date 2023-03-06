@@ -10,9 +10,10 @@ const { actions, reducer } = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProduct: (state, { payload }: PayloadAction<CartProduct>) => {
-      state.products = [...state.products, { ...payload, quantity: 1 }];
-    },
+    addProduct: (state, { payload }: PayloadAction<CartProduct>) => ({
+      ...state,
+      products: [...state.products, { ...payload, quantity: 1 }],
+    }),
     onExisting: (
       { products },
       { payload: { itemId, action } }: PayloadAction<{ itemId: string; action: 'add' | 'remove' }>,

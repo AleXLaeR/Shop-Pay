@@ -18,7 +18,7 @@ function getQuery<Payload>(
 
 const api = createApi({
   reducerPath: 'globalApi',
-  tagTypes: ['Newsletter', 'Authentication', 'Passwords', 'Cart', 'User'],
+  tagTypes: ['Newsletter', 'Authentication', 'Passwords', 'Cart', 'User', 'Checkout'],
   baseQuery,
   endpoints: (builder) => ({
     subscribeToNewsletter: builder.mutation<BaseApiResponse, EmailPayload>({
@@ -57,6 +57,18 @@ const api = createApi({
       query: (payload) => getQuery('user/deleteAddress', payload, 'DELETE'),
       invalidatesTags: ['User'],
     }),
+    addCoupon: builder.mutation<BaseApiResponse, CouponModel>({
+      query: (payload) => getQuery('coupon/add', payload),
+      invalidatesTags: ['Checkout'],
+    }),
+    applyCoupon: builder.mutation<ApplyCouponResponse, string>({
+      query: (payload) => getQuery('user/applyCoupon', payload, 'PUT'),
+      invalidatesTags: ['Checkout'],
+    }),
+    addOrder: builder.mutation<BaseApiResponse, Partial<OrderModel>>({
+      query: (payload) => getQuery('order/add', payload),
+      invalidatesTags: ['Checkout'],
+    }),
   }),
 });
 
@@ -70,5 +82,8 @@ export const {
   usePostCartMutation,
   usePostAddressMutation,
   useDeleteAddressMutation,
+  useAddCouponMutation,
+  useAddOrderMutation,
+  useApplyCouponMutation,
   ...globalApi
 } = api;

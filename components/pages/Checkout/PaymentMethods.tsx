@@ -48,7 +48,7 @@ export default function PaymentMethods({ paymentMethod, setPaymentMethod }: Paym
           className={`p-4 flex items-center gap-2.5 cursor-pointer rounded-md mt-4 hover:bg-white-dark transition-colors duration-200 ${
             paymentMethod === id ? 'bg-white-darker' : ''
           }`}
-          onClick={() => setPaymentMethod(id)}
+          onClick={() => setPaymentMethod(id as any)}
         >
           <input
             type="radio"
