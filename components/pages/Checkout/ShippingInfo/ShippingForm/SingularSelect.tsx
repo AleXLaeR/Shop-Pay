@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 
 interface SingularSelectProps extends HTMLProps<HTMLInputElement> {
-  options: { id: number; name: string }[];
+  options: { code: string; name: string }[];
   name: string;
   title: string;
   placeholder: string;
@@ -49,8 +49,8 @@ export default function SingularSelect({
         error={touched && !!error}
       >
         <MenuItem value="">No Selected / Or Empty</MenuItem>
-        {options.map(({ id, name }) => (
-          <MenuItem key={id} value={name}>
+        {options.map(({ code, name }) => (
+          <MenuItem key={code} value={name}>
             {name}
           </MenuItem>
         ))}
