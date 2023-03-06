@@ -3,12 +3,12 @@ import TextField from '@mui/material/TextField';
 import { HTMLInputTypeAttribute, HTMLProps } from 'react';
 
 interface ShippingInputProps extends HTMLProps<HTMLInputElement> {
-  name: keyof CheckoutFormValues;
+  name: keyof CheckoutFormValues | 'coupon';
   placeholder: string;
   type: HTMLInputTypeAttribute;
 }
 
-export default function ShippingFormInput({
+export default function CheckoutFormInput({
   className,
   placeholder,
   ...inputProps
@@ -17,9 +17,10 @@ export default function ShippingFormInput({
 
   return (
     <div className="w-full mb-5">
+      {/* @ts-ignore */}
       <TextField
-        type={inputProps.type}
         {...field}
+        {...inputProps}
         label={placeholder}
         variant="outlined"
         size="medium"

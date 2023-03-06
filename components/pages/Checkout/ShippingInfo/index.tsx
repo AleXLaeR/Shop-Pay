@@ -11,7 +11,7 @@ import AddressList from './AddressList';
 import ShippingForm from './ShippingForm';
 
 interface ShippingProps {
-  addresses: (UserAddress & { _id: string })[];
+  addresses: UserAddress[];
 }
 
 export default function ShippingInfo({ addresses }: ShippingProps) {
