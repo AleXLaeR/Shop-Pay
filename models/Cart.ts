@@ -26,6 +26,7 @@ const cartSchema = new mongoose.Schema<CartModel>(
       ref: 'User',
       required: true,
     },
+    wasCouponApplied: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

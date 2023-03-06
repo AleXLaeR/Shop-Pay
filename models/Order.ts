@@ -38,20 +38,21 @@ const orderSchema = new mongoose.Schema<OrderModel>(
       state: { type: String, default: '' },
     },
     paymentResult: {
-      id: { type: String, required: true },
+      id: { type: String },
       status: {
         type: String,
         enum: getTypeEnum<PaymentStatus>(),
         default: 'Unpaid',
       },
       email: { type: String },
+      required: false,
     },
     paymentMethod: {
       type: String,
       enum: getTypeEnum<PaymentMethod>(),
       default: '',
     },
-    appliedCoupon: { type: String },
+    appliedCoupon: { type: String, required: false },
     shippingPrice: {
       type: Number,
       required: true,
@@ -68,8 +69,8 @@ const orderSchema = new mongoose.Schema<OrderModel>(
       enum: getTypeEnum<OrderStatus>(),
       default: 'Not Processed',
     },
-    paidAt: { type: Date },
-    deliveredAt: { type: Date },
+    paidAt: { type: Date, required: false },
+    deliveredAt: { type: Date, required: false },
   },
   { timestamps: true },
 );
