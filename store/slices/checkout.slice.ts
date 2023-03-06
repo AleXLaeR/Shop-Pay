@@ -2,7 +2,7 @@ import { createSelector, createSlice, PayloadAction, RootState } from '@reduxjs/
 
 type CheckoutState = {
   activeAddress: string;
-  addresses: (UserAddress & { _id: string })[];
+  addresses: UserAddress[];
 };
 
 const initialState: CheckoutState = { activeAddress: '', addresses: [] };
@@ -15,13 +15,13 @@ const { actions, reducer } = createSlice({
       ...state,
       activeAddress: payload,
     }),
-    updateAddresses: (state, { payload }: PayloadAction<(UserAddress & { _id: string })[]>) => ({
+    updateAddresses: (state, { payload }: PayloadAction<UserAddress[]>) => ({
       ...state,
       addresses: payload,
     }),
-    addAddress: (state, { payload }: PayloadAction<UserAddress & { _id: string }>) => ({
-      ...state,
-      addresses: [...state.addresses, payload],
+    addAddress: ({ addresses, activeAddress }, { payload }: PayloadAction<UserAddress>) => ({
+      activeAddress: addresses.length !== 0 ? activeAddress : payload._id,
+      addresses: [...addresses, payload],
     }),
     deleteAddress: (state, { payload }: PayloadAction<string>) => ({
       ...state,
@@ -34,7 +34,7 @@ export const { setActiveAddress, updateAddresses, addAddress, deleteAddress } = 
 
 export const selectActiveAddress = createSelector(
   ({ checkout }: RootState) => checkout,
-  (checkoutState) => checkoutState.activeAddress,
+  ({ activeAddress, addresses }) => addresses.find(({ _id }) => _id === activeAddress),
 );
 export const selectAddresses = createSelector(
   ({ checkout }: RootState) => checkout,

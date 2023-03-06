@@ -27,11 +27,9 @@ export default function Home({ products }: HomePageProps) {
           <HomeBody />
           <CategoryList heading="Women's" />
           <div className="flex-between gap-4 flex-wrap mt-6">
-            {products
-              .flatMap((p) => [p, p, p])
-              .map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
+            {products.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
           </div>
         </div>
       </div>

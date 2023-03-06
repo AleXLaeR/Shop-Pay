@@ -85,6 +85,7 @@ type ProductVariant = {
 };
 
 type UserAddress = {
+  _id: string;
   firstName: string;
   lastName: string;
   contactNumber: string;
@@ -149,6 +150,7 @@ interface CartModel {
   subTotal: number;
   totalPrice: number;
   user: UserModel;
+  wasCouponApplied: boolean;
 }
 
 type OrderStatus = 'Not Processed' | 'In Process' | 'Dispatched' | 'Cancelled' | 'Completed';
@@ -168,12 +170,18 @@ interface OrderModel {
   totalPrice: number;
   appliedCoupon?: string;
   shippingPrice: number;
-  taxPrice: number;
-  wasPaid: boolean;
+  taxPrice?: number;
+  wasPaid?: boolean;
   paidAt?: Date;
   deliveredAt?: Date;
-  status: OrderStatus;
+  status?: OrderStatus;
 }
+
+type DiscountedPrice = {
+  priceAfterDiscount: number;
+  discount: number;
+  couponName: string;
+};
 
 interface CouponModel {
   _id: string;

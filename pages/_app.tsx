@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { AppProps } from 'next/app';
 import Router from 'next/router';
 
-import WithRedux from '@hocs/WithRedux';
+import WithRedux from 'hocs/WithRedux';
 import { SessionProvider } from 'next-auth/react';
 
 import NextNProgress from 'nextjs-progressbar';
