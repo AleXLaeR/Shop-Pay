@@ -21,10 +21,7 @@ export default function OrderSummary({ cart, paymentMethod }: SummaryProps) {
         <h3>Order Summary</h3>
       </div>
       <div className="mt-2.5">
-        <CouponForm
-          wasCouponApplied={cart.wasCouponApplied}
-          setDiscountedPrice={setDiscountedPrice}
-        />
+        <CouponForm appliedCoupon={cart.appliedCoupon} setDiscountedPrice={setDiscountedPrice} />
       </div>
       <div className="flex flex-col gap-1.5">
         <OrderPricing price={discountedPrice} beforeDiscount={cart.totalPrice} />

@@ -17,7 +17,7 @@ handler.post(async ({ body: order, userId }, res) => {
     await db.connectToDb();
     const [newOrder] = await Promise.all([
       Order.create({ ...order, user: userId }),
-      User.updateOne({ user: userId }, { $set: { cart: null } }),
+      User.updateOne({ user: userId }, { $unset: { cart: null } }),
     ]);
     await db.disconnectFromDb();
 

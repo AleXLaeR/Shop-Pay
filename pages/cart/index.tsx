@@ -23,8 +23,8 @@ export default function CartPage() {
 
   useEffect(() => {
     postCart(products).then((data) => {
-      const prods: CartProduct[] = (data as any).data;
-      dispatch(updateCart(prods ?? []));
+      const prods: CartProduct[] = (data as any).data ?? [];
+      dispatch(updateCart(prods));
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -38,7 +38,11 @@ export default function CartPage() {
     <div>
       <SEO title="Checkout | ShopPay" desc="User Checkout page" />
       <CheckoutHeader />
-      <div className="py-4 min-h-[700px] shadow-sm bg-white-dark">
+      <div
+        className={`py-4 min-h-[700px] shadow-sm ${
+          products.length !== 0 ? 'bg-white-dark' : 'bg-white-light'
+        }`}
+      >
         {products.length !== 0 ? (
           <div className="p-4 text-black-light max-w-[1350px] grid mx-auto gap-4 grid-areas-cartMobile lg:grid-areas-cartDesktop lg:grid-cols-cartDesktop">
             <CartSummary />

@@ -40,8 +40,9 @@ handler.put(async ({ body: couponName, userId }, res) => {
     const priceAfterDiscount =
       cart.totalPrice - (cart.totalPrice * existingCoupon.actualDiscount) / 100;
 
-    await user.update({
-      $set: { cart: { totalPrice: priceAfterDiscount, appliedCoupon: couponName } },
+    await user.updateOne({
+      'cart.totalPrice': priceAfterDiscount,
+      'cart.appliedCoupon': couponName,
     });
     await db.disconnectFromDb();
 

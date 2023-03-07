@@ -8,11 +8,11 @@ import PropagateLoader from 'react-spinners/PropagateLoader';
 import CheckoutFormInput from '@components/pages/Checkout/CheckoutFormInput';
 
 interface CouponFormProps {
-  wasCouponApplied: boolean;
+  appliedCoupon?: string;
   setDiscountedPrice: (state: DiscountedPrice) => void;
 }
 
-export default function CouponForm({ wasCouponApplied, setDiscountedPrice }: CouponFormProps) {
+export default function CouponForm({ appliedCoupon, setDiscountedPrice }: CouponFormProps) {
   const [postCoupon, { error }] = useApplyCouponMutation();
   const [wasCouponEntered, setWasCouponEntered] = useState(false);
 
@@ -31,7 +31,7 @@ export default function CouponForm({ wasCouponApplied, setDiscountedPrice }: Cou
       {({ handleSubmit, isSubmitting, isValid, dirty }) => (
         <Form onSubmit={handleSubmit} className="flex flex-col gap-1.5">
           <CheckoutFormInput
-            disabled={wasCouponEntered || wasCouponApplied}
+            disabled={wasCouponEntered || !!appliedCoupon}
             name="coupon"
             placeholder="Enter the coupon"
             type="text"
@@ -39,7 +39,7 @@ export default function CouponForm({ wasCouponApplied, setDiscountedPrice }: Cou
           <button
             type="submit"
             className={`-mt-1.5 w-full hover:bg-black-light h-10 bg-black-lighter text-white font-semibold ${
-              !isValid || !dirty || isSubmitting || wasCouponEntered || wasCouponApplied
+              !isValid || !dirty || isSubmitting || wasCouponEntered || !!appliedCoupon
                 ? 'bg-grey-lighter pointer-events-none'
                 : ''
             }`}
