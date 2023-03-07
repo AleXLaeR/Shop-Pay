@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import type { NextApiResponse } from 'next';
 import type { OverrideNextReqWithUser } from 'types/general';
 
-import { Cart, Coupon } from '@models/index';
+import { User, Coupon } from '@models/index';
 import db from '@services/db.service';
 
 import authMiddleware from '@middlewares/auth.middleware';
@@ -23,7 +23,14 @@ handler.put(async ({ body: couponName, userId }, res) => {
       return res.status(StatusCodes.BAD_REQUEST).json({ message: 'Coupon is invalid.' });
     }
 
-    const cart = await Cart.findOne({ user: userId });
+    const user = await User.findById(userId);
+    if (!user) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: 'Checkout session no longer exists.' });
+    }
+
+    const { cart } = user;
     if (!cart) {
       return res
         .status(StatusCodes.BAD_REQUEST)
@@ -33,8 +40,9 @@ handler.put(async ({ body: couponName, userId }, res) => {
     const priceAfterDiscount =
       cart.totalPrice - (cart.totalPrice * existingCoupon.actualDiscount) / 100;
 
-    await cart.updateOne({ $set: { totalPrice: priceAfterDiscount, wasCouponApplied: true } });
-
+    await user.update({
+      $set: { cart: { totalPrice: priceAfterDiscount, appliedCoupon: couponName } },
+    });
     await db.disconnectFromDb();
 
     return res.status(StatusCodes.OK).json({

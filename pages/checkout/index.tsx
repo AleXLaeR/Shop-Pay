@@ -12,7 +12,7 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 
 import db from '@services/db.service';
-import { Cart, User } from '@models/index';
+import { User } from '@models/index';
 
 interface CheckoutProps {
   cart: CartModel;
@@ -45,12 +45,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const [session] = await Promise.all([getSession({ ctx }), db.connectToDb()]);
 
   const user = await User.findById(session?.user?.id).lean();
-  const cart = await Cart.findOne({ user: user?._id }).lean();
-
-  if (!cart) {
+  if (!user) {
     return {
       redirect: {
-        destination: '/cart',
+        destination: '/sign-in',
         permanent: false,
       },
     };
@@ -60,8 +58,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      cart: JSON.parse(JSON.stringify(cart)),
-      addresses: JSON.parse(JSON.stringify(user!.addresses)),
+      cart: JSON.parse(JSON.stringify(user.cart)),
+      addresses: JSON.parse(JSON.stringify(user.addresses)),
     },
   };
 };

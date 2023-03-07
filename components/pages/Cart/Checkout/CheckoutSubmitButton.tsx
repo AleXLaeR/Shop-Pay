@@ -19,7 +19,7 @@ export default function CheckoutSubmitButton({ isDisabled }: CheckoutSubmitButto
 
   const onSubmit = async () => {
     if (session) {
-      await postCart({ userId: session.user?.id!, cart: products });
+      await postCart(products);
       router.push('/checkout');
     } else {
       signIn();

@@ -5,7 +5,7 @@ import { NextApiResponse } from 'next';
 import { OverrideNextReqWithUser } from 'types/general';
 
 import db from '@services/db.service';
-import { Order, Cart } from '@models/index';
+import { Order, User } from '@models/index';
 import authMiddleware from '@middlewares/auth.middleware';
 
 const handler = nc<OverrideNextReqWithUser<OrderModel>, NextApiResponse<BaseApiResponse>>().use(
@@ -17,7 +17,7 @@ handler.post(async ({ body: order, userId }, res) => {
     await db.connectToDb();
     const [newOrder] = await Promise.all([
       Order.create({ ...order, user: userId }),
-      Cart.deleteOne({ user: userId }),
+      User.updateOne({ user: userId }, { $set: { cart: null } }),
     ]);
     await db.disconnectFromDb();
 

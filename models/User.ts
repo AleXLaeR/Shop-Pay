@@ -1,5 +1,31 @@
-import { getTypeEnum } from '@lib/utils';
 import mongoose from 'mongoose';
+import { getTypeEnum } from '@lib/utils';
+
+const { ObjectId } = mongoose.Schema.Types;
+
+const cartSchema = new mongoose.Schema<CartModel>(
+  {
+    products: [
+      {
+        product: {
+          type: ObjectId,
+          ref: 'Product',
+          required: true,
+        },
+        name: { type: String, required: true },
+        size: { type: String, required: true },
+        imageUri: { type: String },
+        quantity: { type: Number, required: true },
+        color: { type: String, required: true },
+        price: { type: Number, required: true },
+      },
+    ],
+    totalPrice: { type: Number, required: true },
+    subTotal: { type: Number, required: true },
+    appliedCoupon: { type: String, default: '' },
+  },
+  { timestamps: true },
+);
 
 const userSchema = new mongoose.Schema<UserModel>(
   {
@@ -49,6 +75,7 @@ const userSchema = new mongoose.Schema<UserModel>(
         wasUsedBefore: { type: Boolean, default: false },
       },
     ],
+    cart: cartSchema,
   },
   { timestamps: true },
 );

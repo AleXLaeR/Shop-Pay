@@ -53,6 +53,7 @@ interface UserModel {
   isEmailVerified: boolean;
   defaultPaymentMethod: string;
   addresses: UserAddress[];
+  cart: CartModel;
 }
 
 type ProductImage = { uri: string; publicUri: string };
@@ -149,8 +150,7 @@ interface CartModel {
   products: CartProductModel[];
   subTotal: number;
   totalPrice: number;
-  user: UserModel;
-  wasCouponApplied: boolean;
+  appliedCoupon?: string;
 }
 
 type OrderStatus = 'Not Processed' | 'In Process' | 'Dispatched' | 'Cancelled' | 'Completed';

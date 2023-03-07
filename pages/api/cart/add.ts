@@ -1,24 +1,29 @@
 import nc from 'next-connect';
 import { NextApiResponse } from 'next';
 
-import { OverrideNextReq } from 'types/general';
+import { OverrideNextReqWithUser } from 'types/general';
 import { StatusCodes } from 'http-status-codes';
 
-import { Product, User, Cart } from '@models/index';
+import authMiddleware from '@middlewares/auth.middleware';
+import { Product, User } from '@models/index';
 import db from '@services/db.service';
 
-const handler = nc<OverrideNextReq<PostCartPayload>, NextApiResponse<BaseApiResponse>>();
+const handler = nc<OverrideNextReqWithUser<CartProduct[]>, NextApiResponse<BaseApiResponse>>().use(
+  authMiddleware,
+);
 
-handler.post(async ({ body: { cart, userId } }, res) => {
+handler.post(async ({ body: cart, userId }, res) => {
   try {
     await db.connectToDb();
 
+    console.log(userId);
     const user = await User.findById(userId);
     if (!user) {
       return res
         .status(StatusCodes.BAD_REQUEST)
         .json({ message: 'Cannot find an associated user.' });
     }
+    console.log(user);
 
     const cartProductPromises = cart.map(async (prod) => {
       const { size, color: variant, quantity, name, discountedPrice } = prod;
@@ -38,15 +43,16 @@ handler.post(async ({ body: { cart, userId } }, res) => {
     });
 
     const products = await Promise.all(cartProductPromises);
-    const totalPrice = products.reduce((acc, pr) => acc + pr.price * pr.quantity, 0);
     const subTotal = products.reduce((acc, pr) => acc + pr.quantity, 0);
+    const totalPrice = products.reduce((acc, pr) => acc + pr.price * pr.quantity, 0);
 
-    await Cart.create({
+    const userCart: Omit<CartModel, '_id'> = {
       products,
-      user: userId,
-      totalPrice,
       subTotal,
-    });
+      totalPrice,
+    };
+
+    await user.update({ $set: { cart: userCart } });
     await db.disconnectFromDb();
 
     res

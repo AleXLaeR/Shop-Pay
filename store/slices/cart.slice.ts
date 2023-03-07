@@ -12,7 +12,7 @@ const { actions, reducer } = createSlice({
   reducers: {
     addProduct: (state, { payload }: PayloadAction<CartProduct>) => ({
       ...state,
-      products: [...state.products, { ...payload, quantity: 1 }],
+      products: [...state.products, payload],
     }),
     onExisting: (
       { products },
