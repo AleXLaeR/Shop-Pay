@@ -15,8 +15,10 @@ const handler = nc<OverrideNextReqWithUser<OrderModel>, NextApiResponse<BaseApiR
 handler.post(async ({ body: order, userId }, res) => {
   try {
     await db.connectToDb();
+    const subTotal = order.products.reduce((acc, { quantity }) => acc + quantity, 0);
+
     const [newOrder] = await Promise.all([
-      Order.create({ ...order, user: userId }),
+      Order.create({ ...order, user: userId, subTotal }),
       User.updateOne({ user: userId }, { $unset: { cart: null } }),
     ]);
     await db.disconnectFromDb();

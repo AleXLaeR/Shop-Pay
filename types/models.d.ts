@@ -158,6 +158,7 @@ type OrderStatus = 'Not Processed' | 'In Process' | 'Dispatched' | 'Cancelled' |
 type PaymentStatus = 'Paid' | 'Unpaid';
 
 interface OrderModel {
+  _id: string;
   user: UserModel;
   products: CartProductModel[];
   shippingAddress: Omit<UserAddress, 'wasUsedBefore'>;
@@ -169,6 +170,8 @@ interface OrderModel {
   };
   totalPrice: number;
   appliedCoupon?: string;
+  discount: number;
+  subTotal: number;
   shippingPrice: number;
   taxPrice?: number;
   wasPaid?: boolean;

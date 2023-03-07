@@ -69,6 +69,7 @@ const orderSchema = new mongoose.Schema<OrderModel>(
       enum: getTypeEnum<OrderStatus>(),
       default: 'Not Processed',
     },
+    discount: { type: Number, default: 0 },
     paidAt: { type: Date, required: false },
     deliveredAt: { type: Date, required: false },
   },

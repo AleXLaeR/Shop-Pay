@@ -27,6 +27,7 @@ export default function PlaceOrderButton({ cart, paymentMethod, price }: PlaceOr
       shippingAddress: activeAddress,
       paymentMethod: paymentMethod as PaymentMethod,
       appliedCoupon: price.couponName,
+      discount: price.discount,
     });
     dispatch(clearCart());
     router.push(`order/${res.data.orderId}`);
