@@ -1,15 +1,16 @@
 import nc from 'next-connect';
-import { NextApiResponse } from 'next';
-
 import { StatusCodes } from 'http-status-codes';
-import { OverrideNextReq } from 'types/general';
 
+import type { NextApiResponse } from 'next';
+import type { OverrideNextReqWithUser } from 'types/general';
+
+import authMiddleware from '@middlewares/auth.middleware';
 import db from '@services/db.service';
 import { User } from '@models/index';
 
-const handler = nc<OverrideNextReq<PostAddressPayload>, NextApiResponse>();
+const handler = nc<OverrideNextReqWithUser<UserAddress>, NextApiResponse>().use(authMiddleware);
 
-handler.post(async ({ body: { userId, address } }, res) => {
+handler.post(async ({ body: address, userId }, res) => {
   try {
     await db.connectToDb();
 

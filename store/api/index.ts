@@ -45,15 +45,15 @@ const api = createApi({
       query: (payload) => getQuery('cart/update', payload),
       invalidatesTags: ['Cart'],
     }),
-    postCart: builder.mutation<BaseApiResponse, PostCartPayload>({
+    postCart: builder.mutation<BaseApiResponse, CartProduct[]>({
       query: (payload) => getQuery('cart/add', payload),
       invalidatesTags: ['Cart'],
     }),
-    postAddress: builder.mutation<BaseApiResponse, PostAddressPayload>({
+    postAddress: builder.mutation<BaseApiResponse, UserAddress>({
       query: (payload) => getQuery('user/addAddress', payload),
       invalidatesTags: ['User'],
     }),
-    deleteAddress: builder.mutation<BaseApiResponse, DeleteAddressPayload>({
+    deleteAddress: builder.mutation<BaseApiResponse, string>({
       query: (payload) => getQuery('user/deleteAddress', payload, 'DELETE'),
       invalidatesTags: ['User'],
     }),

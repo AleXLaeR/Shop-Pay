@@ -49,6 +49,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       redirect: {
         destination: '/sign-in',
+        permanent: true,
+      },
+    };
+  }
+
+  if (!user.cart) {
+    return {
+      redirect: {
+        destination: '/cart',
         permanent: false,
       },
     };

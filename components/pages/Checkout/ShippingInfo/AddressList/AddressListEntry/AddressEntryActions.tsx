@@ -1,6 +1,4 @@
-import { useSession } from 'next-auth/react';
 import { useAppDispatch } from '@store/hooks';
-
 import { useDeleteAddressMutation } from '@store/api';
 import { deleteAddress, setActiveAddress } from '@store/slices/checkout.slice';
 
@@ -17,13 +15,12 @@ export default function AddressEntryActions({
   activeAddressId,
 }: AddressEntryActionsProps) {
   const dispatch = useAppDispatch();
-  const { data: session } = useSession();
   const [delAddress] = useDeleteAddressMutation();
 
   const onSetActiveBtnClick = () => dispatch(setActiveAddress(addressId));
   const onDeleteAddressBtnClick = async () => {
     dispatch(deleteAddress(addressId));
-    await delAddress({ userId: session?.user?.id!, addressId });
+    await delAddress(addressId);
   };
 
   return (

@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/react';
 import { useAppDispatch } from '@store/hooks';
 import countryList from '@data/countries';
 
@@ -14,12 +13,11 @@ import SingularSelect from './SingularSelect';
 
 export default function ShippingForm({ className }: { className: string }) {
   const dispatch = useAppDispatch();
-  const { data: session } = useSession();
   const [postAddress, { isLoading, error }] = usePostAddressMutation();
 
   const onFormSubmit = async (address: CheckoutFormValues, { resetForm }: FormikHelpers<any>) => {
     dispatch(addAddress(address));
-    await postAddress({ address, userId: session?.user?.id! });
+    await postAddress(address);
     resetForm();
   };
 

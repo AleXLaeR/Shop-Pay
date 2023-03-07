@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
-import { useAppSelector } from '@store/hooks';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
 
 import { useAddOrderMutation } from '@store/api';
+import { clearCart } from '@store/slices/cart.slice';
+
 import { selectActiveAddress } from '@store/slices/checkout.slice';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 
@@ -13,6 +15,8 @@ interface PlaceOrderButtonProps {
 
 export default function PlaceOrderButton({ cart, paymentMethod, price }: PlaceOrderButtonProps) {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const [postOrder, { isLoading }] = useAddOrderMutation();
   const activeAddress = useAppSelector(selectActiveAddress);
 
@@ -24,6 +28,7 @@ export default function PlaceOrderButton({ cart, paymentMethod, price }: PlaceOr
       paymentMethod: paymentMethod as PaymentMethod,
       appliedCoupon: price.couponName,
     });
+    dispatch(clearCart());
     router.push(`order/${res.data.orderId}`);
   };
 
