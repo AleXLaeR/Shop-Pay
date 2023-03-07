@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import Image from 'next/image';
-import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { selectIsProductSelected, selectOne } from '@store/slices/cart.slice';
 
 import { MdOutlineStorefront } from 'react-icons/md';
-import { RiCheckboxCircleLine } from 'react-icons/ri';
+import { RiCheckboxCircleLine, RiCheckboxBlankCircleLine } from 'react-icons/ri';
 
 import EntryHeader from './EntryHeader';
 import ControlActions from './ControlActions';
@@ -29,30 +28,41 @@ export default function CartEntry({ product }: CartEntryProps) {
     discount,
     shippingPrice,
     slug,
+    stockQuantity,
   } = product;
 
   const dispatch = useAppDispatch();
-  const isSelected = useAppSelector((s) => selectIsProductSelected(s, itemId));
+  const isSelected = useAppSelector((s) => selectIsProductSelected(s, itemId)) && stockQuantity > 0;
 
   const onSelectBtnClick = () => dispatch(selectOne(itemId));
 
   return (
     <div className="relative border-b border-b-greyish card-base grid-in-products flex flex-col gap-4">
-      {quantity < 1 && <div className="blur z-20 max-w-full max-h-full" />}
+      {stockQuantity < 1 && <div className="blur z-20 max-w-full max-h-full" />}
       <div className="flex items-center gap-2.5 text-sm text-grey-dark pb-4 border-b border-b-white-dark">
         <MdOutlineStorefront className="w-8 h-8" />
         ShopPay Official Store
-        {quantity < 1 && (
+        {stockQuantity < 1 && (
           <p className="flex-grow text-right pr-2 text-red text-lg font-semibold">Inactive</p>
         )}
       </div>
       <div className="grid grid-cols-cartEntryImages gap-2.5">
-        <RiCheckboxCircleLine
-          className={`w-10 h-10 transition-transform hover:scale-105 cursor-pointer rounded-full ${
-            isSelected ? 'fill-green-light scale-105' : 'fill-grey-lighter'
-          }`}
-          onClick={onSelectBtnClick}
-        />
+        {isSelected ? (
+          <RiCheckboxCircleLine
+            className={`w-8 h-8 transition-transform hover:scale-105 cursor-pointer rounded-full ${
+              isSelected ? 'fill-green-light scale-105' : 'fill-grey-lighter'
+            }`}
+            onClick={onSelectBtnClick}
+          />
+        ) : (
+          <RiCheckboxBlankCircleLine
+            className={`w-8 h-8 transition-transform hover:scale-105 cursor-pointer rounded-full ${
+              isSelected ? 'fill-green-light scale-105' : 'fill-grey-lighter'
+            }`}
+            onClick={onSelectBtnClick}
+          />
+        )}
+
         <Image
           src={images[0].uri}
           alt={images[0].publicUri}
@@ -87,8 +97,8 @@ export default function CartEntry({ product }: CartEntryProps) {
           </div>
         </div>
       </div>
-      {quantity < 1 && (
-        <p className="md:ml-10 text-red text-lg w-full z-10 underline underline-offset-4">
+      {stockQuantity < 1 && (
+        <p className="md:ml-10 text-red text-sm w-full z-10 underline underline-offset-4">
           This product is out of stock. Add it to your whishlist and it might get restocked.
         </p>
       )}
