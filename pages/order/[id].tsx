@@ -4,7 +4,10 @@ import {
   OrderPricing,
   CustomerOrderData,
   OrderProductList,
+  OrderPayments,
 } from '@components/pages/Order';
+
+import SEO from '@common/SEO';
 import { CheckoutHeader, Footer } from '@components/layout';
 
 import db from '@services/db.service';
@@ -19,6 +22,7 @@ export default function OrderPage({ order }: OrderProps) {
 
   return (
     <>
+      <SEO title="Order Page | ShopPay" desc={`Order Page ${orderData._id} | ShopPay`} />
       <CheckoutHeader />
       <div className="max-w-[1350px] mx-auto grid grid-cols-1 lg:grid-cols-[2.4fr,1fr] my-8 px-4 gap-4">
         <div className="flex flex-col shadow-md">
@@ -30,7 +34,7 @@ export default function OrderPage({ order }: OrderProps) {
         </div>
         <div className="h-fit flex flex-col gap-4">
           <CustomerOrderData shippingAddress={orderData.shippingAddress} />
-          {orderData.wasPaid && <div className="p-4 shadow-md" />}
+          <OrderPayments order={orderData} />
         </div>
       </div>
       <Footer bordered />
@@ -41,7 +45,7 @@ export default function OrderPage({ order }: OrderProps) {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   await db.connectToDb();
 
-  const order = await Order.findById(query.id).lean();
+  const order = await Order.findById(query.id).populate({ path: 'user', model: 'User' }).lean();
   if (!order) {
     return { notFound: true };
   }
