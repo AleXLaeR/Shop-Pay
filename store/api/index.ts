@@ -73,6 +73,10 @@ const api = createApi({
       query: (payload) => getQuery(`order/${payload.orderId}/payWithPayPal`, payload, 'PUT'),
       invalidatesTags: ['Payment'],
     }),
+    payWithStripe: builder.mutation<StripeOrderResponse, StripeOrderPayload & { orderId: string }>({
+      query: (payload) => getQuery(`order/${payload.orderId}/payWithStripe`, payload, 'PUT'),
+      invalidatesTags: ['Payment'],
+    }),
   }),
 });
 
@@ -86,6 +90,7 @@ export const {
   usePostCartMutation,
   usePostAddressMutation,
   useDeleteAddressMutation,
+  usePayWithStripeMutation,
   useAddCouponMutation,
   usePayWithPayPalMutation,
   useAddOrderMutation,
