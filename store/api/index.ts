@@ -18,7 +18,7 @@ function getQuery<Payload>(
 
 const api = createApi({
   reducerPath: 'globalApi',
-  tagTypes: ['Newsletter', 'Authentication', 'Passwords', 'Cart', 'User', 'Checkout'],
+  tagTypes: ['Newsletter', 'Authentication', 'Passwords', 'Cart', 'User', 'Checkout', 'Payment'],
   baseQuery,
   endpoints: (builder) => ({
     subscribeToNewsletter: builder.mutation<BaseApiResponse, EmailPayload>({
@@ -69,6 +69,10 @@ const api = createApi({
       query: (payload) => getQuery('order/add', payload),
       invalidatesTags: ['Checkout'],
     }),
+    payWithPayPal: builder.mutation<BaseApiResponse, PayPalOrderPayload & { orderId: string }>({
+      query: (payload) => getQuery(`order/${payload.orderId}/payWithPayPal`, payload, 'PUT'),
+      invalidatesTags: ['Payment'],
+    }),
   }),
 });
 
@@ -83,6 +87,7 @@ export const {
   usePostAddressMutation,
   useDeleteAddressMutation,
   useAddCouponMutation,
+  usePayWithPayPalMutation,
   useAddOrderMutation,
   useApplyCouponMutation,
   ...globalApi
