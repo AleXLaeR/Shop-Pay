@@ -10,6 +10,8 @@ type ApplyCouponResponse = {
   priceAfterDiscount: number;
 };
 
+type StripeOrderResponse = { id: string };
+
 type SignUpPayload = {
   name: string;
   email: string;
@@ -28,5 +30,10 @@ type ResetPasswordPayload = {
 type PayPalOrderPayload = {
   id: string;
   status: PaymentStatus;
+  email: string;
+};
+
+type StripeOrderPayload = {
+  products: CartProductModel[];
   email: string;
 };

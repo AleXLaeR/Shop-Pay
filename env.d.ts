@@ -46,6 +46,9 @@ interface TokenSecretsEnv {
 interface PaymentsEnv {
   PAYPAL_CLIENT_ID: string;
   PAYPAL_CLIENT_SECRET: string;
+
+  STRIPE_PUBLIC_KEY: string;
+  STRIPE_SECRET_KEY: string;
 }
 
 interface MailServiceEnv {
