@@ -1,4 +1,6 @@
 import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/react';
+
 import {
   OrderStatus,
   OrderPricing,
@@ -34,7 +36,7 @@ export default function OrderPage({ order }: OrderProps) {
         </div>
         <div className="h-fit flex flex-col gap-4">
           <CustomerOrderData shippingAddress={orderData.shippingAddress} />
-          <OrderPayments order={orderData} />
+          <OrderPayments order={order} />
         </div>
       </div>
       <Footer bordered />
@@ -42,11 +44,11 @@ export default function OrderPage({ order }: OrderProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  await db.connectToDb();
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
+  const [session] = await Promise.all([getSession({ req }), db.connectToDb()]);
 
   const order = await Order.findById(query.id).populate({ path: 'user', model: 'User' }).lean();
-  if (!order) {
+  if (!order || order.user?._id.toString() !== session?.user?.id) {
     return { notFound: true };
   }
 
