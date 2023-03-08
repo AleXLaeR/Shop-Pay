@@ -1,10 +1,9 @@
 import { GetServerSideProps } from 'next';
-
 import {
   OrderStatus,
-  OrderProductEntry,
   OrderPricing,
   CustomerOrderData,
+  OrderProductList,
 } from '@components/pages/Order';
 import { CheckoutHeader, Footer } from '@components/layout';
 
@@ -25,11 +24,7 @@ export default function OrderPage({ order }: OrderProps) {
         <div className="flex flex-col shadow-md">
           <OrderStatus order={orderData} />
           <div className="p-4">
-            {products
-              .flatMap((p) => [p, p, p, p, p])
-              .map((product: CartProductModel) => (
-                <OrderProductEntry key={product._id} product={product} />
-              ))}
+            <OrderProductList products={products} />
             <OrderPricing order={orderData} />
           </div>
         </div>

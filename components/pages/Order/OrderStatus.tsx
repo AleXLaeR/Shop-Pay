@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 
 interface OrderStatusProps {
@@ -12,7 +13,10 @@ export default function OrderStatus({ order }: OrderStatusProps) {
   return (
     <div className="flex flex-col gap-2.5 p-4 border border-greyish">
       <div className="flex items-center gap-1.5 text-grey-dark">
-        Home <IoIosArrowForward /> Orders <IoIosArrowForward /> ID {_id}
+        <Link href="/" className="link">
+          Home
+        </Link>{' '}
+        <IoIosArrowForward /> Orders <IoIosArrowForward /> ID {_id}
       </div>
       <div className="flex items-center gap-2.5">
         Payment Status :{' '}

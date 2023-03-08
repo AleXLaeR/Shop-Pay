@@ -16,24 +16,24 @@ export default function OrderPricing({ order }: OrderPricingProps) {
     <div className="mt-4">
       {appliedCoupon && (
         <>
-          <div className="flex-between py-1.5 px-4">
-            <span>Total cost : {priceBeforeDiscount.toFixed(2)}</span>
+          <div className="flex-between py-1.5 px-4 text-lg font-semibold">
+            <span>Total cost : {priceBeforeDiscount.toFixed(2)}$</span>
           </div>
-          <div className="flex-between py-1.5 px-4">
+          <div className="flex-between py-1.5 px-4 text-lg font-semibold">
             <span>
-              Applied Coupon : <em className="text-green-light">({appliedCoupon})</em>{' '}
+              Applied Coupon <em className="text-green-light">({appliedCoupon}) : </em>{' '}
             </span>
             <span>- {(priceBeforeDiscount - totalPrice).toFixed(2)}$</span>
           </div>
         </>
       )}
-      <div className="flex-between py-1.5 px-4">
-        <span>Shipping price : + {shippingPrice}$</span>
-        <span>Tax price : + {taxPrice}$</span>
+      <div className="flex-between py-1.5 px-4 font-semibold">
+        <span>Shipping price : +{shippingPrice}$</span>
+        <span>Tax price : +{taxPrice}$</span>
       </div>
-      <div className="flex-between py-1.5 px-4 border-t border-t-greyish">
-        <span className="uppercase">To Pay</span>
-        <b className="text-2xl">{totalPrice.toFixed(2)}</b>
+      <div className="flex-between py-1.5 mt-2 px-4 border-t border-t-greyish">
+        <span className="uppercase font-bold text-xl">To Pay : </span>
+        <b className="text-2xl">{totalPrice.toFixed(2)}$</b>
       </div>
     </div>
   );

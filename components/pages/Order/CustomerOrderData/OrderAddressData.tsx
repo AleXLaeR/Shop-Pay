@@ -8,7 +8,7 @@ export default function OrderAddressData({ address, title }: OrderAddressDataPro
 
   return (
     <div className="border-t border-t-greyish">
-      <h2 className="text-blue-darker text-lg mt-2.5">{title} address</h2>
+      <h2 className="text-blue-darker text-lg font-semibold mb-1.5 mt-2.5">{title} address</h2>
       <div className="flex flex-col">
         <span>
           {firstName} {lastName}

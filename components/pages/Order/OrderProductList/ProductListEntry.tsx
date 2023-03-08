@@ -4,7 +4,7 @@ interface OrderProductEntryProps {
   product: CartProductModel;
 }
 
-export default function OrderProductEntry({ product }: OrderProductEntryProps) {
+export default function ProductListEntry({ product }: OrderProductEntryProps) {
   const { name, imageUri, size, quantity, price, color } = product;
 
   return (
