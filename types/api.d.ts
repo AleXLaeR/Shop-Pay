@@ -25,12 +25,8 @@ type ResetPasswordPayload = {
   password: string;
 };
 
-type PostAddressPayload = {
-  userId: string;
-  address: UserAddress;
-};
-
-type DeleteAddressPayload = {
-  userId: string;
-  addressId: string;
+type PayPalOrderPayload = {
+  id: string;
+  status: PaymentStatus;
+  email: string;
 };

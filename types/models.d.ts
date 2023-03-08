@@ -65,7 +65,7 @@ type ReviewPopularity = {
 
 type UserRole = 'buyer' | 'admin' | 'seller';
 
-type PaymentMethod = '' | 'PayPal' | 'Visa' | 'Mastercard';
+type PaymentMethod = '' | 'paypal' | 'credit_card' | 'cash';
 
 type ProductRefundPolicy = '7d' | '1w' | '30d' | '1m' | '3m' | '6m' | '1y' | 'never';
 

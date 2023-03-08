@@ -1,6 +1,6 @@
 declare global {
   namespace NodeJS {
-    interface ProcessEnv extends NextAuthEnv, APIEnv, MailServiceEnv, TokenSecretsEnv {
+    interface ProcessEnv extends NextAuthEnv, APIEnv, MailServiceEnv, TokenSecretsEnv, PaymentsEnv {
       MONGODB_URI: string;
       NODE_ENV: 'development' | 'production';
       BASE_URL: string;
@@ -41,6 +41,11 @@ interface Auth0Creds {
 interface TokenSecretsEnv {
   JWT_TOKEN_SECRET: string;
   RESET_TOKEN_SECRET: string;
+}
+
+interface PaymentsEnv {
+  PAYPAL_CLIENT_ID: string;
+  PAYPAL_CLIENT_SECRET: string;
 }
 
 interface MailServiceEnv {
