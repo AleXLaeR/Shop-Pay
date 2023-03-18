@@ -11,6 +11,8 @@ import NextNProgress from 'nextjs-progressbar';
 import { ToastContainer } from 'react-toastify';
 import { CombinedLoader } from '@common/loaders';
 
+import ScrollLock from '@components/ScrollLock';
+
 export default function App({ Component, pageProps }: AppProps) {
   const [isPageLoading, setPageLoading] = useState(false);
 
@@ -21,9 +23,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider>
       <WithRedux>
-        <NextNProgress height={6} />
-        {isPageLoading ? <CombinedLoader /> : <Component {...pageProps} />}
-        <ToastContainer autoClose={5e3} pauseOnHover={false} position="bottom-right" limit={1} />
+        <ScrollLock>
+          <NextNProgress height={6} />
+          {isPageLoading ? <CombinedLoader /> : <Component {...pageProps} />}
+          <ToastContainer autoClose={5e3} pauseOnHover={false} position="bottom-right" limit={1} />
+        </ScrollLock>
       </WithRedux>
     </SessionProvider>
   );

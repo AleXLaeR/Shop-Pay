@@ -1,11 +1,12 @@
-import { createSelector, createSlice, PayloadAction, RootState } from '@reduxjs/toolkit';
+import { Action, createSelector, createSlice, PayloadAction, RootState } from '@reduxjs/toolkit';
 
 type CheckoutState = {
   activeAddress: string;
   addresses: UserAddress[];
+  isLocked: boolean;
 };
 
-const initialState: CheckoutState = { activeAddress: '', addresses: [] };
+const initialState: CheckoutState = { activeAddress: '', addresses: [], isLocked: false };
 
 const { actions, reducer } = createSlice({
   name: 'checkoutSlice',
@@ -19,6 +20,10 @@ const { actions, reducer } = createSlice({
       ...state,
       addresses: payload,
     }),
+    setLocked: (state, _?: Action) => ({
+      ...state,
+      isLocked: !state.isLocked,
+    }),
     addAddress: ({ addresses, activeAddress }, { payload }: PayloadAction<UserAddress>) => ({
       activeAddress: addresses.length !== 0 ? activeAddress : payload._id,
       addresses: [...addresses, payload],
@@ -30,7 +35,7 @@ const { actions, reducer } = createSlice({
   },
 });
 
-export const { setActiveAddress, updateAddresses, addAddress, deleteAddress } = actions;
+export const { setLocked, setActiveAddress, updateAddresses, addAddress, deleteAddress } = actions;
 
 export const selectActiveAddress = createSelector(
   ({ checkout }: RootState) => checkout,
